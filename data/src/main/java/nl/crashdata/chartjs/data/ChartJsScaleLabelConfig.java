@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public interface ChartJsScaleLabelConfig extends Serializable
 {
 	@JsonProperty("display")
-	boolean isDisplay();
+	Boolean isDisplay();
 
 	@JsonProperty("labelString")
 	String getLabelString();

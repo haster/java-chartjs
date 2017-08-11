@@ -6,17 +6,17 @@ public class SimpleChartJsScaleLabelConfig implements ChartJsScaleLabelConfig
 {
 	private static final long serialVersionUID = 1L;
 
-	private boolean display;
+	private Boolean display;
 
 	private String labelString;
 
 	@Override
-	public boolean isDisplay()
+	public Boolean isDisplay()
 	{
 		return display;
 	}
 
-	public void setDisplay(boolean display)
+	public void setDisplay(Boolean display)
 	{
 		this.display = display;
 	}

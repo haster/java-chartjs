@@ -10,7 +10,7 @@ public class SimpleChartJsAxisConfig implements ChartJsAxisConfig
 {
 	private static final long serialVersionUID = 1L;
 
-	private boolean display;
+	private Boolean display;
 
 	private ChartJsScaleLabelConfig labelConfig;
 
@@ -21,12 +21,12 @@ public class SimpleChartJsAxisConfig implements ChartJsAxisConfig
 	private ChartJsCartesianAxisType type;
 
 	@Override
-	public boolean isDisplay()
+	public Boolean isDisplay()
 	{
 		return display;
 	}
 
-	public void setDisplay(boolean display)
+	public void setDisplay(Boolean display)
 	{
 		this.display = display;
 	}

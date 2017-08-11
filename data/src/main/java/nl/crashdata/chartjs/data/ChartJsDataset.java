@@ -20,5 +20,5 @@ public interface ChartJsDataset<V extends Serializable> extends Serializable
 	List<V> getData();
 
 	@JsonProperty("fill")
-	boolean isFill();
+	Boolean isFill();
 }

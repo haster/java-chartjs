@@ -10,5 +10,5 @@ public interface ChartJsTooltipConfig extends Serializable
 	ChartJsInteractionMode getMode();
 
 	@JsonProperty("intersect")
-	boolean isIntersect();
+	Boolean isIntersect();
 }

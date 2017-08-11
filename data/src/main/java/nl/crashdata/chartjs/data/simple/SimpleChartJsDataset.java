@@ -17,7 +17,7 @@ public class SimpleChartJsDataset<V extends Serializable> implements ChartJsData
 
 	private List<V> data;
 
-	private boolean fill;
+	private Boolean fill;
 
 	@Override
 	public String getLabel()
@@ -64,12 +64,12 @@ public class SimpleChartJsDataset<V extends Serializable> implements ChartJsData
 	}
 
 	@Override
-	public boolean isFill()
+	public Boolean isFill()
 	{
 		return fill;
 	}
 
-	public void setFill(boolean fill)
+	public void setFill(Boolean fill)
 	{
 		this.fill = fill;
 	}

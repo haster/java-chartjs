@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public interface ChartJsOptions extends Serializable
 {
 	@JsonProperty("responsive")
-	boolean isResponsive();
+	Boolean isResponsive();
 
 	@JsonProperty("tooltips")
 	ChartJsTooltipConfig getTooltipConfig();

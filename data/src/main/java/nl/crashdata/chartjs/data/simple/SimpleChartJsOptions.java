@@ -9,7 +9,7 @@ public class SimpleChartJsOptions implements ChartJsOptions
 {
 	private static final long serialVersionUID = 1L;
 
-	private boolean responsive;
+	private Boolean responsive;
 
 	private ChartJsTooltipConfig tooltipConfig;
 
@@ -18,12 +18,12 @@ public class SimpleChartJsOptions implements ChartJsOptions
 	private ChartJsScalesConfig scalesConfig;
 
 	@Override
-	public boolean isResponsive()
+	public Boolean isResponsive()
 	{
 		return responsive;
 	}
 
-	public void setResponsive(boolean responsive)
+	public void setResponsive(Boolean responsive)
 	{
 		this.responsive = responsive;
 	}

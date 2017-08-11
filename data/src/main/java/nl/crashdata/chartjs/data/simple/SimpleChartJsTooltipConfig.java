@@ -9,7 +9,7 @@ public class SimpleChartJsTooltipConfig implements ChartJsTooltipConfig
 
 	private ChartJsInteractionMode mode;
 
-	private boolean intersect;
+	private Boolean intersect;
 
 	@Override
 	public ChartJsInteractionMode getMode()
@@ -23,12 +23,12 @@ public class SimpleChartJsTooltipConfig implements ChartJsTooltipConfig
 	}
 
 	@Override
-	public boolean isIntersect()
+	public Boolean isIntersect()
 	{
 		return intersect;
 	}
 
-	public void setIntersect(boolean intersect)
+	public void setIntersect(Boolean intersect)
 	{
 		this.intersect = intersect;
 	}
