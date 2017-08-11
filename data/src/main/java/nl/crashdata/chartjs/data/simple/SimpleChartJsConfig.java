@@ -2,12 +2,13 @@ package nl.crashdata.chartjs.data.simple;
 
 import java.io.Serializable;
 
+import nl.crashdata.chartjs.data.ChartJsChartType;
 import nl.crashdata.chartjs.data.ChartJsConfig;
 import nl.crashdata.chartjs.data.ChartJsData;
 import nl.crashdata.chartjs.data.ChartJsOptions;
 
 public class SimpleChartJsConfig<K extends Serializable, V extends Serializable>
-		implements Serializable, ChartJsConfig<K, V>
+		implements ChartJsConfig<K, V>
 {
 	private static final long serialVersionUID = 1L;
 
@@ -15,10 +16,17 @@ public class SimpleChartJsConfig<K extends Serializable, V extends Serializable>
 
 	private ChartJsOptions options;
 
+	private ChartJsChartType chartType;
+
 	@Override
-	public String getType()
+	public ChartJsChartType getChartType()
 	{
-		return "line";
+		return chartType;
+	}
+	
+	public void setChartType(ChartJsChartType chartType)
+	{
+		this.chartType = chartType;
 	}
 
 	@Override
