@@ -1,0 +1,19 @@
+#output folders
+target
+bin
+
+#log files
+*.log
+
+#eclipse files
+.settings
+.project
+.classpath
+.factorypath
+
+#misc files
+.DS_Store
+*.swp
+rebel.xml
+
+
