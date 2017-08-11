@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>nl.crashdata.crashdata-parent</groupId>
+		<artifactId>crashdata-parent</artifactId>
+		<version>1.2-SNAPSHOT</version>
+	</parent>
+	
+	<groupId>nl.crashdata.wicket-chartjs</groupId>
+	<artifactId>wicket-chartjs</artifactId>
+
+	<name>wicket-chartjs parent</name>
+
+	<version>0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	<scm>
+		<url>https://github.com/haster/wicket-chartjs</url>
+		<connection>scm:git:git@github.com:haster/wicket-chartjs.git</connection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<modules>
+		<module>data</module>
+	</modules>
+
+	<properties>
+		<jackson.version>2.8.9</jackson.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+</project>
