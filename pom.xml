@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>nl.crashdata.crashdata-parent</groupId>
 		<artifactId>crashdata-parent</artifactId>
 		<version>1.2-SNAPSHOT</version>
 	</parent>
-	
+
 	<groupId>nl.crashdata.wicket-chartjs</groupId>
 	<artifactId>wicket-chartjs</artifactId>
 
@@ -15,7 +15,7 @@
 
 	<version>0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	
+
 	<scm>
 		<url>https://github.com/haster/wicket-chartjs</url>
 		<connection>scm:git:git@github.com:haster/wicket-chartjs.git</connection>
@@ -24,10 +24,13 @@
 
 	<modules>
 		<module>data</module>
+		<module>wicket</module>
 	</modules>
 
 	<properties>
-		<jackson.version>2.8.9</jackson.version>
+		<version.jackson>2.8.9</version.jackson>
+		<version.danekja>1.8.3</version.danekja>
+		<version.wicket>7.8.0</version.wicket>
 	</properties>
 
 	<dependencyManagement>
@@ -35,7 +38,32 @@
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-annotations</artifactId>
-				<version>${jackson.version}</version>
+				<version>${version.jackson}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${version.jackson}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.datatype</groupId>
+				<artifactId>jackson-datatype-jsr310</artifactId>
+				<version>${version.jackson}</version>
+			</dependency>
+			<dependency>
+				<groupId>nl.crashdata.wicket-chartjs</groupId>
+				<artifactId>wicket-chartjs-data</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-core</artifactId>
+				<version>${version.wicket}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.danekja</groupId>
+				<artifactId>jdk-serializable-functional</artifactId>
+				<version>${version.danekja}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
