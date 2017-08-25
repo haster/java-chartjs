@@ -2,10 +2,14 @@ package nl.crashdata.chartjs.data.simple;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
+import nl.crashdata.chartjs.data.ChartJsDataPoint;
 import nl.crashdata.chartjs.data.ChartJsDataset;
 
-public class SimpleChartJsDataset<V extends Serializable> implements ChartJsDataset<V>
+public class SimpleChartJsDataset<K extends Serializable, V extends Serializable>
+		implements ChartJsDataset<K, V>
 {
 	private static final long serialVersionUID = 1L;
 
@@ -15,7 +19,7 @@ public class SimpleChartJsDataset<V extends Serializable> implements ChartJsData
 
 	private String borderColor;
 
-	private List<V> data;
+	private List<ChartJsDataPoint<K, V>> data;
 
 	private Boolean fill;
 
@@ -53,14 +57,22 @@ public class SimpleChartJsDataset<V extends Serializable> implements ChartJsData
 	}
 
 	@Override
-	public List<V> getData()
+	public List<ChartJsDataPoint<K, V>> getData()
 	{
 		return data;
 	}
 
-	public void setData(List<V> data)
+	public void setData(List<ChartJsDataPoint<K, V>> data)
 	{
 		this.data = data;
+	}
+
+	public void setData(Map<K, V> data)
+	{
+		this.data = data.entrySet()
+			.stream()
+			.map(e -> new SimpleChartJsDataPoint<>(e.getKey(), e.getValue()))
+			.collect(Collectors.toList());
 	}
 
 	@Override
