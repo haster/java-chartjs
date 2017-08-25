@@ -14,6 +14,42 @@ public class SimpleChartJsConfigBuilder<K extends Serializable, V extends Serial
 		return new SimpleChartJsConfigBuilder<K, V>().withType(ChartJsChartType.LINE);
 	}
 
+	public static <K extends Serializable, V extends Serializable> SimpleChartJsConfigBuilder<K, V>
+			barChart()
+	{
+		return new SimpleChartJsConfigBuilder<K, V>().withType(ChartJsChartType.BAR);
+	}
+
+	public static <K extends Serializable, V extends Serializable> SimpleChartJsConfigBuilder<K, V>
+			pieChart()
+	{
+		return new SimpleChartJsConfigBuilder<K, V>().withType(ChartJsChartType.PIE);
+	}
+
+	public static <K extends Serializable, V extends Serializable> SimpleChartJsConfigBuilder<K, V>
+			radarChart()
+	{
+		return new SimpleChartJsConfigBuilder<K, V>().withType(ChartJsChartType.RADAR);
+	}
+
+	public static <K extends Serializable, V extends Serializable> SimpleChartJsConfigBuilder<K, V>
+			scatterPlot()
+	{
+		return new SimpleChartJsConfigBuilder<K, V>().withType(ChartJsChartType.SCATTER);
+	}
+
+	public static <K extends Serializable, V extends Serializable> SimpleChartJsConfigBuilder<K, V>
+			bubbleChart()
+	{
+		return new SimpleChartJsConfigBuilder<K, V>().withType(ChartJsChartType.BUBBLE);
+	}
+
+	public static <K extends Serializable, V extends Serializable> SimpleChartJsConfigBuilder<K, V>
+			polarAreaChart()
+	{
+		return new SimpleChartJsConfigBuilder<K, V>().withType(ChartJsChartType.POLAR_AREA);
+	}
+
 	private ChartJsChartType type;
 
 	private SimpleChartJsDataBuilder<K, V> dataBuilder = new SimpleChartJsDataBuilder<>();
