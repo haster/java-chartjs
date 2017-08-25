@@ -16,6 +16,12 @@ public class SimpleChartJsAxisConfigBuilder implements SimpleChartJsBuilder<Simp
 
 	private SimpleChartJsTickConfigBuilder tickConfigBuilder;
 
+	public SimpleChartJsAxisConfigBuilder withDisplay(Boolean display)
+	{
+		this.display = display;
+		return this;
+	}
+
 	public SimpleChartJsAxisConfigBuilder withPosition(ChartJsAxisPosition position)
 	{
 		this.position = position;
