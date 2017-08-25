@@ -1,5 +1,6 @@
 package nl.crashdata.chartjs.data.simple;
 
+import java.util.Collections;
 import java.util.List;
 
 import nl.crashdata.chartjs.data.ChartJsAxisConfig;
@@ -9,29 +10,39 @@ public class SimpleChartJsScalesConfig implements ChartJsScalesConfig
 {
 	private static final long serialVersionUID = 1L;
 
-	private List<ChartJsAxisConfig> xAxes;
+	private ChartJsAxisConfig xAxis;
 
-	private List<ChartJsAxisConfig> yAxes;
+	private ChartJsAxisConfig yAxis;
+
+	public ChartJsAxisConfig getxAxis()
+	{
+		return xAxis;
+	}
+
+	public void setxAxis(ChartJsAxisConfig xAxis)
+	{
+		this.xAxis = xAxis;
+	}
+
+	public ChartJsAxisConfig getyAxis()
+	{
+		return yAxis;
+	}
+
+	public void setyAxis(ChartJsAxisConfig yAxis)
+	{
+		this.yAxis = yAxis;
+	}
 
 	@Override
 	public List<ChartJsAxisConfig> getXAxes()
 	{
-		return xAxes;
-	}
-
-	public void setXAxes(List<ChartJsAxisConfig> xAxes)
-	{
-		this.xAxes = xAxes;
+		return Collections.singletonList(xAxis);
 	}
 
 	@Override
 	public List<ChartJsAxisConfig> getYAxes()
 	{
-		return yAxes;
-	}
-
-	public void setYAxes(List<ChartJsAxisConfig> yAxes)
-	{
-		this.yAxes = yAxes;
+		return Collections.singletonList(yAxis);
 	}
 }
