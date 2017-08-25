@@ -5,16 +5,15 @@
 	<parent>
 		<groupId>nl.crashdata.crashdata-parent</groupId>
 		<artifactId>crashdata-parent</artifactId>
-		<version>1.2</version>
+		<version>1.3</version>
 	</parent>
 
 	<groupId>nl.crashdata.wicket-chartjs</groupId>
 	<artifactId>wicket-chartjs</artifactId>
-
-	<name>wicket-chartjs parent</name>
-
-	<version>0.1-SNAPSHOT</version>
+	<version>0.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	
+	<name>wicket-chartjs parent</name>
 
 	<scm>
 		<url>https://github.com/haster/wicket-chartjs</url>
@@ -36,34 +35,9 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-annotations</artifactId>
-				<version>${version.jackson}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-databind</artifactId>
-				<version>${version.jackson}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.datatype</groupId>
-				<artifactId>jackson-datatype-jsr310</artifactId>
-				<version>${version.jackson}</version>
-			</dependency>
-			<dependency>
 				<groupId>nl.crashdata.wicket-chartjs</groupId>
 				<artifactId>wicket-chartjs-data</artifactId>
 				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.wicket</groupId>
-				<artifactId>wicket-core</artifactId>
-				<version>${version.wicket}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.danekja</groupId>
-				<artifactId>jdk-serializable-functional</artifactId>
-				<version>${version.danekja}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
