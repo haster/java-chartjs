@@ -31,7 +31,4 @@ public interface ChartJsDataset<K extends Serializable, V extends Serializable> 
 
 	@JsonProperty("data")
 	List<ChartJsDataPoint<K, V>> getData();
-
-	@JsonProperty("fill")
-	Boolean isFill();
 }

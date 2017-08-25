@@ -21,8 +21,6 @@ public class SimpleChartJsDataset<K extends Serializable, V extends Serializable
 
 	private List<ChartJsDataPoint<K, V>> data;
 
-	private Boolean fill;
-
 	@Override
 	public String getLabel()
 	{
@@ -73,16 +71,5 @@ public class SimpleChartJsDataset<K extends Serializable, V extends Serializable
 			.stream()
 			.map(e -> new SimpleChartJsDataPoint<>(e.getKey(), e.getValue()))
 			.collect(Collectors.toList());
-	}
-
-	@Override
-	public Boolean isFill()
-	{
-		return fill;
-	}
-
-	public void setFill(Boolean fill)
-	{
-		this.fill = fill;
 	}
 }

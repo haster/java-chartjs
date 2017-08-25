@@ -21,8 +21,6 @@ public class SimpleChartJsDatasetBuilder<K extends Serializable, V extends Seria
 
 	private List<ChartJsDataPoint<K, V>> data = new ArrayList<>();
 
-	private Boolean fill;
-
 	public SimpleChartJsDatasetBuilder<K, V> withLabel(String label)
 	{
 		this.label = label;
@@ -38,12 +36,6 @@ public class SimpleChartJsDatasetBuilder<K extends Serializable, V extends Seria
 	public SimpleChartJsDatasetBuilder<K, V> withBorderColor(String borderColor)
 	{
 		this.borderColor = borderColor;
-		return this;
-	}
-
-	public SimpleChartJsDatasetBuilder<K, V> withFill(Boolean fill)
-	{
-		this.fill = fill;
 		return this;
 	}
 
@@ -91,7 +83,6 @@ public class SimpleChartJsDatasetBuilder<K extends Serializable, V extends Seria
 		ret.setBackgroundColor(backgroundColor);
 		ret.setBorderColor(borderColor);
 		ret.setData(data);
-		ret.setFill(fill);
 		ret.setLabel(label);
 		return ret;
 	}
