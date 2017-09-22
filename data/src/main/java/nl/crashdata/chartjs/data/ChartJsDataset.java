@@ -29,6 +29,9 @@ public interface ChartJsDataset<K extends Serializable, V extends Serializable> 
 	@JsonProperty("borderColor")
 	String getBorderColor();
 
+	@JsonProperty("fill")
+	String getFill();
+
 	@JsonProperty("data")
 	List<ChartJsDataPoint<K, V>> getData();
 }

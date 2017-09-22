@@ -19,6 +19,8 @@ public class SimpleChartJsDataset<K extends Serializable, V extends Serializable
 
 	private String borderColor;
 
+	private String fill;
+
 	private List<ChartJsDataPoint<K, V>> data;
 
 	@Override
@@ -52,6 +54,17 @@ public class SimpleChartJsDataset<K extends Serializable, V extends Serializable
 	public void setBorderColor(String borderColor)
 	{
 		this.borderColor = borderColor;
+	}
+
+	@Override
+	public String getFill()
+	{
+		return fill;
+	}
+
+	public void setFill(String fill)
+	{
+		this.fill = fill;
 	}
 
 	@Override
