@@ -68,15 +68,11 @@ public class SimpleChartJsConfigBuilder<K extends Serializable, V extends Serial
 
 	public SimpleChartJsDataBuilder<K, V> data()
 	{
-		if (this.dataBuilder == null)
-			this.dataBuilder = new SimpleChartJsDataBuilder<>();
 		return dataBuilder;
 	}
 
 	public SimpleChartJsOptionsBuilder options()
 	{
-		if (this.optionsBuilder == null)
-			this.optionsBuilder = new SimpleChartJsOptionsBuilder();
 		return optionsBuilder;
 	}
 

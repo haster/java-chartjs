@@ -1,13 +1,16 @@
 package nl.crashdata.chartjs.data.simple.builder;
 
+import nl.crashdata.chartjs.data.ChartJsAxisPosition;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsScalesConfig;
 
 public class SimpleChartJsScalesConfigBuilder
 		implements SimpleChartJsBuilder<SimpleChartJsScalesConfig>
 {
-	private SimpleChartJsAxisConfigBuilder xAxisConfigBuilder;
+	private SimpleChartJsAxisConfigBuilder xAxisConfigBuilder =
+		new SimpleChartJsAxisConfigBuilder().withPosition(ChartJsAxisPosition.BOTTOM);
 
-	private SimpleChartJsAxisConfigBuilder yAxisConfigBuilder;
+	private SimpleChartJsAxisConfigBuilder yAxisConfigBuilder =
+		new SimpleChartJsAxisConfigBuilder().withPosition(ChartJsAxisPosition.LEFT);
 
 	@Override
 	public boolean isValid()
@@ -17,15 +20,11 @@ public class SimpleChartJsScalesConfigBuilder
 
 	public SimpleChartJsAxisConfigBuilder xAxisConfig()
 	{
-		if (this.xAxisConfigBuilder == null)
-			this.xAxisConfigBuilder = new SimpleChartJsAxisConfigBuilder();
 		return xAxisConfigBuilder;
 	}
 
 	public SimpleChartJsAxisConfigBuilder yAxisConfig()
 	{
-		if (this.yAxisConfigBuilder == null)
-			this.yAxisConfigBuilder = new SimpleChartJsAxisConfigBuilder();
 		return yAxisConfigBuilder;
 	}
 

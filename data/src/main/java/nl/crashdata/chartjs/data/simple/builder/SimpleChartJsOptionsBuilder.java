@@ -6,11 +6,14 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 {
 	private Boolean responsive;
 
-	private SimpleChartJsTooltipConfigBuilder tooltipConfigBuilder;
+	private SimpleChartJsTooltipConfigBuilder tooltipConfigBuilder =
+		new SimpleChartJsTooltipConfigBuilder();
 
-	private SimpleChartJsHoverConfigBuilder hoverConfigBuilder;
+	private SimpleChartJsHoverConfigBuilder hoverConfigBuilder =
+		new SimpleChartJsHoverConfigBuilder();
 
-	private SimpleChartJsScalesConfigBuilder scalesConfigBuilder;
+	private SimpleChartJsScalesConfigBuilder scalesConfigBuilder =
+		new SimpleChartJsScalesConfigBuilder();
 
 	public SimpleChartJsOptionsBuilder withResponsive(Boolean responsive)
 	{
@@ -20,22 +23,16 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 
 	public SimpleChartJsTooltipConfigBuilder tooltipConfig()
 	{
-		if (this.tooltipConfigBuilder == null)
-			this.tooltipConfigBuilder = new SimpleChartJsTooltipConfigBuilder();
 		return tooltipConfigBuilder;
 	}
 
 	public SimpleChartJsHoverConfigBuilder hoverConfig()
 	{
-		if (this.hoverConfigBuilder == null)
-			this.hoverConfigBuilder = new SimpleChartJsHoverConfigBuilder();
 		return hoverConfigBuilder;
 	}
 
 	public SimpleChartJsScalesConfigBuilder scalesConfig()
 	{
-		if (this.scalesConfigBuilder == null)
-			this.scalesConfigBuilder = new SimpleChartJsScalesConfigBuilder();
 		return scalesConfigBuilder;
 	}
 

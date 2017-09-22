@@ -12,9 +12,11 @@ public class SimpleChartJsAxisConfigBuilder implements SimpleChartJsBuilder<Simp
 
 	private ChartJsCartesianAxisType type;
 
-	private SimpleChartJsScaleLabelConfigBuilder labelConfigBuilder;
+	private SimpleChartJsScaleLabelConfigBuilder labelConfigBuilder =
+		new SimpleChartJsScaleLabelConfigBuilder();;
 
-	private SimpleChartJsTickConfigBuilder tickConfigBuilder;
+	private SimpleChartJsTickConfigBuilder tickConfigBuilder =
+		new SimpleChartJsTickConfigBuilder();;
 
 	public SimpleChartJsAxisConfigBuilder withDisplay(Boolean display)
 	{
@@ -36,15 +38,11 @@ public class SimpleChartJsAxisConfigBuilder implements SimpleChartJsBuilder<Simp
 
 	public SimpleChartJsScaleLabelConfigBuilder labelConfig()
 	{
-		if (this.labelConfigBuilder == null)
-			this.labelConfigBuilder = new SimpleChartJsScaleLabelConfigBuilder();
 		return labelConfigBuilder;
 	}
 
 	public SimpleChartJsTickConfigBuilder tickConfig()
 	{
-		if (this.tickConfigBuilder == null)
-			this.tickConfigBuilder = new SimpleChartJsTickConfigBuilder();
 		return tickConfigBuilder;
 	}
 
