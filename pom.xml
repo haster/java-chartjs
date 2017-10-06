@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>nl.crashdata.crashdata-parent</groupId>
 		<artifactId>crashdata-parent</artifactId>
-		<version>1.5</version>
+		<version>1.7</version>
 	</parent>
 
 	<groupId>nl.crashdata.wicket-chartjs</groupId>
@@ -13,6 +13,24 @@
 	<packaging>pom</packaging>
 	
 	<name>wicket-chartjs parent</name>
+	<description>Java wrapper library for chartjs</description>
+	<url>https://github.com/haster/wicket-chartjs</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<distribution>repo</distribution>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Sven Haster</name>
+			<email>buurman.sven@gmail.com</email>
+			<url>https://github.com/haster</url>
+		</developer>
+	</developers>
 
 	<scm>
 		<url>https://github.com/haster/wicket-chartjs</url>
@@ -25,12 +43,6 @@
 		<module>wicket</module>
 	</modules>
 
-	<properties>
-		<version.jackson>2.8.9</version.jackson>
-		<version.danekja>1.8.3</version.danekja>
-		<version.wicket>7.8.0</version.wicket>
-	</properties>
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -40,5 +52,4 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 </project>
