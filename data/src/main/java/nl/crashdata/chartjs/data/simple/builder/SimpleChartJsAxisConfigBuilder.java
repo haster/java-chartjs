@@ -13,10 +13,9 @@ public class SimpleChartJsAxisConfigBuilder implements SimpleChartJsBuilder<Simp
 	private ChartJsCartesianAxisType type;
 
 	private SimpleChartJsScaleLabelConfigBuilder labelConfigBuilder =
-		new SimpleChartJsScaleLabelConfigBuilder();;
+		new SimpleChartJsScaleLabelConfigBuilder();
 
-	private SimpleChartJsTickConfigBuilder tickConfigBuilder =
-		new SimpleChartJsTickConfigBuilder();;
+	private SimpleChartJsTickConfigBuilder tickConfigBuilder = new SimpleChartJsTickConfigBuilder();
 
 	public SimpleChartJsAxisConfigBuilder withDisplay(Boolean display)
 	{
