@@ -83,9 +83,7 @@ public class GraphPanel<K extends Serializable, V extends Serializable> extends 
 
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(new JavaTimeModule());
-		mapper.setPropertyInclusion(JsonInclude.Value.empty()
-			.withValueInclusion(JsonInclude.Include.NON_NULL)
-			.withContentInclusion(JsonInclude.Include.NON_NULL));
+		mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
 		mapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
 
 		if (Application.exists() && RuntimeConfigurationType.DEVELOPMENT
