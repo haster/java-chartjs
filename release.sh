@@ -43,7 +43,7 @@ export MAVEN_OPTS="-Xmx1024m -Xms512m"
 
 echo "Release van $CURRENT_VERSION"
 
-mvn release:prepare release:perform -e -B -ff || {
+mvn release:prepare release:perform -Prelease -e -B -ff || {
         show_error "ERROR: Release build faalde!"
         exit 1
 }
