@@ -9,7 +9,7 @@
 
 	<groupId>nl.crashdata.wicket-chartjs</groupId>
 	<artifactId>wicket-chartjs</artifactId>
-	<version>0.8</version>
+	<version>0.9-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<name>wicket-chartjs parent</name>
@@ -35,7 +35,7 @@
 	<scm>
 		<url>https://github.com/haster/wicket-chartjs</url>
 		<connection>scm:git:git@github.com:haster/wicket-chartjs.git</connection>
-		<tag>wicket-chartjs-0.8</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<modules>
