@@ -11,12 +11,14 @@ public final class ChartJSJavaScriptResourceReference extends JavaScriptResource
 {
 	private static final long serialVersionUID = 1L;
 
-	private static ChartJSJavaScriptResourceReference INSTANCE =
+	private static final String CHARTJS_NAME = "chart.v2.7.1.js";
+
+	private static final ChartJSJavaScriptResourceReference INSTANCE =
 		new ChartJSJavaScriptResourceReference();
 
 	private ChartJSJavaScriptResourceReference()
 	{
-		super(ChartJSJavaScriptResourceReference.class, "chart.min.js");
+		super(ChartJSJavaScriptResourceReference.class, CHARTJS_NAME);
 	}
 
 	public static ChartJSJavaScriptResourceReference get()
@@ -27,6 +29,7 @@ public final class ChartJSJavaScriptResourceReference extends JavaScriptResource
 	@Override
 	public List<HeaderItem> getDependencies()
 	{
-		return Collections.singletonList(JavaScriptHeaderItem.forReference(MomentJavaScriptResourceReference.get()));
+		return Collections.singletonList(
+			JavaScriptHeaderItem.forReference(MomentJavaScriptResourceReference.get()));
 	}
 }
