@@ -2,6 +2,7 @@ package nl.crashdata.chartjs.components.panels;
 
 import java.io.Serializable;
 import java.util.Map;
+import java.util.SortedMap;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -42,12 +43,12 @@ public class GraphPanel<K extends Serializable, V extends Serializable> extends 
 
 	private IModel<String> yAxisLabel = Model.of("");
 
-	public GraphPanel(String id, IModel<Map<K, V>> model, IModel<String> caption)
+	public GraphPanel(String id, IModel< ? extends SortedMap<K, V>> model, IModel<String> caption)
 	{
 		this(id, model, caption, caption);
 	}
 
-	public GraphPanel(String id, IModel<Map<K, V>> model, IModel<String> caption,
+	public GraphPanel(String id, IModel< ? extends SortedMap<K, V>> model, IModel<String> caption,
 			IModel<String> graphLabelModel)
 	{
 		super(id, model);
@@ -132,5 +133,25 @@ public class GraphPanel<K extends Serializable, V extends Serializable> extends 
 			.withLabelString(yAxisLabel.getObject());
 		yAxisBuilder.tickConfig().withSuggestedMinimum(0).withStepSize(1);
 		return config.build();
+	}
+
+	public void setXAxisLabelModel(IModel<String> xAxisLabelModel)
+	{
+		this.xAxisLabel = xAxisLabelModel;
+	}
+
+	public void setYAxisLabelModel(IModel<String> yAxisLabelModel)
+	{
+		this.yAxisLabel = yAxisLabelModel;
+	}
+
+	@Override
+	protected void onDetach()
+	{
+		super.onDetach();
+		this.graphLabelModel.detach();
+		this.caption.detach();
+		this.xAxisLabel.detach();
+		this.yAxisLabel.detach();
 	}
 }
