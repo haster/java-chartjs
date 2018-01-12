@@ -26,8 +26,14 @@ function show_error {
         echo -e "\033[0;31m$*\033[0m"
 }
 
+function syncGit {
+        git fetch
+        git checkout master
+        git fast-forward master
+}
 
 checkLocaleWijzigingen
+syncGit
 
 CURRENT_SNAPSHOT_VERSION=$(getVersion)
 #echo "Current version is: ${CURRENT_SNAPSHOT_VERSION}"
