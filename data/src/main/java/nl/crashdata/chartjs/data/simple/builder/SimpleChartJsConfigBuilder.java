@@ -54,7 +54,7 @@ public class SimpleChartJsConfigBuilder<K extends Serializable, V extends Serial
 
 	private SimpleChartJsDataBuilder<K, V> dataBuilder = new SimpleChartJsDataBuilder<>();
 
-	private SimpleChartJsOptionsBuilder optionsBuilder = new SimpleChartJsOptionsBuilder();
+	private SimpleChartJsOptionsBuilder<K, V> optionsBuilder = new SimpleChartJsOptionsBuilder<>();
 
 	private SimpleChartJsConfigBuilder()
 	{
@@ -71,7 +71,7 @@ public class SimpleChartJsConfigBuilder<K extends Serializable, V extends Serial
 		return dataBuilder;
 	}
 
-	public SimpleChartJsOptionsBuilder options()
+	public SimpleChartJsOptionsBuilder<K, V> options()
 	{
 		return optionsBuilder;
 	}

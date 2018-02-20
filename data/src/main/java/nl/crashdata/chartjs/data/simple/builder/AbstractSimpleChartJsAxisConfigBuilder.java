@@ -1,37 +1,38 @@
 package nl.crashdata.chartjs.data.simple.builder;
 
+import java.io.Serializable;
+
 import nl.crashdata.chartjs.data.ChartJsAxisPosition;
 import nl.crashdata.chartjs.data.ChartJsCartesianAxisType;
+import nl.crashdata.chartjs.data.simple.AbstractSimpleChartJsTickConfig;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsAxisConfig;
 
-public class SimpleChartJsAxisConfigBuilder implements SimpleChartJsBuilder<SimpleChartJsAxisConfig>
+public abstract class AbstractSimpleChartJsAxisConfigBuilder<T extends Serializable>
+		implements SimpleChartJsBuilder<SimpleChartJsAxisConfig<T>>
 {
+	private ChartJsCartesianAxisType type;
+
 	private Boolean display;
 
 	private ChartJsAxisPosition position;
 
-	private ChartJsCartesianAxisType type;
-
 	private SimpleChartJsScaleLabelConfigBuilder labelConfigBuilder =
 		new SimpleChartJsScaleLabelConfigBuilder();
 
-	private SimpleChartJsTickConfigBuilder tickConfigBuilder = new SimpleChartJsTickConfigBuilder();
+	protected AbstractSimpleChartJsAxisConfigBuilder(ChartJsCartesianAxisType type)
+	{
+		this.type = type;
+	}
 
-	public SimpleChartJsAxisConfigBuilder withDisplay(Boolean display)
+	public AbstractSimpleChartJsAxisConfigBuilder<T> withDisplay(Boolean display)
 	{
 		this.display = display;
 		return this;
 	}
 
-	public SimpleChartJsAxisConfigBuilder withPosition(ChartJsAxisPosition position)
+	public AbstractSimpleChartJsAxisConfigBuilder<T> withPosition(ChartJsAxisPosition position)
 	{
 		this.position = position;
-		return this;
-	}
-
-	public SimpleChartJsAxisConfigBuilder withAxisType(ChartJsCartesianAxisType type)
-	{
-		this.type = type;
 		return this;
 	}
 
@@ -40,31 +41,30 @@ public class SimpleChartJsAxisConfigBuilder implements SimpleChartJsBuilder<Simp
 		return labelConfigBuilder;
 	}
 
-	public SimpleChartJsTickConfigBuilder tickConfig()
-	{
-		return tickConfigBuilder;
-	}
+	public abstract
+			AbstractSimpleChartJsTickConfigBuilder<T, ? extends AbstractSimpleChartJsTickConfig<T>>
+			tickConfig();
 
 	@Override
 	public boolean isValid()
 	{
 		return position != null && type != null && labelConfigBuilder.isValid()
-			&& tickConfigBuilder.isValid();
+			&& tickConfig().isValid();
 	}
 
 	@Override
-	public SimpleChartJsAxisConfig build() throws IllegalStateException
+	public SimpleChartJsAxisConfig<T> build() throws IllegalStateException
 	{
 		if (!isValid())
 		{
 			throw new IllegalStateException(getClass().getSimpleName() + " is not ready to build!");
 		}
-		SimpleChartJsAxisConfig ret = new SimpleChartJsAxisConfig();
+		SimpleChartJsAxisConfig<T> ret = new SimpleChartJsAxisConfig<>();
 		ret.setDisplay(display);
 		ret.setPosition(position);
 		ret.setType(type);
 		ret.setLabelConfig(labelConfigBuilder.build());
-		ret.setTickConfig(tickConfigBuilder.build());
+		ret.setTickConfig(tickConfig().build());
 		return ret;
 	}
 }

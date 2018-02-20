@@ -6,12 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Represents the configuration for a specific axis.
- * 
- * Corresponds to the elements of the {@code config.options.scales.xAxes} and {@code config.options.scales.yAxes} properties.
- *   
+ *
+ * Corresponds to the elements of the {@code config.options.scales.xAxes} and
+ * {@code config.options.scales.yAxes} properties.
+ *
  * @author haster
  */
-public interface ChartJsAxisConfig extends Serializable
+public interface ChartJsAxisConfig<T extends Serializable> extends Serializable
 {
 	@JsonProperty("display")
 	Boolean isDisplay();
@@ -20,7 +21,7 @@ public interface ChartJsAxisConfig extends Serializable
 	ChartJsScaleLabelConfig getLabelConfig();
 
 	@JsonProperty("ticks")
-	ChartJsTickConfig getTickConfig();
+	ChartJsTickConfig<T> getTickConfig();
 
 	@JsonProperty("position")
 	ChartJsAxisPosition getPosition();

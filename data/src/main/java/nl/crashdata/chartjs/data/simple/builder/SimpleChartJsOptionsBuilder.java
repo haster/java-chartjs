@@ -1,8 +1,11 @@
 package nl.crashdata.chartjs.data.simple.builder;
 
+import java.io.Serializable;
+
 import nl.crashdata.chartjs.data.simple.SimpleChartJsOptions;
 
-public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleChartJsOptions>
+public class SimpleChartJsOptionsBuilder<X extends Serializable, Y extends Serializable>
+		implements SimpleChartJsBuilder<SimpleChartJsOptions>
 {
 	private Boolean responsive;
 
@@ -12,10 +15,10 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 	private SimpleChartJsHoverConfigBuilder hoverConfigBuilder =
 		new SimpleChartJsHoverConfigBuilder();
 
-	private SimpleChartJsScalesConfigBuilder scalesConfigBuilder =
-		new SimpleChartJsScalesConfigBuilder();
+	private SimpleChartJsScalesConfigBuilder<X, Y> scalesConfigBuilder =
+		new SimpleChartJsScalesConfigBuilder<>();
 
-	public SimpleChartJsOptionsBuilder withResponsive(Boolean responsive)
+	public SimpleChartJsOptionsBuilder<X, Y> withResponsive(Boolean responsive)
 	{
 		this.responsive = responsive;
 		return this;
@@ -31,7 +34,7 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 		return hoverConfigBuilder;
 	}
 
-	public SimpleChartJsScalesConfigBuilder scalesConfig()
+	public SimpleChartJsScalesConfigBuilder<X, Y> scalesConfig()
 	{
 		return scalesConfigBuilder;
 	}
