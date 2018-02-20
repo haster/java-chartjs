@@ -1,9 +1,5 @@
 package nl.crashdata.chartjs.components.panels;
 
-import java.io.Serializable;
-import java.util.Map;
-import java.util.SortedMap;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -11,12 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import nl.crashdata.chartjs.components.resources.ChartJSJavaScriptResourceReference;
-import nl.crashdata.chartjs.data.ChartJsCartesianAxisType;
 import nl.crashdata.chartjs.data.ChartJsConfig;
-import nl.crashdata.chartjs.data.ChartJsInteractionMode;
-import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsAxisConfigBuilder;
-import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsConfigBuilder;
-import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsOptionsBuilder;
 import org.apache.wicket.Application;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
@@ -27,9 +18,8 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 
-public class GraphPanel<K extends Serializable, V extends Serializable> extends Panel
+public class SimpleGraphPanel extends Panel
 {
 	private static final long serialVersionUID = 1L;
 
@@ -37,23 +27,11 @@ public class GraphPanel<K extends Serializable, V extends Serializable> extends 
 
 	private WebMarkupContainer canvas;
 
-	private IModel<String> graphLabelModel;
-
-	private IModel<String> xAxisLabel = Model.of("");
-
-	private IModel<String> yAxisLabel = Model.of("");
-
-	public GraphPanel(String id, IModel< ? extends SortedMap<K, V>> model, IModel<String> caption)
-	{
-		this(id, model, caption, caption);
-	}
-
-	public GraphPanel(String id, IModel< ? extends SortedMap<K, V>> model, IModel<String> caption,
-			IModel<String> graphLabelModel)
+	public SimpleGraphPanel(String id, IModel< ? extends ChartJsConfig< ? , ? >> model,
+			IModel<String> caption)
 	{
 		super(id, model);
 		this.caption = caption;
-		this.graphLabelModel = graphLabelModel;
 	}
 
 	@Override
@@ -86,6 +64,7 @@ public class GraphPanel<K extends Serializable, V extends Serializable> extends 
 		mapper.registerModule(new JavaTimeModule());
 		mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
 		mapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
+		mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
 		if (Application.exists() && RuntimeConfigurationType.DEVELOPMENT
 			.equals(Application.get().getConfigurationType()))
@@ -94,7 +73,7 @@ public class GraphPanel<K extends Serializable, V extends Serializable> extends 
 		statement.append("var config = ");
 		try
 		{
-			statement.append(mapper.writeValueAsString(createChartConfig()));
+			statement.append(mapper.writeValueAsString(getDefaultModelObject()));
 		}
 		catch (JsonProcessingException e)
 		{
@@ -103,55 +82,10 @@ public class GraphPanel<K extends Serializable, V extends Serializable> extends 
 		return statement;
 	}
 
-	@SuppressWarnings("unchecked")
-	private ChartJsConfig<K, V> createChartConfig()
-	{
-		SimpleChartJsConfigBuilder<K, V> config = SimpleChartJsConfigBuilder.lineChart();
-
-		config.data()
-			.addDataset()
-			.withDataPoints((Map<K, V>) getDefaultModelObject())
-			.withLabel(graphLabelModel.getObject())
-			.withBorderColor("rgb(54, 162, 235)");
-
-		SimpleChartJsOptionsBuilder optionsBuilder = config.options();
-		optionsBuilder.withResponsive(true);
-		optionsBuilder.hoverConfig().withIntersect(true).withMode(ChartJsInteractionMode.NEAREST);
-		optionsBuilder.tooltipConfig().withIntersect(false).withMode(ChartJsInteractionMode.INDEX);
-		optionsBuilder.scalesConfig()
-			.xAxisConfig()
-			.withDisplay(true)
-			.withAxisType(ChartJsCartesianAxisType.TIME)
-			.labelConfig()
-			.withDisplay(true)
-			.withLabelString(xAxisLabel.getObject());
-		SimpleChartJsAxisConfigBuilder yAxisBuilder = optionsBuilder.scalesConfig().yAxisConfig();
-		yAxisBuilder.withDisplay(true)
-			.withAxisType(ChartJsCartesianAxisType.LINEAR)
-			.labelConfig()
-			.withDisplay(true)
-			.withLabelString(yAxisLabel.getObject());
-		yAxisBuilder.tickConfig().withSuggestedMinimum(0).withStepSize(1);
-		return config.build();
-	}
-
-	public void setXAxisLabelModel(IModel<String> xAxisLabelModel)
-	{
-		this.xAxisLabel = xAxisLabelModel;
-	}
-
-	public void setYAxisLabelModel(IModel<String> yAxisLabelModel)
-	{
-		this.yAxisLabel = yAxisLabelModel;
-	}
-
 	@Override
 	protected void onDetach()
 	{
 		super.onDetach();
-		this.graphLabelModel.detach();
 		this.caption.detach();
-		this.xAxisLabel.detach();
-		this.yAxisLabel.detach();
 	}
 }
