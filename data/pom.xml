@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>nl.crashdata.wicket-chartjs</groupId>
 		<artifactId>wicket-chartjs</artifactId>
-		<version>0.12</version>
+		<version>0.13-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
