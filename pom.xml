@@ -9,7 +9,7 @@
 
 	<groupId>nl.crashdata.wicket-chartjs</groupId>
 	<artifactId>wicket-chartjs</artifactId>
-	<version>0.14-SNAPSHOT</version>
+	<version>0.50-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<name>wicket-chartjs parent</name>
