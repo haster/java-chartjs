@@ -7,6 +7,20 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class ChartJsRGBAColor
 {
+	public static final ChartJsRGBAColor RED = new ChartJsRGBAColor(255, 99, 132);
+
+	public static final ChartJsRGBAColor ORANGE = new ChartJsRGBAColor(255, 159, 64);
+
+	public static final ChartJsRGBAColor YELLOW = new ChartJsRGBAColor(255, 205, 86);
+
+	public static final ChartJsRGBAColor GREEN = new ChartJsRGBAColor(75, 192, 192);
+
+	public static final ChartJsRGBAColor BLUE = new ChartJsRGBAColor(54, 162, 235);
+
+	public static final ChartJsRGBAColor PURPLE = new ChartJsRGBAColor(153, 102, 255);
+
+	public static final ChartJsRGBAColor GREY = new ChartJsRGBAColor(201, 203, 207);
+
 	private final short red;
 
 	private final short green;
