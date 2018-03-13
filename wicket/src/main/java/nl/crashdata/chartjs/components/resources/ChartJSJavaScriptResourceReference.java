@@ -11,7 +11,7 @@ public final class ChartJSJavaScriptResourceReference extends JavaScriptResource
 {
 	private static final long serialVersionUID = 1L;
 
-	private static final String CHARTJS_NAME = "chart.v2.7.1.js";
+	private static final String CHARTJS_NAME = "chart.v2.7.2.js";
 
 	private static final ChartJSJavaScriptResourceReference INSTANCE =
 		new ChartJSJavaScriptResourceReference();
