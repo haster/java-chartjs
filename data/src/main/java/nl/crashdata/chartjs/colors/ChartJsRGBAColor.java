@@ -6,6 +6,12 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
+/**
+ * An immutable value object to represent colors for chartjs. Gets serialised to a javascript
+ * {@code rgba} object.
+ *
+ * @author haster
+ */
 public final class ChartJsRGBAColor implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -32,11 +38,19 @@ public final class ChartJsRGBAColor implements Serializable
 
 	private final short alpha;
 
+	/**
+	 * Parameters should be in the range 0-255, inclusive. The resulting object will have an alpha
+	 * value of 100%
+	 */
 	public ChartJsRGBAColor(int red, int green, int blue)
 	{
 		this(red, green, blue, 100);
 	}
 
+	/**
+	 * Parameters should be in the range 0-255, inclusive. Alpha should be in the range 0-100,
+	 * inclusive.
+	 */
 	public ChartJsRGBAColor(int red, int green, int blue, int alpha)
 	{
 		this.red = ensureValidColourValue(red);
@@ -65,26 +79,58 @@ public final class ChartJsRGBAColor implements Serializable
 		return alpha;
 	}
 
-	public ChartJsRGBAColor withRed(short red)
+	/**
+	 * Creates a new ChartJsRGBAColor object with the given value for its red component and the
+	 * values for the other colors from the current object.
+	 *
+	 * @param red
+	 *            A value between 0 and 255, inclusive.
+	 */
+	public ChartJsRGBAColor withRed(int red)
 	{
 		return new ChartJsRGBAColor(red, getGreen(), getBlue(), getAlpha());
 	}
 
-	public ChartJsRGBAColor withGreen(short green)
+	/**
+	 * Creates a new ChartJsRGBAColor object with the given value for its green component and the
+	 * values for the other colors from the current object.
+	 *
+	 * @param green
+	 *            A value between 0 and 255, inclusive.
+	 */
+	public ChartJsRGBAColor withGreen(int green)
 	{
 		return new ChartJsRGBAColor(getRed(), green, getBlue(), getAlpha());
 	}
 
-	public ChartJsRGBAColor withBlue(short blue)
+	/**
+	 * Creates a new ChartJsRGBAColor object with the given value for its blue component and the
+	 * values for the other colors from the current object.
+	 *
+	 * @param blue
+	 *            A value between 0 and 255, inclusive.
+	 */
+	public ChartJsRGBAColor withBlue(int blue)
 	{
 		return new ChartJsRGBAColor(getRed(), getGreen(), blue, getAlpha());
 	}
 
-	public ChartJsRGBAColor withAlpha(short alpha)
+	/**
+	 * Creates a new ChartJsRGBAColor object with the given value for its alpha component and the
+	 * values for the other colors from the current object.
+	 *
+	 * @param alpha
+	 *            A value between 0 and 100, inclusive.
+	 */
+	public ChartJsRGBAColor withAlpha(int alpha)
 	{
 		return new ChartJsRGBAColor(getRed(), getGreen(), getBlue(), alpha);
 	}
 
+	/**
+	 * @return this object as javascript {@code rgba} object, for example
+	 *         {@code "rgba(25, 125, 208, 0.35)"}
+	 */
 	@JsonValue
 	public String toJsonString()
 	{
@@ -117,6 +163,12 @@ public final class ChartJsRGBAColor implements Serializable
 		return Objects.hash(red, green, blue, alpha);
 	}
 
+	/**
+	 * Used by the constructors to ensure the provided color values are valid.
+	 *
+	 * @throws IllegalArgumentException
+	 *             if the given value is outside the [0-255] range.
+	 */
 	public static short ensureValidColourValue(int value)
 	{
 		if (value >= 0 && value <= 255)
@@ -124,6 +176,12 @@ public final class ChartJsRGBAColor implements Serializable
 		throw new IllegalArgumentException("Colour value should be between 0 and 255, inclusive");
 	}
 
+	/**
+	 * Used by the constructors to ensure the provided alpha values are valid.
+	 *
+	 * @throws IllegalArgumentException
+	 *             if the given value is outside the [0-100] range.
+	 */
 	public static short ensureValidAlphaValue(int value)
 	{
 		if (value >= 0 && value <= 100)
