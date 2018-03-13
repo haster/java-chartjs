@@ -95,7 +95,7 @@ public final class ChartJsRGBAColor implements Serializable
 	@Override
 	public String toString()
 	{
-		return String.format(Locale.ROOT, "%s(%d, %d, %d, %1.1f)", getClass().getSimpleName(), red,
+		return String.format(Locale.ROOT, "%s(%d, %d, %d, %d)", getClass().getSimpleName(), red,
 			green, blue, alpha);
 	}
 
