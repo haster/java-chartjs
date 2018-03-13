@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
 
 /**
  * Represents the configuration of one dataset for a chart. In other words, this represents the data
@@ -24,10 +25,10 @@ public interface ChartJsDataset<K extends Serializable, V extends Serializable> 
 	String getLabel();
 
 	@JsonProperty("backgroundColor")
-	String getBackgroundColor();
+	ChartJsRGBAColor getBackgroundColor();
 
 	@JsonProperty("borderColor")
-	String getBorderColor();
+	ChartJsRGBAColor getBorderColor();
 
 	@JsonProperty("fill")
 	String getFill();

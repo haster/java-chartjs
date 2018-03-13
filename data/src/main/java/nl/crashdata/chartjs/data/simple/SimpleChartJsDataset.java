@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
 import nl.crashdata.chartjs.data.ChartJsDataPoint;
 import nl.crashdata.chartjs.data.ChartJsDataset;
 
@@ -15,9 +16,9 @@ public class SimpleChartJsDataset<K extends Serializable, V extends Serializable
 
 	private String label;
 
-	private String backgroundColor;
+	private ChartJsRGBAColor backgroundColor;
 
-	private String borderColor;
+	private ChartJsRGBAColor borderColor;
 
 	private String fill;
 
@@ -35,23 +36,23 @@ public class SimpleChartJsDataset<K extends Serializable, V extends Serializable
 	}
 
 	@Override
-	public String getBackgroundColor()
+	public ChartJsRGBAColor getBackgroundColor()
 	{
 		return backgroundColor;
 	}
 
-	public void setBackgroundColor(String backgroundColor)
+	public void setBackgroundColor(ChartJsRGBAColor backgroundColor)
 	{
 		this.backgroundColor = backgroundColor;
 	}
 
 	@Override
-	public String getBorderColor()
+	public ChartJsRGBAColor getBorderColor()
 	{
 		return borderColor;
 	}
 
-	public void setBorderColor(String borderColor)
+	public void setBorderColor(ChartJsRGBAColor borderColor)
 	{
 		this.borderColor = borderColor;
 	}
