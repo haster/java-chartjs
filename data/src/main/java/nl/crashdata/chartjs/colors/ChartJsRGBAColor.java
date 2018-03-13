@@ -1,12 +1,15 @@
 package nl.crashdata.chartjs.colors;
 
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public final class ChartJsRGBAColor
+public final class ChartJsRGBAColor implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+
 	public static final ChartJsRGBAColor RED = new ChartJsRGBAColor(255, 99, 132);
 
 	public static final ChartJsRGBAColor ORANGE = new ChartJsRGBAColor(255, 159, 64);
