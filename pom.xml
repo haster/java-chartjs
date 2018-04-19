@@ -1,17 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>nl.crashdata.crashdata-parent</groupId>
 		<artifactId>crashdata-parent</artifactId>
-		<version>1.14</version>
+		<version>1.15-SNAPSHOT</version>
 	</parent>
 
 	<groupId>nl.crashdata.wicket-chartjs</groupId>
 	<artifactId>wicket-chartjs</artifactId>
 	<version>0.51-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	
+
 	<name>wicket-chartjs parent</name>
 	<description>Java wrapper library for chartjs</description>
 	<url>https://github.com/haster/wicket-chartjs</url>
