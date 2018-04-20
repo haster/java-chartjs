@@ -72,28 +72,6 @@
 			      intersect : true
 			    },
 			    scales : {
-			      xAxis : {
-			        display : true,
-			        scaleLabel : {
-			          display : true,
-			          labelString : "days"
-			        },
-			        ticks : {
-			          min : "2018-01-01"
-			        },
-			        position : "bottom",
-			        type : "time"
-			      },
-			      yAxis : {
-			        display : true,
-			        scaleLabel : {
-			          display : true,
-			          labelString : "active users"
-			        },
-			        ticks : { },
-			        position : "bottom",
-			        type : "linear"
-			      },
 			      xAxes : [ {
 			        display : true,
 			        scaleLabel : {
@@ -113,7 +91,7 @@
 			          labelString : "active users"
 			        },
 			        ticks : { },
-			        position : "bottom",
+			        position : "left",
 			        type : "linear"
 			      } ]
 			    }
