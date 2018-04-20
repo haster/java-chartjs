@@ -1,12 +1,15 @@
 package nl.crashdata.chartjs.data;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -19,12 +22,16 @@ import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLinearAxisConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLocalDateAxisConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsOptionsBuilder;
+import org.json.JSONException;
 import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
+import resources.TestResourcesMarker;
 
 public class ChartJsDataTest
 {
 	@Test
-	public void basicObjectMapping() throws JsonProcessingException
+	public void basicObjectMapping() throws JSONException, IOException
 	{
 		SimpleChartJsConfigBuilder<LocalDate, Integer> config =
 			SimpleChartJsConfigBuilder.lineChart();
@@ -52,11 +59,11 @@ public class ChartJsDataTest
 		yAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString(
 			"active users");
 
-		assertOutputMatches(config.build(), getExpectedUserCountOutput());
+		assertOutputMatches(config.build(), getExpectedUserCountOutputFromFile());
 	}
 
 	private void assertOutputMatches(Serializable objectToMap, String expectedOutput)
-			throws JsonProcessingException
+			throws JsonProcessingException, JSONException
 	{
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(new JavaTimeModule());
@@ -65,7 +72,8 @@ public class ChartJsDataTest
 		mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 
-		assertEquals(expectedOutput, mapper.writeValueAsString(objectToMap));
+		JSONAssert.assertEquals(expectedOutput, mapper.writeValueAsString(objectToMap),
+			JSONCompareMode.STRICT);
 	}
 
 	private static SortedMap<LocalDate, Integer> createUserCountMap()
@@ -92,50 +100,12 @@ public class ChartJsDataTest
 		return dataPoints;
 	}
 
-	private static String getExpectedUserCountOutput()
+	private static String getExpectedUserCountOutputFromFile() throws IOException
 	{
-		// @formatter:off
-		return "{\n" + "  data : {\n" + "    datasets : [ {\n" + "      label : \"activeUsers\",\n"
-			+ "      borderColor : \"rgba(54, 162, 235, 1.0)\",\n" + "      fill : \"false\",\n"
-			+ "      data : [ {\n" + "        x : \"2018-01-01\",\n" + "        y : 10\n"
-			+ "      }, {\n" + "        x : \"2018-01-02\",\n" + "        y : 1\n" + "      }, {\n"
-			+ "        x : \"2018-01-03\",\n" + "        y : 5\n" + "      }, {\n"
-			+ "        x : \"2018-01-04\",\n" + "        y : 15\n" + "      }, {\n"
-			+ "        x : \"2018-01-05\",\n" + "        y : 21\n" + "      }, {\n"
-			+ "        x : \"2018-01-06\",\n" + "        y : 28\n" + "      }, {\n"
-			+ "        x : \"2018-01-07\",\n" + "        y : 3\n" + "      }, {\n"
-			+ "        x : \"2018-01-08\",\n" + "        y : 7\n" + "      }, {\n"
-			+ "        x : \"2018-01-09\",\n" + "        y : 11\n" + "      }, {\n"
-			+ "        x : \"2018-01-10\",\n" + "        y : 17\n" + "      }, {\n"
-			+ "        x : \"2018-01-11\",\n" + "        y : 27\n" + "      }, {\n"
-			+ "        x : \"2018-01-12\",\n" + "        y : 30\n" + "      }, {\n"
-			+ "        x : \"2018-01-13\",\n" + "        y : 8\n" + "      }, {\n"
-			+ "        x : \"2018-01-14\",\n" + "        y : 23\n" + "      }, {\n"
-			+ "        x : \"2018-01-15\",\n" + "        y : 19\n" + "      }, {\n"
-			+ "        x : \"2018-01-16\",\n" + "        y : 18\n" + "      }, {\n"
-			+ "        x : \"2018-01-17\",\n" + "        y : 25\n" + "      }, {\n"
-			+ "        x : \"2018-01-18\",\n" + "        y : 4\n" + "      } ]\n" + "    } ]\n"
-			+ "  },\n" + "  options : {\n" + "    responsive : true,\n" + "    tooltips : {\n"
-			+ "      mode : \"index\",\n" + "      intersect : false\n" + "    },\n"
-			+ "    hover : {\n" + "      mode : \"nearest\",\n" + "      intersect : true\n"
-			+ "    },\n" + "    scales : {\n" + "      xAxis : {\n" + "        display : true,\n"
-			+ "        scaleLabel : {\n" + "          display : true,\n"
-			+ "          labelString : \"days\"\n" + "        },\n" + "        ticks : {\n"
-			+ "          min : \"2018-01-01\"\n" + "        },\n"
-			+ "        position : \"bottom\",\n" + "        type : \"time\"\n" + "      },\n"
-			+ "      yAxis : {\n" + "        display : true,\n" + "        scaleLabel : {\n"
-			+ "          display : true,\n" + "          labelString : \"active users\"\n"
-			+ "        },\n" + "        ticks : { },\n" + "        position : \"bottom\",\n"
-			+ "        type : \"linear\"\n" + "      },\n" + "      xAxes : [ {\n"
-			+ "        display : true,\n" + "        scaleLabel : {\n"
-			+ "          display : true,\n" + "          labelString : \"days\"\n" + "        },\n"
-			+ "        ticks : {\n" + "          min : \"2018-01-01\"\n" + "        },\n"
-			+ "        position : \"bottom\",\n" + "        type : \"time\"\n" + "      } ],\n"
-			+ "      yAxes : [ {\n" + "        display : true,\n" + "        scaleLabel : {\n"
-			+ "          display : true,\n" + "          labelString : \"active users\"\n"
-			+ "        },\n" + "        ticks : { },\n" + "        position : \"bottom\",\n"
-			+ "        type : \"linear\"\n" + "      } ]\n" + "    }\n" + "  },\n"
-			+ "  type : \"line\"\n" + "}";
-		// @formatter:on
+		try (InputStream in = TestResourcesMarker.class.getResource("../output.js").openStream())
+		{
+			return new BufferedReader(new InputStreamReader(in)).lines()
+				.collect(Collectors.joining("\n"));
+		}
 	}
 }

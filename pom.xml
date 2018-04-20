@@ -52,6 +52,13 @@
 				<artifactId>wicket-chartjs-data</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<!-- Until crashdata-parent 1.16 -->
+			<dependency>
+				<groupId>org.skyscreamer</groupId>
+				<artifactId>jsonassert</artifactId>
+				<version>1.5.0</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 </project>
