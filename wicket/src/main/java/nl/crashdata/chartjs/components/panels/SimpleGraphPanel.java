@@ -3,6 +3,7 @@ package nl.crashdata.chartjs.components.panels;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -65,6 +66,8 @@ public class SimpleGraphPanel extends Panel
 		mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
 		mapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
 		mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+		mapper.disable(MapperFeature.AUTO_DETECT_CREATORS, MapperFeature.AUTO_DETECT_FIELDS,
+			MapperFeature.AUTO_DETECT_GETTERS, MapperFeature.AUTO_DETECT_IS_GETTERS);
 
 		if (Application.exists() && RuntimeConfigurationType.DEVELOPMENT
 			.equals(Application.get().getConfigurationType()))

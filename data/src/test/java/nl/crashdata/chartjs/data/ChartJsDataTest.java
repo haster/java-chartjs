@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -71,6 +72,8 @@ public class ChartJsDataTest
 		mapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
 		mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+		mapper.disable(MapperFeature.AUTO_DETECT_CREATORS, MapperFeature.AUTO_DETECT_FIELDS,
+			MapperFeature.AUTO_DETECT_GETTERS, MapperFeature.AUTO_DETECT_IS_GETTERS);
 
 		JSONAssert.assertEquals(expectedOutput, mapper.writeValueAsString(objectToMap),
 			JSONCompareMode.STRICT);
