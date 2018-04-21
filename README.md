@@ -53,12 +53,14 @@ public GraphPage()
 ```
 
 # Maven Central
-Java-chartjs is available from maven central. Simply add the relevant artifacts to your dependencies.
+Java-chartjs is available from Maven Central. Simply add the relevant artifacts to your dependencies.
 
 ```xml
-<groupId>nl.crashdata.java-chartjs</groupId>
-<artifactId>java-chartjs-data</artifactId>
-<version>0.70</version>
+<dependency>
+	<groupId>nl.crashdata.java-chartjs</groupId>
+	<artifactId>java-chartjs-data</artifactId>
+	<version>0.70</version>
+</dependency>
 ```
 
 `java-chartjs-data` contains a set of POJOs annotated with [Jackson](https://github.com/FasterXML/jackson) annotations for easy serialization.
