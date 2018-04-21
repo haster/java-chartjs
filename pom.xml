@@ -42,8 +42,8 @@
 
 	<modules>
 		<module>data</module>
-		<module>wicket</module>
 		<module>serialization</module>
+		<module>wicket</module>
 	</modules>
 
 	<dependencyManagement>
