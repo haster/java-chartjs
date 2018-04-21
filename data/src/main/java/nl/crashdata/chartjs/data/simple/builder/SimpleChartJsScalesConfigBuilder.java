@@ -87,7 +87,7 @@ public class SimpleChartJsScalesConfigBuilder<X extends Serializable, Y extends 
 	public SimpleChartJsLocalDateAxisConfigBuilder withLocalDateYAxisConfig()
 	{
 		SimpleChartJsLocalDateAxisConfigBuilder ret = new SimpleChartJsLocalDateAxisConfigBuilder();
-		ret.withPosition(ChartJsAxisPosition.BOTTOM);
+		ret.withPosition(ChartJsAxisPosition.LEFT);
 		yAxisConfigBuilder = (AbstractSimpleChartJsAxisConfigBuilder<Y>) ret;
 		return ret;
 	}
@@ -97,7 +97,7 @@ public class SimpleChartJsScalesConfigBuilder<X extends Serializable, Y extends 
 	{
 		SimpleChartJsLocalDateTimeAxisConfigBuilder ret =
 			new SimpleChartJsLocalDateTimeAxisConfigBuilder();
-		ret.withPosition(ChartJsAxisPosition.BOTTOM);
+		ret.withPosition(ChartJsAxisPosition.LEFT);
 		yAxisConfigBuilder = (AbstractSimpleChartJsAxisConfigBuilder<Y>) ret;
 		return ret;
 	}
@@ -106,7 +106,7 @@ public class SimpleChartJsScalesConfigBuilder<X extends Serializable, Y extends 
 	public SimpleChartJsLocalTimeAxisConfigBuilder withLocalTimeYAxisConfig()
 	{
 		SimpleChartJsLocalTimeAxisConfigBuilder ret = new SimpleChartJsLocalTimeAxisConfigBuilder();
-		ret.withPosition(ChartJsAxisPosition.BOTTOM);
+		ret.withPosition(ChartJsAxisPosition.LEFT);
 		yAxisConfigBuilder = (AbstractSimpleChartJsAxisConfigBuilder<Y>) ret;
 		return ret;
 	}
@@ -115,7 +115,7 @@ public class SimpleChartJsScalesConfigBuilder<X extends Serializable, Y extends 
 	public SimpleChartJsInstantAxisConfigBuilder withInstantYAxisConfig()
 	{
 		SimpleChartJsInstantAxisConfigBuilder ret = new SimpleChartJsInstantAxisConfigBuilder();
-		ret.withPosition(ChartJsAxisPosition.BOTTOM);
+		ret.withPosition(ChartJsAxisPosition.LEFT);
 		yAxisConfigBuilder = (AbstractSimpleChartJsAxisConfigBuilder<Y>) ret;
 		return ret;
 	}
@@ -124,7 +124,7 @@ public class SimpleChartJsScalesConfigBuilder<X extends Serializable, Y extends 
 	public SimpleChartJsLinearAxisConfigBuilder withLinearYAxisConfig()
 	{
 		SimpleChartJsLinearAxisConfigBuilder ret = new SimpleChartJsLinearAxisConfigBuilder();
-		ret.withPosition(ChartJsAxisPosition.BOTTOM);
+		ret.withPosition(ChartJsAxisPosition.LEFT);
 		yAxisConfigBuilder = (AbstractSimpleChartJsAxisConfigBuilder<Y>) ret;
 		return ret;
 	}
@@ -134,7 +134,7 @@ public class SimpleChartJsScalesConfigBuilder<X extends Serializable, Y extends 
 	{
 		SimpleChartJsLogarithmicAxisConfigBuilder ret =
 			new SimpleChartJsLogarithmicAxisConfigBuilder();
-		ret.withPosition(ChartJsAxisPosition.BOTTOM);
+		ret.withPosition(ChartJsAxisPosition.LEFT);
 		yAxisConfigBuilder = (AbstractSimpleChartJsAxisConfigBuilder<Y>) ret;
 		return ret;
 	}
@@ -143,7 +143,7 @@ public class SimpleChartJsScalesConfigBuilder<X extends Serializable, Y extends 
 	public SimpleChartJsCategoryAxisConfigBuilder withCategoryYAxisConfig()
 	{
 		SimpleChartJsCategoryAxisConfigBuilder ret = new SimpleChartJsCategoryAxisConfigBuilder();
-		ret.withPosition(ChartJsAxisPosition.BOTTOM);
+		ret.withPosition(ChartJsAxisPosition.LEFT);
 		yAxisConfigBuilder = (AbstractSimpleChartJsAxisConfigBuilder<Y>) ret;
 		return ret;
 	}
