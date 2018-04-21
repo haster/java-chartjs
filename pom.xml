@@ -9,14 +9,14 @@
 		<version>1.16</version>
 	</parent>
 
-	<groupId>nl.crashdata.wicket-chartjs</groupId>
-	<artifactId>wicket-chartjs</artifactId>
+	<groupId>nl.crashdata.java-chartjs</groupId>
+	<artifactId>java-chartjs</artifactId>
 	<version>0.51-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>wicket-chartjs parent</name>
+	<name>java-chartjs parent</name>
 	<description>Java wrapper library for chartjs</description>
-	<url>https://github.com/haster/wicket-chartjs</url>
+	<url>https://github.com/haster/java-chartjs</url>
 
 	<licenses>
 		<license>
@@ -49,13 +49,13 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>nl.crashdata.wicket-chartjs</groupId>
-				<artifactId>wicket-chartjs-data</artifactId>
+				<groupId>nl.crashdata.java-chartjs</groupId>
+				<artifactId>java-chartjs-data</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>nl.crashdata.wicket-chartjs</groupId>
-				<artifactId>wicket-chartjs-serialization</artifactId>
+				<groupId>nl.crashdata.java-chartjs</groupId>
+				<artifactId>java-chartjs-serialization</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>

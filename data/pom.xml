@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>nl.crashdata.wicket-chartjs</groupId>
-		<artifactId>wicket-chartjs</artifactId>
+		<groupId>nl.crashdata.java-chartjs</groupId>
+		<artifactId>java-chartjs</artifactId>
 		<version>0.51-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>wicket-chartjs-data</artifactId>
+	<artifactId>java-chartjs-data</artifactId>
 	<name>Chartjs configuration data</name>
 	<description>A collection of POJOs and builders to help create a configuration for ChartJs in Java.</description>
 

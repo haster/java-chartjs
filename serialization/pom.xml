@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>nl.crashdata.wicket-chartjs</groupId>
-		<artifactId>wicket-chartjs</artifactId>
+		<groupId>nl.crashdata.java-chartjs</groupId>
+		<artifactId>java-chartjs</artifactId>
 		<version>0.51-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>wicket-chartjs-serialization</artifactId>
+	<artifactId>java-chartjs-serialization</artifactId>
 	<name>ChartJs data serialization</name>
 	
 	<dependencies>
@@ -21,8 +21,8 @@
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>nl.crashdata.wicket-chartjs</groupId>
-			<artifactId>wicket-chartjs-data</artifactId>
+			<groupId>nl.crashdata.java-chartjs</groupId>
+			<artifactId>java-chartjs-data</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
