@@ -10,7 +10,8 @@
 	</parent>
 
 	<artifactId>wicket-chartjs-data</artifactId>
-	<name>wicket-chartjs data</name>
+	<name>Chartjs configuration data</name>
+	<description>A collection of POJOs and builders to help create a configuration for ChartJs in Java.</description>
 
 	<dependencies>
 		<dependency>
