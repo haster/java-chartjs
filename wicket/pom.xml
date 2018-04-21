@@ -8,7 +8,8 @@
 	</parent>
 
 	<artifactId>wicket-chartjs-wicket</artifactId>
-	<name>Wicket components for drawing a chart with ChartJs</name>
+	<name>ChartJs Wicket components</name>
+	<description>Wicket components for drawing a chart with ChartJs</description>
 
 	<dependencies>
 		<dependency>
@@ -21,7 +22,7 @@
 		</dependency>
 		<dependency>
 			<groupId>nl.crashdata.wicket-chartjs</groupId>
-			<artifactId>wicket-chartjs-data</artifactId>
+			<artifactId>wicket-chartjs-serialization</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>

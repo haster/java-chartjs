@@ -42,6 +42,7 @@
 
 	<modules>
 		<module>data</module>
+		<module>serialization</module>
 		<module>wicket</module>
 	</modules>
 
@@ -50,6 +51,11 @@
 			<dependency>
 				<groupId>nl.crashdata.wicket-chartjs</groupId>
 				<artifactId>wicket-chartjs-data</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>nl.crashdata.wicket-chartjs</groupId>
+				<artifactId>wicket-chartjs-serialization</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
