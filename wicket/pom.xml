@@ -21,7 +21,7 @@
 		</dependency>
 		<dependency>
 			<groupId>nl.crashdata.wicket-chartjs</groupId>
-			<artifactId>wicket-chartjs-data</artifactId>
+			<artifactId>wicket-chartjs-serialization</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
