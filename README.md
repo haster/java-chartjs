@@ -72,6 +72,9 @@ It also contains a set of builders to help in creating a full ChartJsConfig.
 
 
 # ChartJs versions
+
 java-chartjs  |  Chart.js  |  moment.js
---------------|-------------------------
+--------------|------------|------------
  0.70         | 2.7.2      | 2.21.0
+ 
+ 
