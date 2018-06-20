@@ -59,7 +59,7 @@ Java-chartjs is available from Maven Central. Simply add the relevant artifacts 
 <dependency>
 	<groupId>nl.crashdata.java-chartjs</groupId>
 	<artifactId>java-chartjs-data</artifactId>
-	<version>0.70</version>
+	<version>0.90</version>
 </dependency>
 ```
 
@@ -76,5 +76,7 @@ It also contains a set of builders to help in creating a full ChartJsConfig.
 java-chartjs  |  Chart.js  |  moment.js
 --------------|------------|------------
  0.70         | 2.7.2      | 2.21.0
+ 0.80         | 2.7.2      | 2.21.0
+ 0.90         | 2.7.2      | 2.22.2
  
  
