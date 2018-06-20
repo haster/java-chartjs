@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>nl.crashdata.java-chartjs</groupId>
 		<artifactId>java-chartjs</artifactId>
-		<version>0.80-SNAPSHOT</version>
+		<version>0.80</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
