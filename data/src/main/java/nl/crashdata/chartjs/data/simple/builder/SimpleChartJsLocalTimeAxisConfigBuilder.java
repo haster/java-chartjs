@@ -13,11 +13,18 @@ public class SimpleChartJsLocalTimeAxisConfigBuilder
 	public SimpleChartJsLocalTimeAxisConfigBuilder()
 	{
 		super(ChartJsCartesianAxisType.TIME);
+		setTimeConfigBuilder(new SimpleChartJsTimeConfigBuilder());
 	}
 
 	@Override
 	public SimpleChartJsTemporalTickConfigBuilder<LocalTime> tickConfig()
 	{
 		return tickConfigBuilder;
+	}
+
+	@Override
+	public SimpleChartJsTimeConfigBuilder timeConfig()
+	{
+		return super.timeConfig();
 	}
 }

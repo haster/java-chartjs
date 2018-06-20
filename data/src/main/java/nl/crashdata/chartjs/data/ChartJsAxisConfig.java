@@ -28,4 +28,7 @@ public interface ChartJsAxisConfig<T extends Serializable> extends Serializable
 
 	@JsonProperty("type")
 	ChartJsCartesianAxisType getType();
+
+	@JsonProperty("time")
+	ChartJsTimeConfig getTimeConfig();
 }
