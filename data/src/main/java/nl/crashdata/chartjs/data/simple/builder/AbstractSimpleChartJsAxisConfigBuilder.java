@@ -19,6 +19,8 @@ public abstract class AbstractSimpleChartJsAxisConfigBuilder<T extends Serializa
 	private SimpleChartJsScaleLabelConfigBuilder labelConfigBuilder =
 		new SimpleChartJsScaleLabelConfigBuilder();
 
+	private SimpleChartJsTimeConfigBuilder timeConfigBuilder;
+
 	protected AbstractSimpleChartJsAxisConfigBuilder(ChartJsCartesianAxisType type)
 	{
 		this.type = type;
@@ -45,11 +47,21 @@ public abstract class AbstractSimpleChartJsAxisConfigBuilder<T extends Serializa
 			AbstractSimpleChartJsTickConfigBuilder<T, ? extends AbstractSimpleChartJsTickConfig<T>>
 			tickConfig();
 
+	protected SimpleChartJsTimeConfigBuilder timeConfig()
+	{
+		return timeConfigBuilder;
+	}
+
+	protected void setTimeConfigBuilder(SimpleChartJsTimeConfigBuilder timeConfigBuilder)
+	{
+		this.timeConfigBuilder = timeConfigBuilder;
+	}
+
 	@Override
 	public boolean isValid()
 	{
 		return position != null && type != null && labelConfigBuilder.isValid()
-			&& tickConfig().isValid();
+			&& tickConfig().isValid() && (timeConfigBuilder == null || timeConfigBuilder.isValid());
 	}
 
 	@Override
@@ -65,6 +77,8 @@ public abstract class AbstractSimpleChartJsAxisConfigBuilder<T extends Serializa
 		ret.setType(type);
 		ret.setLabelConfig(labelConfigBuilder.build());
 		ret.setTickConfig(tickConfig().build());
+		if (timeConfigBuilder != null)
+			ret.setTimeConfig(timeConfigBuilder.build());
 		return ret;
 	}
 }

@@ -7,6 +7,7 @@ import nl.crashdata.chartjs.data.ChartJsAxisPosition;
 import nl.crashdata.chartjs.data.ChartJsCartesianAxisType;
 import nl.crashdata.chartjs.data.ChartJsScaleLabelConfig;
 import nl.crashdata.chartjs.data.ChartJsTickConfig;
+import nl.crashdata.chartjs.data.ChartJsTimeConfig;
 
 public class SimpleChartJsAxisConfig<T extends Serializable> implements ChartJsAxisConfig<T>
 {
@@ -21,6 +22,8 @@ public class SimpleChartJsAxisConfig<T extends Serializable> implements ChartJsA
 	private ChartJsAxisPosition position;
 
 	private ChartJsCartesianAxisType type;
+
+	private ChartJsTimeConfig timeConfig;
 
 	@Override
 	public Boolean isDisplay()
@@ -75,5 +78,16 @@ public class SimpleChartJsAxisConfig<T extends Serializable> implements ChartJsA
 	public void setType(ChartJsCartesianAxisType type)
 	{
 		this.type = type;
+	}
+
+	@Override
+	public ChartJsTimeConfig getTimeConfig()
+	{
+		return timeConfig;
+	}
+
+	public void setTimeConfig(ChartJsTimeConfig timeConfig)
+	{
+		this.timeConfig = timeConfig;
 	}
 }
