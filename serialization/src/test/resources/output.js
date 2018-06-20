@@ -81,6 +81,10 @@
 			        ticks : {
 			          min : "2018-01-01"
 			        },
+			        time: {
+			        	unit: "day",
+			        	stepSize: 7
+			        },
 			        position : "bottom",
 			        type : "time"
 			      } ],

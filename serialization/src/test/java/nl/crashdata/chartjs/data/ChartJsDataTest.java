@@ -51,6 +51,7 @@ public class ChartJsDataTest
 			optionsBuilder.scalesConfig().withLocalDateXAxisConfig();
 		xAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString("days");
 		xAxisBuilder.tickConfig().withForcedMinimum(smallestXValue);
+		xAxisBuilder.timeConfig().withTimeUnit(ChartJsTimeUnit.DAY).withStepSize(7);
 		SimpleChartJsLinearAxisConfigBuilder yAxisBuilder =
 			optionsBuilder.scalesConfig().withLinearYAxisConfig();
 		yAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString(
