@@ -9,7 +9,7 @@
 
 	<groupId>nl.crashdata.java-chartjs</groupId>
 	<artifactId>java-chartjs</artifactId>
-	<version>0.81-SNAPSHOT</version>
+	<version>0.90-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>java-chartjs parent</name>
