@@ -2,27 +2,31 @@ package nl.crashdata.chartjs.data.simple;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
-import nl.crashdata.chartjs.data.ChartJsDataPoint;
 import nl.crashdata.chartjs.data.ChartJsDataset;
 
-public class SimpleChartJsDataset<K extends Serializable, V extends Serializable>
-		implements ChartJsDataset<K, V>
+public class SimpleChartJsDataset<V extends Serializable> implements ChartJsDataset<V>
 {
 	private static final long serialVersionUID = 1L;
 
 	private String label;
 
-	private ChartJsRGBAColor backgroundColor;
+	private List<ChartJsRGBAColor> backgroundColor;
 
-	private ChartJsRGBAColor borderColor;
+	private List<ChartJsRGBAColor> borderColor;
+
+	private List<Integer> borderWidth;
+
+	private List<ChartJsRGBAColor> hoverBackgroundColor;
+
+	private List<ChartJsRGBAColor> hoverBorderColor;
+
+	private List<Integer> hoverBorderWidth;
 
 	private String fill;
 
-	private List<ChartJsDataPoint<K, V>> data;
+	private List<V> data;
 
 	@Override
 	public String getLabel()
@@ -36,25 +40,69 @@ public class SimpleChartJsDataset<K extends Serializable, V extends Serializable
 	}
 
 	@Override
-	public ChartJsRGBAColor getBackgroundColor()
+	public List<ChartJsRGBAColor> getBackgroundColor()
 	{
 		return backgroundColor;
 	}
 
-	public void setBackgroundColor(ChartJsRGBAColor backgroundColor)
+	public void setBackgroundColor(List<ChartJsRGBAColor> backgroundColor)
 	{
 		this.backgroundColor = backgroundColor;
 	}
 
 	@Override
-	public ChartJsRGBAColor getBorderColor()
+	public List<ChartJsRGBAColor> getBorderColor()
 	{
 		return borderColor;
 	}
 
-	public void setBorderColor(ChartJsRGBAColor borderColor)
+	public void setBorderColor(List<ChartJsRGBAColor> borderColor)
 	{
 		this.borderColor = borderColor;
+	}
+
+	@Override
+	public List<Integer> getBorderWidth()
+	{
+		return borderWidth;
+	}
+
+	public void setBorderWidth(List<Integer> borderWidth)
+	{
+		this.borderWidth = borderWidth;
+	}
+
+	@Override
+	public List<ChartJsRGBAColor> getHoverBackgroundColor()
+	{
+		return hoverBackgroundColor;
+	}
+
+	public void setHoverBackgroundColor(List<ChartJsRGBAColor> hoverBackgroundColor)
+	{
+		this.hoverBackgroundColor = hoverBackgroundColor;
+	}
+
+	@Override
+	public List<ChartJsRGBAColor> getHoverBorderColor()
+	{
+		return hoverBorderColor;
+	}
+
+	public void setHoverBorderColor(List<ChartJsRGBAColor> hoverBorderColor)
+	{
+		this.hoverBorderColor = hoverBorderColor;
+	}
+
+	@Override
+	public List<Integer> getHoverBorderWidth()
+	{
+		return hoverBorderWidth;
+	}
+
+	public void setHoverBorderWidth(List<Integer> hoverBorderWidth)
+	{
+		this.hoverBorderWidth = hoverBorderWidth;
 	}
 
 	@Override
@@ -69,21 +117,13 @@ public class SimpleChartJsDataset<K extends Serializable, V extends Serializable
 	}
 
 	@Override
-	public List<ChartJsDataPoint<K, V>> getData()
+	public List<V> getData()
 	{
 		return data;
 	}
 
-	public void setData(List<ChartJsDataPoint<K, V>> data)
+	public void setData(List<V> data)
 	{
 		this.data = data;
-	}
-
-	public void setData(Map<K, V> data)
-	{
-		this.data = data.entrySet()
-			.stream()
-			.map(e -> new SimpleChartJsDataPoint<>(e.getKey(), e.getValue()))
-			.collect(Collectors.toList());
 	}
 }

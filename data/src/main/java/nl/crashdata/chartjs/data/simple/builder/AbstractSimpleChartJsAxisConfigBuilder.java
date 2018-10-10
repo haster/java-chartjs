@@ -2,7 +2,7 @@ package nl.crashdata.chartjs.data.simple.builder;
 
 import java.io.Serializable;
 
-import nl.crashdata.chartjs.data.ChartJsAxisPosition;
+import nl.crashdata.chartjs.data.ChartJsPosition;
 import nl.crashdata.chartjs.data.ChartJsCartesianAxisType;
 import nl.crashdata.chartjs.data.simple.AbstractSimpleChartJsTickConfig;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsAxisConfig;
@@ -14,7 +14,7 @@ public abstract class AbstractSimpleChartJsAxisConfigBuilder<T extends Serializa
 
 	private Boolean display;
 
-	private ChartJsAxisPosition position;
+	private ChartJsPosition position;
 
 	private SimpleChartJsScaleLabelConfigBuilder labelConfigBuilder =
 		new SimpleChartJsScaleLabelConfigBuilder();
@@ -32,7 +32,7 @@ public abstract class AbstractSimpleChartJsAxisConfigBuilder<T extends Serializa
 		return this;
 	}
 
-	public AbstractSimpleChartJsAxisConfigBuilder<T> withPosition(ChartJsAxisPosition position)
+	public AbstractSimpleChartJsAxisConfigBuilder<T> withPosition(ChartJsPosition position)
 	{
 		this.position = position;
 		return this;

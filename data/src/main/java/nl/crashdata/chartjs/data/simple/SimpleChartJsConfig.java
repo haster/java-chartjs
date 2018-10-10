@@ -7,12 +7,11 @@ import nl.crashdata.chartjs.data.ChartJsConfig;
 import nl.crashdata.chartjs.data.ChartJsData;
 import nl.crashdata.chartjs.data.ChartJsOptions;
 
-public class SimpleChartJsConfig<K extends Serializable, V extends Serializable>
-		implements ChartJsConfig<K, V>
+public class SimpleChartJsConfig<E extends Serializable> implements ChartJsConfig<E>
 {
 	private static final long serialVersionUID = 1L;
 
-	private ChartJsData<K, V> data;
+	private ChartJsData<E> data;
 
 	private ChartJsOptions options;
 
@@ -23,19 +22,19 @@ public class SimpleChartJsConfig<K extends Serializable, V extends Serializable>
 	{
 		return chartType;
 	}
-	
+
 	public void setChartType(ChartJsChartType chartType)
 	{
 		this.chartType = chartType;
 	}
 
 	@Override
-	public ChartJsData<K, V> getData()
+	public ChartJsData<E> getData()
 	{
 		return data;
 	}
 
-	public void setData(ChartJsData<K, V> data)
+	public void setData(ChartJsData<E> data)
 	{
 		this.data = data;
 	}

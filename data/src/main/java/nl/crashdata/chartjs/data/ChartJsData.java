@@ -12,13 +12,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author haster
  *
- * @param <K>
- *            The type of the x-axis ('keys') of the data
- * @param <V>
- *            The type of the y-axis ('values') of the data.
+ * @param <E>
+ *            The type of the elements of the data.
  */
-public interface ChartJsData<K extends Serializable, V extends Serializable> extends Serializable
+public interface ChartJsData<E extends Serializable> extends Serializable
 {
 	@JsonProperty("datasets")
-	List<ChartJsDataset<K, V>> getDatasets();
+	List< ? extends ChartJsDataset<E>> getDatasets();
+
+	@JsonProperty("labels")
+	List<String> getLabels();
 }

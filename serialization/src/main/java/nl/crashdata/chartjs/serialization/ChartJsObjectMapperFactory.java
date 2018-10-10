@@ -9,6 +9,34 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class ChartJsObjectMapperFactory
 {
+	private static final ObjectMapper INDENT_INSTANCE;
+	static
+	{
+		INDENT_INSTANCE = new ObjectMapper();
+		INDENT_INSTANCE.registerModule(new JavaTimeModule());
+		INDENT_INSTANCE.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
+		INDENT_INSTANCE.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
+		INDENT_INSTANCE.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+		INDENT_INSTANCE.configure(SerializationFeature.INDENT_OUTPUT, true);
+		INDENT_INSTANCE.disable(MapperFeature.AUTO_DETECT_CREATORS,
+			MapperFeature.AUTO_DETECT_FIELDS, MapperFeature.AUTO_DETECT_GETTERS,
+			MapperFeature.AUTO_DETECT_IS_GETTERS);
+	}
+
+	private static final ObjectMapper NOINDENT_INSTANCE;
+	static
+	{
+		NOINDENT_INSTANCE = new ObjectMapper();
+		NOINDENT_INSTANCE.registerModule(new JavaTimeModule());
+		NOINDENT_INSTANCE.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
+		NOINDENT_INSTANCE.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
+		NOINDENT_INSTANCE.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+		NOINDENT_INSTANCE.configure(SerializationFeature.INDENT_OUTPUT, false);
+		NOINDENT_INSTANCE.disable(MapperFeature.AUTO_DETECT_CREATORS,
+			MapperFeature.AUTO_DETECT_FIELDS, MapperFeature.AUTO_DETECT_GETTERS,
+			MapperFeature.AUTO_DETECT_IS_GETTERS);
+	}
+
 	/**
 	 * Returns an {@link ObjectMapper} configured with the right modules and settings to give the
 	 * correct output for a chartjs config.
@@ -17,17 +45,8 @@ public class ChartJsObjectMapperFactory
 	 *            Whether or not to indent output (pretty print). Indenting is useful when you want
 	 *            to show the output to humans but has no value for chartjs itself.
 	 */
-	public static ObjectMapper createObjectMapper(boolean indentOutput)
+	public static ObjectMapper getObjectMapper(boolean indentOutput)
 	{
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.registerModule(new JavaTimeModule());
-		mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
-		mapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
-		mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-		mapper.configure(SerializationFeature.INDENT_OUTPUT, indentOutput);
-		mapper.disable(MapperFeature.AUTO_DETECT_CREATORS, MapperFeature.AUTO_DETECT_FIELDS,
-			MapperFeature.AUTO_DETECT_GETTERS, MapperFeature.AUTO_DETECT_IS_GETTERS);
-
-		return mapper;
+		return indentOutput ? INDENT_INSTANCE : NOINDENT_INSTANCE;
 	}
 }

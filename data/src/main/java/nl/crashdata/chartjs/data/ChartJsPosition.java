@@ -2,7 +2,7 @@ package nl.crashdata.chartjs.data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public enum ChartJsAxisPosition
+public enum ChartJsPosition
 {
 	@JsonProperty("top")
 	TOP,
