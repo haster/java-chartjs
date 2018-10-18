@@ -14,25 +14,35 @@ import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
  *
  * @author haster
  *
- * @param <K>
- *            The type of the x-axis ('keys') of the data
- * @param <V>
- *            The type of the y-axis ('values') of the data.
+ * @param <E>
+ *            The type of the elements of the data.
  */
-public interface ChartJsDataset<K extends Serializable, V extends Serializable> extends Serializable
+public interface ChartJsDataset<E extends Serializable> extends Serializable
 {
+	@JsonProperty("data")
+	List<E> getData();
+
 	@JsonProperty("label")
 	String getLabel();
 
 	@JsonProperty("backgroundColor")
-	ChartJsRGBAColor getBackgroundColor();
+	List<ChartJsRGBAColor> getBackgroundColor();
 
 	@JsonProperty("borderColor")
-	ChartJsRGBAColor getBorderColor();
+	List<ChartJsRGBAColor> getBorderColor();
+
+	@JsonProperty("borderWidth")
+	List<Integer> getBorderWidth();
+
+	@JsonProperty("hoverBackgroundColor")
+	List<ChartJsRGBAColor> getHoverBackgroundColor();
+
+	@JsonProperty("hoverBorderColor")
+	List<ChartJsRGBAColor> getHoverBorderColor();
+
+	@JsonProperty("hoverBorderWidth")
+	List<Integer> getHoverBorderWidth();
 
 	@JsonProperty("fill")
 	String getFill();
-
-	@JsonProperty("data")
-	List<ChartJsDataPoint<K, V>> getData();
 }

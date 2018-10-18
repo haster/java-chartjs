@@ -2,7 +2,7 @@ package nl.crashdata.chartjs.data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public enum ChartJsChartType 
+public enum ChartJsChartType
 {
 	@JsonProperty("line")
 	LINE,
@@ -21,7 +21,10 @@ public enum ChartJsChartType
 
 	@JsonProperty("bubble")
 	BUBBLE,
-	
+
 	@JsonProperty("scatter")
-	SCATTER;
+	SCATTER,
+
+	@JsonProperty("doughnut")
+	DOUGHNUT;
 }

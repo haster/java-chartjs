@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
+import nl.crashdata.chartjs.data.simple.SimpleChartJsXYDataPoint;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLinearAxisConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLocalDateAxisConfigBuilder;
@@ -30,20 +31,20 @@ public class ChartJsDataTest
 	@Test
 	public void basicObjectMapping() throws JSONException, IOException
 	{
-		SimpleChartJsConfigBuilder<LocalDate, Integer> config =
+		SimpleChartJsConfigBuilder<SimpleChartJsXYDataPoint<LocalDate, Integer>> config =
 			SimpleChartJsConfigBuilder.lineChart();
 
 		SortedMap<LocalDate, Integer> dataPoints = createUserCountMap();
 
 		config.data()
 			.addDataset()
-			.withDataPoints(dataPoints)
+			.withDataPoints(dataPoints.entrySet(), SimpleChartJsXYDataPoint::new)
 			.withLabel("activeUsers")
 			.withBorderColor(ChartJsRGBAColor.BLUE);
 
 		LocalDate smallestXValue = dataPoints.firstKey();
 
-		SimpleChartJsOptionsBuilder<LocalDate, Integer> optionsBuilder = config.options();
+		SimpleChartJsOptionsBuilder optionsBuilder = config.options();
 		optionsBuilder.withResponsive(true);
 		optionsBuilder.hoverConfig().withIntersect(true).withMode(ChartJsInteractionMode.NEAREST);
 		optionsBuilder.tooltipConfig().withIntersect(false).withMode(ChartJsInteractionMode.INDEX);
@@ -54,8 +55,10 @@ public class ChartJsDataTest
 		xAxisBuilder.timeConfig().withTimeUnit(ChartJsTimeUnit.DAY).withStepSize(7);
 		SimpleChartJsLinearAxisConfigBuilder yAxisBuilder =
 			optionsBuilder.scalesConfig().withLinearYAxisConfig();
-		yAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString(
-			"active users");
+		yAxisBuilder.withDisplay(true)
+			.labelConfig()
+			.withDisplay(true)
+			.withLabelString("active users");
 
 		assertOutputMatches(config.build(), getExpectedUserCountOutputFromFile());
 	}
@@ -63,7 +66,7 @@ public class ChartJsDataTest
 	private void assertOutputMatches(Serializable objectToMap, String expectedOutput)
 			throws JsonProcessingException, JSONException
 	{
-		ObjectMapper mapper = ChartJsObjectMapperFactory.createObjectMapper(true);
+		ObjectMapper mapper = ChartJsObjectMapperFactory.getObjectMapper(true);
 
 		JSONAssert.assertEquals(expectedOutput, mapper.writeValueAsString(objectToMap),
 			JSONCompareMode.STRICT);

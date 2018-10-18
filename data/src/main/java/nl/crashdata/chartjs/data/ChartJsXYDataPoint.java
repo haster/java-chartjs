@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public interface ChartJsDataPoint<X extends Serializable, Y extends Serializable> extends Serializable
+public interface ChartJsXYDataPoint<X extends Serializable, Y extends Serializable> extends Serializable
 {
 	@JsonProperty("x")
 	X getX();

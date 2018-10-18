@@ -1,13 +1,22 @@
 package nl.crashdata.chartjs.data.simple.builder;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import nl.crashdata.chartjs.data.simple.SimpleChartJsOptions;
 
-public class SimpleChartJsOptionsBuilder<X extends Serializable, Y extends Serializable>
-		implements SimpleChartJsBuilder<SimpleChartJsOptions>
+public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleChartJsOptions>
 {
 	private Boolean responsive;
+
+	private Boolean maintainAspectRatio;
+
+	private Integer cutoutPercentage;
+
+	private Integer rotation;
+
+	private Integer circumference;
 
 	private SimpleChartJsTooltipConfigBuilder tooltipConfigBuilder =
 		new SimpleChartJsTooltipConfigBuilder();
@@ -15,12 +24,42 @@ public class SimpleChartJsOptionsBuilder<X extends Serializable, Y extends Seria
 	private SimpleChartJsHoverConfigBuilder hoverConfigBuilder =
 		new SimpleChartJsHoverConfigBuilder();
 
-	private SimpleChartJsScalesConfigBuilder<X, Y> scalesConfigBuilder =
+	private SimpleChartJsScalesConfigBuilder< ? , ? > scalesConfigBuilder =
 		new SimpleChartJsScalesConfigBuilder<>();
 
-	public SimpleChartJsOptionsBuilder<X, Y> withResponsive(Boolean responsive)
+	private SimpleChartJsTitleConfigBuilder titleConfigBuilder;
+
+	private SimpleChartJsLegendConfigBuilder legendConfigBuilder;
+
+	private Map<String, Serializable> plugins;
+
+	public SimpleChartJsOptionsBuilder withResponsive(Boolean responsive)
 	{
 		this.responsive = responsive;
+		return this;
+	}
+
+	public SimpleChartJsOptionsBuilder withMaintainAspectRatio(Boolean maintainAspectRatio)
+	{
+		this.maintainAspectRatio = maintainAspectRatio;
+		return this;
+	}
+
+	public SimpleChartJsOptionsBuilder withCutoutPercentage(Integer cutoutPercentage)
+	{
+		this.cutoutPercentage = cutoutPercentage;
+		return this;
+	}
+
+	public SimpleChartJsOptionsBuilder withRotation(Integer rotation)
+	{
+		this.rotation = rotation;
+		return this;
+	}
+
+	public SimpleChartJsOptionsBuilder withCircumference(Integer circumference)
+	{
+		this.circumference = circumference;
 		return this;
 	}
 
@@ -34,16 +73,40 @@ public class SimpleChartJsOptionsBuilder<X extends Serializable, Y extends Seria
 		return hoverConfigBuilder;
 	}
 
-	public SimpleChartJsScalesConfigBuilder<X, Y> scalesConfig()
+	public SimpleChartJsScalesConfigBuilder< ? , ? > scalesConfig()
 	{
 		return scalesConfigBuilder;
+	}
+
+	public SimpleChartJsTitleConfigBuilder titleConfig()
+	{
+		if (titleConfigBuilder == null)
+			titleConfigBuilder = new SimpleChartJsTitleConfigBuilder();
+		return titleConfigBuilder;
+	}
+
+	public SimpleChartJsLegendConfigBuilder legendConfig()
+	{
+		if (legendConfigBuilder == null)
+			legendConfigBuilder = new SimpleChartJsLegendConfigBuilder();
+		return legendConfigBuilder;
+	}
+
+	public SimpleChartJsOptionsBuilder withPlugin(String name, Serializable configuration)
+	{
+		if (plugins == null)
+			plugins = new LinkedHashMap<>();
+		plugins.put(name, configuration);
+		return this;
 	}
 
 	@Override
 	public boolean isValid()
 	{
 		return tooltipConfigBuilder.isValid() && hoverConfigBuilder.isValid()
-			&& scalesConfigBuilder.isValid();
+			&& scalesConfigBuilder.isValid()
+			&& (titleConfigBuilder == null || titleConfigBuilder.isValid())
+			&& (legendConfigBuilder == null || legendConfigBuilder.isValid());
 	}
 
 	@Override
@@ -55,9 +118,16 @@ public class SimpleChartJsOptionsBuilder<X extends Serializable, Y extends Seria
 		}
 		SimpleChartJsOptions ret = new SimpleChartJsOptions();
 		ret.setResponsive(responsive);
+		ret.setMaintainAspectRatio(maintainAspectRatio);
+		ret.setCutoutPercentage(cutoutPercentage);
+		ret.setRotation(rotation);
+		ret.setCircumference(circumference);
 		ret.setHoverConfig(hoverConfigBuilder.build());
 		ret.setScalesConfig(scalesConfigBuilder.build());
 		ret.setTooltipConfig(tooltipConfigBuilder.build());
+		ret.setTitleConfig(titleConfigBuilder == null ? null : titleConfigBuilder.build());
+		ret.setLegendConfig(legendConfigBuilder == null ? null : legendConfigBuilder.build());
+		ret.setPlugins(plugins);
 		return ret;
 	}
 

@@ -4,38 +4,33 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.crashdata.chartjs.components.resources.ChartJSJavaScriptResourceReference;
 import nl.crashdata.chartjs.data.ChartJsConfig;
+import nl.crashdata.chartjs.data.ChartJsDataset;
 import nl.crashdata.chartjs.serialization.ChartJsObjectMapperFactory;
 import org.apache.wicket.Application;
 import org.apache.wicket.RuntimeConfigurationType;
-import org.apache.wicket.Session;
+import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 
-public class SimpleGraphPanel extends Panel
+public class SimpleGraphPanel<T extends ChartJsConfig< ? >> extends GenericPanel<T>
 {
 	private static final long serialVersionUID = 1L;
 
-	private IModel<String> caption;
-
 	private WebMarkupContainer canvas;
 
-	public SimpleGraphPanel(String id, IModel< ? extends ChartJsConfig< ? , ? >> model,
-			IModel<String> caption)
+	public SimpleGraphPanel(String id, IModel<T> model)
 	{
 		super(id, model);
-		this.caption = caption;
 	}
 
 	@Override
 	protected void onInitialize()
 	{
 		super.onInitialize();
-		add(new Label("title", caption));
 		add(canvas = new WebMarkupContainer("canvas"));
 	}
 
@@ -45,38 +40,41 @@ public class SimpleGraphPanel extends Panel
 		super.renderHead(response);
 		response
 			.render(JavaScriptHeaderItem.forReference(ChartJSJavaScriptResourceReference.get()));
-		response.render(
-			JavaScriptHeaderItem.forScript(jsStatement().toString(), "chartjs_" + getMarkupId()));
-		response.render(OnDomReadyHeaderItem.forScript("var ctx = document.getElementById(\""
-			+ canvas.getMarkupId() + "\").getContext(\"2d\");new Chart(ctx, config);"));
+		response.render(OnDomReadyHeaderItem
+			.forScript("moment.locale('\" + Session.get().getLocale().toLanguageTag() + \"');\n"
+				+ "document.getElementById(\"" + canvas.getMarkupId() + "\").chartjs = "
+				+ "new Chart(document.getElementById(\"" + canvas.getMarkupId()
+				+ "\").getContext(\"2d\"), " + marshal(getModelObject()) + ");"));
 	}
 
-	private StringBuilder jsStatement()
+	private String marshal(Object obj)
 	{
-		StringBuilder statement = new StringBuilder();
-
-		statement.append("moment.locale('" + Session.get().getLocale().toLanguageTag() + "');");
-
 		boolean isDevelopment = Application.exists() && RuntimeConfigurationType.DEVELOPMENT
 			.equals(Application.get().getConfigurationType());
-		ObjectMapper mapper = ChartJsObjectMapperFactory.createObjectMapper(isDevelopment);
-
-		statement.append("var config = ");
 		try
 		{
-			statement.append(mapper.writeValueAsString(getDefaultModelObject()));
+			ObjectMapper mapper = ChartJsObjectMapperFactory.getObjectMapper(isDevelopment);
+			return mapper.writeValueAsString(obj);
 		}
 		catch (JsonProcessingException e)
 		{
 			throw new RuntimeException(e);
 		}
-		return statement;
 	}
 
-	@Override
-	protected void onDetach()
+	public void update(IPartialPageRequestHandler target)
 	{
-		super.onDetach();
-		this.caption.detach();
+		target.appendJavaScript("document.getElementById(\"" + canvas.getMarkupId()
+			+ "\").chartjs.options = " + marshal(getModelObject().getOptions()) + ";");
+		int index = 0;
+		for (ChartJsDataset< ? > curDataset : getModelObject().getData().getDatasets())
+		{
+			target
+				.appendJavaScript("Object.assign(document.getElementById(\"" + canvas.getMarkupId()
+					+ "\").chartjs.data.datasets[" + index + "], " + marshal(curDataset) + ");");
+			index++;
+		}
+		target.appendJavaScript(
+			"document.getElementById(\"" + canvas.getMarkupId() + "\").chartjs.update();");
 	}
 }

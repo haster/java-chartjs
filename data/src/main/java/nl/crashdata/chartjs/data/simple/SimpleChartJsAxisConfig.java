@@ -3,7 +3,7 @@ package nl.crashdata.chartjs.data.simple;
 import java.io.Serializable;
 
 import nl.crashdata.chartjs.data.ChartJsAxisConfig;
-import nl.crashdata.chartjs.data.ChartJsAxisPosition;
+import nl.crashdata.chartjs.data.ChartJsPosition;
 import nl.crashdata.chartjs.data.ChartJsCartesianAxisType;
 import nl.crashdata.chartjs.data.ChartJsScaleLabelConfig;
 import nl.crashdata.chartjs.data.ChartJsTickConfig;
@@ -19,7 +19,7 @@ public class SimpleChartJsAxisConfig<T extends Serializable> implements ChartJsA
 
 	private ChartJsTickConfig<T> tickConfig;
 
-	private ChartJsAxisPosition position;
+	private ChartJsPosition position;
 
 	private ChartJsCartesianAxisType type;
 
@@ -59,12 +59,12 @@ public class SimpleChartJsAxisConfig<T extends Serializable> implements ChartJsA
 	}
 
 	@Override
-	public ChartJsAxisPosition getPosition()
+	public ChartJsPosition getPosition()
 	{
 		return position;
 	}
 
-	public void setPosition(ChartJsAxisPosition position)
+	public void setPosition(ChartJsPosition position)
 	{
 		this.position = position;
 	}

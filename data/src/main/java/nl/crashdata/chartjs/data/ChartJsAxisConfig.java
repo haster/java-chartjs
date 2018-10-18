@@ -24,7 +24,7 @@ public interface ChartJsAxisConfig<T extends Serializable> extends Serializable
 	ChartJsTickConfig<T> getTickConfig();
 
 	@JsonProperty("position")
-	ChartJsAxisPosition getPosition();
+	ChartJsPosition getPosition();
 
 	@JsonProperty("type")
 	ChartJsCartesianAxisType getType();
