@@ -24,7 +24,7 @@ public class SimpleChartJsLegendConfigBuilder implements SimpleChartJsBuilder<Ch
 		return this;
 	}
 
-	public SimpleChartJsLegendConfigBuilder withPosition(boolean fullWidth)
+	public SimpleChartJsLegendConfigBuilder withFullWidth(boolean fullWidth)
 	{
 		this.fullWidth = fullWidth;
 		return this;
@@ -39,6 +39,12 @@ public class SimpleChartJsLegendConfigBuilder implements SimpleChartJsBuilder<Ch
 	public SimpleChartJsLegendConfigBuilder withText(List<String> labels)
 	{
 		this.labels = labels;
+		return this;
+	}
+
+	public SimpleChartJsLegendConfigBuilder withPosition(ChartJsPosition position)
+	{
+		this.position = position;
 		return this;
 	}
 
