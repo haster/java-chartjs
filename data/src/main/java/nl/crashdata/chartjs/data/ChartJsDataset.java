@@ -44,5 +44,5 @@ public interface ChartJsDataset<E extends Serializable> extends Serializable
 	List<Integer> getHoverBorderWidth();
 
 	@JsonProperty("fill")
-	String getFill();
+	ChartJsFill getFill();
 }

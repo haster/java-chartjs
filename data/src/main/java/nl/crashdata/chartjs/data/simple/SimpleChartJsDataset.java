@@ -5,6 +5,7 @@ import java.util.List;
 
 import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
 import nl.crashdata.chartjs.data.ChartJsDataset;
+import nl.crashdata.chartjs.data.ChartJsFill;
 
 public class SimpleChartJsDataset<V extends Serializable> implements ChartJsDataset<V>
 {
@@ -24,7 +25,7 @@ public class SimpleChartJsDataset<V extends Serializable> implements ChartJsData
 
 	private List<Integer> hoverBorderWidth;
 
-	private String fill;
+	private ChartJsFill fill;
 
 	private List<V> data;
 
@@ -106,12 +107,12 @@ public class SimpleChartJsDataset<V extends Serializable> implements ChartJsData
 	}
 
 	@Override
-	public String getFill()
+	public ChartJsFill getFill()
 	{
 		return fill;
 	}
 
-	public void setFill(String fill)
+	public void setFill(ChartJsFill fill)
 	{
 		this.fill = fill;
 	}
