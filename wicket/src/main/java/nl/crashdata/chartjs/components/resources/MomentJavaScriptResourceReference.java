@@ -6,7 +6,7 @@ public final class MomentJavaScriptResourceReference extends JavaScriptResourceR
 {
 	private static final long serialVersionUID = 1L;
 
-	private static final String MOMENTJS_NAME = "moment-with-locales.v2.22.2.js";
+	private static final String MOMENTJS_NAME = "moment-with-locales.v2.24.0.js";
 
 	private static final MomentJavaScriptResourceReference INSTANCE =
 		new MomentJavaScriptResourceReference();
