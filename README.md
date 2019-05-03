@@ -7,20 +7,20 @@ Java-chartjs provides you with a way to configure and use [ChartJs](https://gith
 # Usage example
 In Java:
 ```java
-SimpleChartJsConfigBuilder<LocalDate, Integer> config =
+SimpleChartJsConfigBuilder<SimpleChartJsXYDataPoint<LocalDate, Integer>> config =
 	SimpleChartJsConfigBuilder.lineChart();
 
 SortedMap<LocalDate, Integer> dataPoints = createUserCountMap();
 
 config.data()
 	.addDataset()
-	.withDataPoints(dataPoints)
+	.withDataPoints(dataPoints.entrySet(), SimpleChartJsXYDataPoint::new)
 	.withLabel("activeUsers")
 	.withBorderColor(ChartJsRGBAColor.BLUE);
 
 LocalDate smallestXValue = dataPoints.firstKey();
 
-SimpleChartJsOptionsBuilder<LocalDate, Integer> optionsBuilder = config.options();
+SimpleChartJsOptionsBuilder optionsBuilder = config.options();
 optionsBuilder.withResponsive(true);
 optionsBuilder.hoverConfig().withIntersect(true).withMode(ChartJsInteractionMode.NEAREST);
 optionsBuilder.tooltipConfig().withIntersect(false).withMode(ChartJsInteractionMode.INDEX);
@@ -35,7 +35,7 @@ SimpleChartJsLinearAxisConfigBuilder yAxisBuilder =
 yAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString(
 	"active users");
 	
-String chartJsConfigAsJson = ChartJsObjectMapperFactory.createObjectMapper(true).writeValueAsString(config.build());
+String chartJsConfigAsJson = ChartJsObjectMapperFactory.getObjectMapper(true).writeValueAsString(config.build());
 ```
 
 In HTML/Javascript
