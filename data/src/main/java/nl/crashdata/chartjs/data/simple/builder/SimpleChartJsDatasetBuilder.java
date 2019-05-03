@@ -9,6 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
+import nl.crashdata.chartjs.data.ChartJsFill;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsDataset;
 
 public class SimpleChartJsDatasetBuilder<E extends Serializable>
@@ -28,7 +29,7 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 
 	private String label;
 
-	private String fill = "false";
+	private ChartJsFill fill = ChartJsFill.DISABLED;
 
 	private List<E> data = new ArrayList<>();
 
@@ -114,7 +115,7 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 		return this;
 	}
 
-	public SimpleChartJsDatasetBuilder<E> withFill(String fill)
+	public SimpleChartJsDatasetBuilder<E> withFill(ChartJsFill fill)
 	{
 		this.fill = fill;
 		return this;
