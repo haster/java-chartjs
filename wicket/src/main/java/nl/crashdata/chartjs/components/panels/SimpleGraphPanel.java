@@ -8,6 +8,7 @@ import nl.crashdata.chartjs.data.ChartJsDataset;
 import nl.crashdata.chartjs.serialization.ChartJsObjectMapperFactory;
 import org.apache.wicket.Application;
 import org.apache.wicket.RuntimeConfigurationType;
+import org.apache.wicket.Session;
 import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
@@ -41,7 +42,7 @@ public class SimpleGraphPanel<T extends ChartJsConfig< ? >> extends GenericPanel
 		response
 			.render(JavaScriptHeaderItem.forReference(ChartJSJavaScriptResourceReference.get()));
 		response.render(OnDomReadyHeaderItem
-			.forScript("moment.locale('\" + Session.get().getLocale().toLanguageTag() + \"');\n"
+			.forScript("moment.locale('" + Session.get().getLocale().toLanguageTag() + "');\n"
 				+ "document.getElementById(\"" + canvas.getMarkupId() + "\").chartjs = "
 				+ "new Chart(document.getElementById(\"" + canvas.getMarkupId()
 				+ "\").getContext(\"2d\"), " + marshal(getModelObject()) + ");"));
