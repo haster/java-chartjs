@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>nl.crashdata.java-chartjs</groupId>
 		<artifactId>java-chartjs</artifactId>
-		<version>0.93</version>
+		<version>0.94-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>java-chartjs-serialization</artifactId>
