@@ -3,7 +3,7 @@
 			    datasets : [ {
 			      label : "activeUsers",
 			      borderColor : [ "rgba(54, 162, 235, 1.0)" ],
-			      fill : "false",
+			      fill : "start",
 			      data : [ {
 			        x : "2018-01-01",
 			        y : 10

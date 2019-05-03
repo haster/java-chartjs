@@ -40,6 +40,7 @@ public class ChartJsDataTest
 			.addDataset()
 			.withDataPoints(dataPoints.entrySet(), SimpleChartJsXYDataPoint::new)
 			.withLabel("activeUsers")
+			.withFill(ChartJsFill.boundary(ChartJsBoundaryType.START))
 			.withBorderColor(ChartJsRGBAColor.BLUE);
 
 		LocalDate smallestXValue = dataPoints.firstKey();
