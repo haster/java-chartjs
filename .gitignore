@@ -15,5 +15,5 @@ bin
 .DS_Store
 *.swp
 rebel.xml
-
+.idea
 
