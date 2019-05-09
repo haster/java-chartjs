@@ -1,5 +1,7 @@
 module nl.crashdata.chartjs.serialization
 {
+	exports nl.crashdata.chartjs.serialization;
+
 	requires java.base;
 
 	requires com.fasterxml.jackson.annotation;
@@ -9,4 +11,6 @@ module nl.crashdata.chartjs.serialization
 	requires com.fasterxml.jackson.databind;
 
 	requires com.fasterxml.jackson.datatype.jsr310;
+
+	requires nl.crashdata.chartjs.data;
 }
