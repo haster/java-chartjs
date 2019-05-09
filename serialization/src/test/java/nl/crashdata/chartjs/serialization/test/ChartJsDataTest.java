@@ -1,4 +1,4 @@
-package nl.crashdata.chartjs.data;
+package nl.crashdata.chartjs.serialization.test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,6 +14,10 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
+import nl.crashdata.chartjs.data.ChartJsBoundaryType;
+import nl.crashdata.chartjs.data.ChartJsFill;
+import nl.crashdata.chartjs.data.ChartJsInteractionMode;
+import nl.crashdata.chartjs.data.ChartJsTimeUnit;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsXYDataPoint;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLinearAxisConfigBuilder;
@@ -99,7 +103,7 @@ public class ChartJsDataTest
 
 	private static String getExpectedUserCountOutputFromFile() throws IOException
 	{
-		try (InputStream in = TestResourcesMarker.class.getResource("../output.js").openStream())
+		try (InputStream in = TestResourcesMarker.class.getResourceAsStream("../output.js"))
 		{
 			return new BufferedReader(new InputStreamReader(in)).lines()
 				.collect(Collectors.joining("\n"));
