@@ -8,7 +8,7 @@ module nl.crashdata.chartjs.serialization
 
 	requires com.fasterxml.jackson.core;
 
-	requires com.fasterxml.jackson.databind;
+	requires transitive com.fasterxml.jackson.databind;
 
 	requires com.fasterxml.jackson.datatype.jsr310;
 
