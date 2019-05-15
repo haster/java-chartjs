@@ -24,11 +24,11 @@ import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLinearAxisConfigBui
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLocalDateAxisConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsOptionsBuilder;
 import nl.crashdata.chartjs.serialization.ChartJsObjectMapperFactory;
+import nl.crashdata.chartjs.serialization.test.resources.TestResourcesMarker;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
-import resources.TestResourcesMarker;
 
 public class ChartJsDataTest
 {
@@ -103,7 +103,7 @@ public class ChartJsDataTest
 
 	private static String getExpectedUserCountOutputFromFile() throws IOException
 	{
-		try (InputStream in = TestResourcesMarker.class.getResourceAsStream("../output.js"))
+		try (InputStream in = TestResourcesMarker.class.getResourceAsStream("output.js"))
 		{
 			return new BufferedReader(new InputStreamReader(in)).lines()
 				.collect(Collectors.joining("\n"));
