@@ -21,6 +21,7 @@
 		<dependency>
 			<groupId>nl.crashdata.java-chartjs</groupId>
 			<artifactId>java-chartjs-data</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
