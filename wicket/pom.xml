@@ -22,6 +22,10 @@
 		</dependency>
 		<dependency>
 			<groupId>nl.crashdata.java-chartjs</groupId>
+			<artifactId>java-chartjs-data</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nl.crashdata.java-chartjs</groupId>
 			<artifactId>java-chartjs-serialization</artifactId>
 		</dependency>
 		<dependency>
