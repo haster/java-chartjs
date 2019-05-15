@@ -1,9 +1,9 @@
 package nl.crashdata.chartjs.data.simple;
 
-import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
 import nl.crashdata.chartjs.data.ChartJsInteractionMode;
 import nl.crashdata.chartjs.data.ChartJsTooltipConfig;
 import nl.crashdata.chartjs.data.ChartJsTooltipPositioning;
+import nl.crashdata.chartjs.data.colors.ChartJsRGBAColor;
 
 public class SimpleChartJsTooltipConfig implements ChartJsTooltipConfig
 {

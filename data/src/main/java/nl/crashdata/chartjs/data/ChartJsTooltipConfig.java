@@ -3,7 +3,7 @@ package nl.crashdata.chartjs.data;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
+import nl.crashdata.chartjs.data.colors.ChartJsRGBAColor;
 
 /**
  * Represents the tooltip-configuration for a chart, ie. when to show a tooltip (and what to show in

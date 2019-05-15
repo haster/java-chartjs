@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
+import nl.crashdata.chartjs.data.colors.ChartJsRGBAColor;
 
 /**
  * Represents the title-configuration for a chart.

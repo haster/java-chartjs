@@ -2,7 +2,7 @@ module nl.crashdata.chartjs.data
 {
 	exports nl.crashdata.chartjs.data;
 
-	exports nl.crashdata.chartjs.colors;
+	exports nl.crashdata.chartjs.data.colors;
 
 	exports nl.crashdata.chartjs.data.simple;
 

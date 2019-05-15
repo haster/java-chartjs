@@ -3,9 +3,9 @@ package nl.crashdata.chartjs.data.simple.builder;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
 import nl.crashdata.chartjs.data.ChartJsPosition;
 import nl.crashdata.chartjs.data.ChartJsTitleConfig;
+import nl.crashdata.chartjs.data.colors.ChartJsRGBAColor;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsTitleConfig;
 
 public class SimpleChartJsTitleConfigBuilder implements SimpleChartJsBuilder<ChartJsTitleConfig>
