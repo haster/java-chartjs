@@ -11,6 +11,4 @@ module nl.crashdata.chartjs.serialization
 	requires transitive com.fasterxml.jackson.databind;
 
 	requires com.fasterxml.jackson.datatype.jsr310;
-
-	requires nl.crashdata.chartjs.data;
 }
