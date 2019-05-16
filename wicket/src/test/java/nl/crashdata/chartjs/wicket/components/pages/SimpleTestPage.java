@@ -1,11 +1,10 @@
-package nl.crashdata.chartjs.components.pages;
+package nl.crashdata.chartjs.wicket.components.pages;
 
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import nl.crashdata.chartjs.components.panels.SimpleGraphPanel;
 import nl.crashdata.chartjs.data.ChartJsBoundaryType;
 import nl.crashdata.chartjs.data.ChartJsConfig;
 import nl.crashdata.chartjs.data.ChartJsFill;
@@ -17,6 +16,7 @@ import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLinearAxisConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLocalDateAxisConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsOptionsBuilder;
+import nl.crashdata.chartjs.wicket.components.panels.SimpleGraphPanel;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.Model;
 

@@ -1,10 +1,9 @@
-package nl.crashdata.chartjs.components.test;
+package nl.crashdata.chartjs.wicket.components.test;
 
+import nl.crashdata.chartjs.wicket.components.pages.SimpleTestPage;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import nl.crashdata.chartjs.components.pages.SimpleTestPage;
 
 public class SimplePageTest 
 {
