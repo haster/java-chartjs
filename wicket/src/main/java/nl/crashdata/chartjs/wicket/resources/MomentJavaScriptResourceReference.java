@@ -1,4 +1,4 @@
-package nl.crashdata.chartjs.wicket.components.resources;
+package nl.crashdata.chartjs.wicket.resources;
 
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 
