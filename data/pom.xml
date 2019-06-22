@@ -19,22 +19,4 @@
 			<artifactId>jackson-annotations</artifactId>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<configuration>
-						<archive>
-							<manifestEntries>
-								<Automatic-Module-Name>nl.crashdata.chartjs.data</Automatic-Module-Name>
-							</manifestEntries>
-						</archive>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
 </project>
