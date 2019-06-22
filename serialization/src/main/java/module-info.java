@@ -2,8 +2,6 @@ module nl.crashdata.chartjs.serialization
 {
 	exports nl.crashdata.chartjs.serialization;
 
-	requires java.base;
-
 	requires com.fasterxml.jackson.annotation;
 
 	requires com.fasterxml.jackson.core;

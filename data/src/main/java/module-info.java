@@ -8,7 +8,5 @@ module nl.crashdata.chartjs.data
 
 	exports nl.crashdata.chartjs.data.simple.builder;
 
-	requires java.base;
-
 	requires com.fasterxml.jackson.annotation;
 }
