@@ -3,9 +3,9 @@ package nl.crashdata.chartjs.data.simple;
 import java.io.Serializable;
 import java.util.List;
 
-import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
 import nl.crashdata.chartjs.data.ChartJsDataset;
 import nl.crashdata.chartjs.data.ChartJsFill;
+import nl.crashdata.chartjs.data.colors.ChartJsRGBAColor;
 
 public class SimpleChartJsDataset<V extends Serializable> implements ChartJsDataset<V>
 {

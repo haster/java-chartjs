@@ -1,4 +1,4 @@
-package nl.crashdata.chartjs.colors;
+package nl.crashdata.chartjs.data.colors;
 
 import java.io.Serializable;
 import java.util.Locale;

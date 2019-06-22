@@ -1,4 +1,4 @@
-package nl.crashdata.chartjs.components.resources;
+package nl.crashdata.chartjs.wicket.resources;
 
 import java.util.Collections;
 import java.util.List;

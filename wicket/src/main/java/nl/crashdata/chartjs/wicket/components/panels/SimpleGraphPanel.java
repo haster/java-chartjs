@@ -1,11 +1,11 @@
-package nl.crashdata.chartjs.components.panels;
+package nl.crashdata.chartjs.wicket.components.panels;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import nl.crashdata.chartjs.components.resources.ChartJSJavaScriptResourceReference;
 import nl.crashdata.chartjs.data.ChartJsConfig;
 import nl.crashdata.chartjs.data.ChartJsDataset;
 import nl.crashdata.chartjs.serialization.ChartJsObjectMapperFactory;
+import nl.crashdata.chartjs.wicket.resources.ChartJSJavaScriptResourceReference;
 import org.apache.wicket.Application;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;

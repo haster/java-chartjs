@@ -1,113 +1,109 @@
-package nl.crashdata.chartjs.components.pages;
+package nl.crashdata.chartjs.wicket.components.pages;
 
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
-
-import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
-import nl.crashdata.chartjs.components.panels.SimpleGraphPanel;
 import nl.crashdata.chartjs.data.ChartJsBoundaryType;
 import nl.crashdata.chartjs.data.ChartJsConfig;
 import nl.crashdata.chartjs.data.ChartJsFill;
 import nl.crashdata.chartjs.data.ChartJsInteractionMode;
 import nl.crashdata.chartjs.data.ChartJsTimeUnit;
+import nl.crashdata.chartjs.data.colors.ChartJsRGBAColor;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsXYDataPoint;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLinearAxisConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLocalDateAxisConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsOptionsBuilder;
+import nl.crashdata.chartjs.wicket.components.panels.SimpleGraphPanel;
+import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.model.Model;
 
 public class SimpleTestPage extends WebPage
 {
 	private static final long serialVersionUID = 1L;
 
-	public SimpleTestPage(PageParameters params) 
+	public SimpleTestPage()
 	{
-		add(new SimpleGraphPanel<ChartJsConfig<?>>("userGraph", Model.of(createActiveUsersConfig())));
-		add(new SimpleGraphPanel<ChartJsConfig<?>>("pagesGraph", Model.of(createPagesViewedConfig())));
+		add(new SimpleGraphPanel<ChartJsConfig< ? >>("userGraph",
+			Model.of(createActiveUsersConfig())));
+		add(new SimpleGraphPanel<ChartJsConfig< ? >>("pagesGraph",
+			Model.of(createPagesViewedConfig())));
 	}
-	
-	
-	private ChartJsConfig<?> createActiveUsersConfig() 
+
+	private ChartJsConfig< ? > createActiveUsersConfig()
 	{
 		SimpleChartJsConfigBuilder<SimpleChartJsXYDataPoint<LocalDate, Integer>> config =
-				SimpleChartJsConfigBuilder.lineChart();
+			SimpleChartJsConfigBuilder.lineChart();
 
-			SortedMap<LocalDate, Integer> dataPoints = createUserCountMap();
+		SortedMap<LocalDate, Integer> dataPoints = createUserCountMap();
 
-			config.data()
-				.addDataset()
-				.withDataPoints(dataPoints.entrySet(), SimpleChartJsXYDataPoint::new)
-				.withLabel("activeUsers")
-				.withFill(ChartJsFill.boundary(ChartJsBoundaryType.START))
-				.withBorderColor(ChartJsRGBAColor.BLUE);
+		config.data()
+			.addDataset()
+			.withDataPoints(dataPoints.entrySet(), SimpleChartJsXYDataPoint::new)
+			.withLabel("activeUsers")
+			.withFill(ChartJsFill.boundary(ChartJsBoundaryType.START))
+			.withBorderColor(ChartJsRGBAColor.BLUE);
 
-			LocalDate smallestXValue = dataPoints.firstKey();
+		LocalDate smallestXValue = dataPoints.firstKey();
 
-			SimpleChartJsOptionsBuilder optionsBuilder = config.options();
-			optionsBuilder.withResponsive(true);
-			optionsBuilder.hoverConfig().withIntersect(true).withMode(ChartJsInteractionMode.NEAREST);
-			optionsBuilder.tooltipConfig().withIntersect(false).withMode(ChartJsInteractionMode.INDEX);
-			SimpleChartJsLocalDateAxisConfigBuilder xAxisBuilder =
-				optionsBuilder.scalesConfig().withLocalDateXAxisConfig();
-			xAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString("days");
-			xAxisBuilder.tickConfig().withForcedMinimum(smallestXValue);
-			xAxisBuilder.timeConfig().withTimeUnit(ChartJsTimeUnit.DAY).withStepSize(7);
-			SimpleChartJsLinearAxisConfigBuilder yAxisBuilder =
-				optionsBuilder.scalesConfig().withLinearYAxisConfig();
-			yAxisBuilder.withDisplay(true)
-				.labelConfig()
-				.withDisplay(true)
-				.withLabelString("active users");
-			
-			return config.build();
+		SimpleChartJsOptionsBuilder optionsBuilder = config.options();
+		optionsBuilder.withResponsive(true);
+		optionsBuilder.hoverConfig().withIntersect(true).withMode(ChartJsInteractionMode.NEAREST);
+		optionsBuilder.tooltipConfig().withIntersect(false).withMode(ChartJsInteractionMode.INDEX);
+		SimpleChartJsLocalDateAxisConfigBuilder xAxisBuilder =
+			optionsBuilder.scalesConfig().withLocalDateXAxisConfig();
+		xAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString("days");
+		xAxisBuilder.tickConfig().withForcedMinimum(smallestXValue);
+		xAxisBuilder.timeConfig().withTimeUnit(ChartJsTimeUnit.DAY).withStepSize(7);
+		SimpleChartJsLinearAxisConfigBuilder yAxisBuilder =
+			optionsBuilder.scalesConfig().withLinearYAxisConfig();
+		yAxisBuilder.withDisplay(true)
+			.labelConfig()
+			.withDisplay(true)
+			.withLabelString("active users");
+
+		return config.build();
 	}
-	
-	private ChartJsConfig<?> createPagesViewedConfig() 
+
+	private ChartJsConfig< ? > createPagesViewedConfig()
 	{
 		SimpleChartJsConfigBuilder<SimpleChartJsXYDataPoint<LocalDate, Integer>> config =
-				SimpleChartJsConfigBuilder.lineChart();
+			SimpleChartJsConfigBuilder.lineChart();
 
-			SortedMap<LocalDate, Integer> pageViewDataPoints = createPageviewMap();
-			
-			SortedMap<LocalDate, Integer> uniquePagesDataPoints = createUniquePagesViewedMap();
+		SortedMap<LocalDate, Integer> pageViewDataPoints = createPageviewMap();
 
-			config.data()
-				.addDataset()
-				.withDataPoints(pageViewDataPoints.entrySet(), SimpleChartJsXYDataPoint::new)
-				.withLabel("pageviews")
-				.withFill(ChartJsFill.relativeIndex(1))
-				.withBorderColor(ChartJsRGBAColor.YELLOW);
-			config.data()
+		SortedMap<LocalDate, Integer> uniquePagesDataPoints = createUniquePagesViewedMap();
+
+		config.data()
+			.addDataset()
+			.withDataPoints(pageViewDataPoints.entrySet(), SimpleChartJsXYDataPoint::new)
+			.withLabel("pageviews")
+			.withFill(ChartJsFill.relativeIndex(1))
+			.withBorderColor(ChartJsRGBAColor.YELLOW);
+		config.data()
 			.addDataset()
 			.withDataPoints(uniquePagesDataPoints.entrySet(), SimpleChartJsXYDataPoint::new)
 			.withLabel("unique pages viewed")
 			.withFill(ChartJsFill.boundary(ChartJsBoundaryType.ORIGIN))
 			.withBorderColor(ChartJsRGBAColor.ORANGE);
 
-			SimpleChartJsOptionsBuilder optionsBuilder = config.options();
-			optionsBuilder.withResponsive(true);
-			optionsBuilder.hoverConfig().withIntersect(true).withMode(ChartJsInteractionMode.NEAREST);
-			optionsBuilder.tooltipConfig().withIntersect(false).withMode(ChartJsInteractionMode.INDEX);
-			SimpleChartJsLocalDateAxisConfigBuilder xAxisBuilder =
-				optionsBuilder.scalesConfig().withLocalDateXAxisConfig();
-			xAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString("days");
-			xAxisBuilder.timeConfig().withTimeUnit(ChartJsTimeUnit.DAY).withStepSize(7);
-			SimpleChartJsLinearAxisConfigBuilder yAxisBuilder =
-				optionsBuilder.scalesConfig().withLinearYAxisConfig();
-			yAxisBuilder.withDisplay(true)
-				.labelConfig()
-				.withDisplay(true)
-				.withLabelString("pageviews");
-			
-			return config.build();
+		SimpleChartJsOptionsBuilder optionsBuilder = config.options();
+		optionsBuilder.withResponsive(true);
+		optionsBuilder.hoverConfig().withIntersect(true).withMode(ChartJsInteractionMode.NEAREST);
+		optionsBuilder.tooltipConfig().withIntersect(false).withMode(ChartJsInteractionMode.INDEX);
+		SimpleChartJsLocalDateAxisConfigBuilder xAxisBuilder =
+			optionsBuilder.scalesConfig().withLocalDateXAxisConfig();
+		xAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString("days");
+		xAxisBuilder.timeConfig().withTimeUnit(ChartJsTimeUnit.DAY).withStepSize(7);
+		SimpleChartJsLinearAxisConfigBuilder yAxisBuilder =
+			optionsBuilder.scalesConfig().withLinearYAxisConfig();
+		yAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString("pageviews");
+
+		return config.build();
 	}
-	
+
 	private static SortedMap<LocalDate, Integer> createUserCountMap()
 	{
 		SortedMap<LocalDate, Integer> dataPoints = new TreeMap<>();
@@ -131,7 +127,7 @@ public class SimpleTestPage extends WebPage
 		dataPoints.put(LocalDate.of(2018, Month.JANUARY, 18), 4);
 		return dataPoints;
 	}
-	
+
 	private static SortedMap<LocalDate, Integer> createPageviewMap()
 	{
 		SortedMap<LocalDate, Integer> dataPoints = new TreeMap<>();
@@ -155,7 +151,7 @@ public class SimpleTestPage extends WebPage
 		dataPoints.put(LocalDate.of(2018, Month.JANUARY, 18), 40);
 		return dataPoints;
 	}
-	
+
 	private static SortedMap<LocalDate, Integer> createUniquePagesViewedMap()
 	{
 		SortedMap<LocalDate, Integer> dataPoints = new TreeMap<>();

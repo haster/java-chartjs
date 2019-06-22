@@ -2,9 +2,9 @@ package nl.crashdata.chartjs.data.simple;
 
 import java.util.List;
 
-import nl.crashdata.chartjs.colors.ChartJsRGBAColor;
 import nl.crashdata.chartjs.data.ChartJsPosition;
 import nl.crashdata.chartjs.data.ChartJsTitleConfig;
+import nl.crashdata.chartjs.data.colors.ChartJsRGBAColor;
 
 public class SimpleChartJsTitleConfig implements ChartJsTitleConfig
 {

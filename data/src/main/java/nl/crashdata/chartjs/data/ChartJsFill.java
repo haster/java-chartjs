@@ -1,21 +1,25 @@
 package nl.crashdata.chartjs.data;
 
-import com.fasterxml.jackson.annotation.JsonValue;
 import static nl.crashdata.chartjs.data.ChartJsFillMode.*;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
- * A value object to represent the fill-configuration for a chart, ie. how to fill the area under
- * a line or radar graph.
- * 
- * Gets serialised to a javascript string value. Corresponds to the {@code config.data.datasets[].fill} property.
- * 
+ * A value object to represent the fill-configuration for a chart, ie. how to fill the area under a
+ * line or radar graph.
+ *
+ * Gets serialised to a javascript string value. Corresponds to the
+ * {@code config.data.datasets[].fill} property.
+ *
  * @author haster
  *
  */
-public final class ChartJsFill {
-	
+public final class ChartJsFill
+{
+
 	public static final ChartJsFill DISABLED = new ChartJsFill();
-	static {
+	static
+	{
 		DISABLED.mode = ChartJsFillMode.DISABLED;
 		DISABLED.boundary = null;
 		DISABLED.datasetIndex = null;
@@ -26,34 +30,45 @@ public final class ChartJsFill {
 	private ChartJsBoundaryType boundary;
 
 	private Integer datasetIndex;
-	
-	private ChartJsFill() {}
-	
+
+	private ChartJsFill()
+	{
+	}
+
 	/**
 	 * Sets the fill property to a value indicating it is disabled (ie, don't fill)
 	 */
-	public static ChartJsFill disabled() {
+	public static ChartJsFill disabled()
+	{
 		return DISABLED;
 	}
-	
+
 	/**
 	 * Sets the fill property to a value indicating fill to a boundary.
-	 * @param boundary The boundary to which the area needs to be filled.
+	 * 
+	 * @param boundary
+	 *            The boundary to which the area needs to be filled.
 	 */
-	public static ChartJsFill boundary(ChartJsBoundaryType boundary) {
+	public static ChartJsFill boundary(ChartJsBoundaryType boundary)
+	{
 		ChartJsFill fill = new ChartJsFill();
 		fill.mode = BOUNDARY;
 		fill.boundary = boundary;
 		fill.datasetIndex = null;
 		return fill;
 	}
-	
+
 	/**
 	 * Sets the fill property to a value indicating fill to another dataset.
-	 * @param datasetIndex the relative index of the dataset to which the area should be filled. Must be nonzero.
+	 * 
+	 * @param datasetIndex
+	 *            the relative index of the dataset to which the area should be filled. Must be
+	 *            nonzero.
 	 */
-	public static ChartJsFill relativeIndex(int datasetIndex) {
-		if (datasetIndex == 0) {
+	public static ChartJsFill relativeIndex(int datasetIndex)
+	{
+		if (datasetIndex == 0)
+		{
 			throw new IllegalArgumentException("Relative dataset index can not be 0!");
 		}
 		ChartJsFill fill = new ChartJsFill();
@@ -62,16 +77,22 @@ public final class ChartJsFill {
 		fill.datasetIndex = datasetIndex;
 		return fill;
 	}
-	
+
 	/**
 	 * Sets the fill property to a value indicating fill to another dataset.
-	 * @param datasetIndex the absolute index of the dataset to which the area should be filled. Must be strictly positive.
+	 * 
+	 * @param datasetIndex
+	 *            the absolute index of the dataset to which the area should be filled. Must be
+	 *            strictly positive.
 	 */
-	public static ChartJsFill absoluteIndex(int datasetIndex) {
-		if (datasetIndex == 0) {
+	public static ChartJsFill absoluteIndex(int datasetIndex)
+	{
+		if (datasetIndex == 0)
+		{
 			throw new IllegalArgumentException("Absolute dataset index can not be 0!");
 		}
-		if (datasetIndex < 0) {
+		if (datasetIndex < 0)
+		{
 			throw new IllegalArgumentException("Absolute dataset index can not negative!");
 		}
 		ChartJsFill fill = new ChartJsFill();
@@ -82,8 +103,10 @@ public final class ChartJsFill {
 	}
 
 	@JsonValue
-	String toJsonString() {
-		switch (mode) {
+	public String toJsonString()
+	{
+		switch (mode)
+		{
 			case ABSOLUTE_DATASET_INDEX:
 				return String.format("%d", datasetIndex);
 			case RELATIVE_DATASET_INDEX:
@@ -96,17 +119,19 @@ public final class ChartJsFill {
 				throw new IllegalStateException();
 		}
 	}
-	
-	private static String toStringValue(ChartJsBoundaryType boundary) {
-		switch (boundary) {
+
+	private static String toStringValue(ChartJsBoundaryType boundary)
+	{
+		switch (boundary)
+		{
 			case START:
 				return "start";
 			case END:
 				return "end";
 			case ORIGIN:
 				return "origin";
-				default:
-					throw new IllegalArgumentException("Unknown ChartJsBoundaryType: "+boundary);
+			default:
+				throw new IllegalArgumentException("Unknown ChartJsBoundaryType: " + boundary);
 		}
 	}
 }
