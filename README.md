@@ -16,6 +16,7 @@ config.data()
 	.addDataset()
 	.withDataPoints(dataPoints.entrySet(), SimpleChartJsXYDataPoint::new)
 	.withLabel("activeUsers")
+	.withFill(ChartJsFill.boundary(ChartJsBoundaryType.START))
 	.withBorderColor(ChartJsRGBAColor.BLUE);
 
 LocalDate smallestXValue = dataPoints.firstKey();
@@ -29,11 +30,14 @@ SimpleChartJsLocalDateAxisConfigBuilder xAxisBuilder =
 	optionsBuilder.scalesConfig().withLocalDateXAxisConfig();
 xAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString("days");
 xAxisBuilder.tickConfig().withForcedMinimum(smallestXValue);
+xAxisBuilder.timeConfig().withTimeUnit(ChartJsTimeUnit.DAY).withStepSize(7);
 
 SimpleChartJsLinearAxisConfigBuilder yAxisBuilder =
 	optionsBuilder.scalesConfig().withLinearYAxisConfig();
-yAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString(
-	"active users");
+yAxisBuilder.withDisplay(true)
+	.labelConfig()
+		.withDisplay(true)
+		.withLabelString("active users");
 	
 String chartJsConfigAsJson = ChartJsObjectMapperFactory.getObjectMapper(true).writeValueAsString(config.build());
 ```
@@ -51,6 +55,7 @@ public GraphPage()
 	add(new SimpleGraphPanel("graphPanel", getChartJsConfigModel(), Model.of("My graph")));
 }
 ```
+See the tests of the `java-chartjs-wicket` module for more examples.
 
 # Maven Central
 Java-chartjs is available from Maven Central. Simply add the relevant artifacts to your dependencies.
