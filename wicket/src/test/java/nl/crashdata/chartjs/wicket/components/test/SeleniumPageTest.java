@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 public class SeleniumPageTest
 {
 	@Test
-	public void successfulFormSubmissionLeadsToConfirmPage()
+	public void pageRendersCorrectly()
 	{
 		WicketSeleniumTester tester = new WicketSeleniumTester(new TestWicketAppliction());
 
