@@ -28,6 +28,11 @@ public class SimpleGraphPanel<T extends ChartJsConfig< ? >> extends GenericPanel
 		super(id, model);
 	}
 
+	public WebMarkupContainer getCanvas()
+	{
+		return canvas;
+	}
+
 	@Override
 	protected void onInitialize()
 	{

@@ -3,11 +3,15 @@ package nl.crashdata.chartjs.data.simple.builder;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
+import nl.crashdata.chartjs.data.ChartJsChartType;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsOptions;
 
 public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleChartJsOptions>
 {
+	private Supplier<ChartJsChartType> chartTypeSupplier;
+
 	private Boolean responsive;
 
 	private Boolean maintainAspectRatio;
@@ -32,6 +36,11 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 	private SimpleChartJsLegendConfigBuilder legendConfigBuilder;
 
 	private Map<String, Serializable> plugins;
+
+	public SimpleChartJsOptionsBuilder(Supplier<ChartJsChartType> chartTypeSupplier)
+	{
+		this.chartTypeSupplier = chartTypeSupplier;
+	}
 
 	public SimpleChartJsOptionsBuilder withResponsive(Boolean responsive)
 	{
@@ -88,7 +97,7 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 	public SimpleChartJsLegendConfigBuilder legendConfig()
 	{
 		if (legendConfigBuilder == null)
-			legendConfigBuilder = new SimpleChartJsLegendConfigBuilder();
+			legendConfigBuilder = new SimpleChartJsLegendConfigBuilder(chartTypeSupplier);
 		return legendConfigBuilder;
 	}
 
