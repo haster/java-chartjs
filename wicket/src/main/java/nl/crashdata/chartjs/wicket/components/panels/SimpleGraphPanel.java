@@ -1,21 +1,25 @@
 package nl.crashdata.chartjs.wicket.components.panels;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import nl.crashdata.chartjs.data.ChartJsConfig;
-import nl.crashdata.chartjs.data.ChartJsDataset;
-import nl.crashdata.chartjs.serialization.ChartJsObjectMapperFactory;
-import nl.crashdata.chartjs.wicket.resources.ChartJSJavaScriptResourceReference;
 import org.apache.wicket.Application;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
 import org.apache.wicket.core.request.handler.IPartialPageRequestHandler;
+import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import nl.crashdata.chartjs.data.ChartJsConfig;
+import nl.crashdata.chartjs.data.ChartJsDataset;
+import nl.crashdata.chartjs.serialization.ChartJsObjectMapperFactory;
+import nl.crashdata.chartjs.wicket.resources.ChartJSCSSResourceReference;
+import nl.crashdata.chartjs.wicket.resources.ChartJSJavaScriptResourceReference;
 
 public class SimpleGraphPanel<T extends ChartJsConfig< ? >> extends GenericPanel<T>
 {
@@ -44,13 +48,16 @@ public class SimpleGraphPanel<T extends ChartJsConfig< ? >> extends GenericPanel
 	public void renderHead(IHeaderResponse response)
 	{
 		super.renderHead(response);
+
 		response
 			.render(JavaScriptHeaderItem.forReference(ChartJSJavaScriptResourceReference.get()));
+		response.render(CssHeaderItem.forReference(ChartJSCSSResourceReference.get()));
 		response.render(OnDomReadyHeaderItem
 			.forScript("moment.locale('" + Session.get().getLocale().toLanguageTag() + "');\n"
-				+ "document.getElementById(\"" + canvas.getMarkupId() + "\").chartjs = "
-				+ "new Chart(document.getElementById(\"" + canvas.getMarkupId()
-				+ "\").getContext(\"2d\"), " + marshal(getModelObject()) + ");"));
+				+ "Chart.platform.disableCSSInjection = true;\n" + "document.getElementById(\""
+				+ canvas.getMarkupId() + "\").chartjs = " + "new Chart(document.getElementById(\""
+				+ canvas.getMarkupId() + "\").getContext(\"2d\"), " + marshal(getModelObject())
+				+ ");"));
 	}
 
 	private String marshal(Object obj)
