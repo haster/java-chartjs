@@ -11,7 +11,7 @@ public class SimpleChartJsEventHandlerBuilder implements SimpleChartJsBuilder<Ch
 
 	private String body;
 
-	private Supplier<String> defaultHandlerBodySupplier;
+	private Supplier<String> defaultHandlerBodySupplier = () -> "";
 
 	private boolean defaultExecute = true;
 
@@ -52,10 +52,12 @@ public class SimpleChartJsEventHandlerBuilder implements SimpleChartJsBuilder<Ch
 	public ChartJsEventHandler build() throws IllegalStateException
 	{
 		StringBuilder bodyBuilder = new StringBuilder();
-		bodyBuilder.append(body);
-		if (defaultExecute && defaultHandlerBodySupplier != null
-			&& defaultHandlerBodySupplier.get() != null)
+
+		if (defaultExecute)
+		{
 			bodyBuilder.append(defaultHandlerBodySupplier.get());
+		}
+		bodyBuilder.append(body);
 		return new ChartJsEventHandler(params, bodyBuilder.toString());
 	}
 }
