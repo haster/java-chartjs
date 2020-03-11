@@ -115,12 +115,6 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 		return this;
 	}
 
-	public SimpleChartJsDatasetBuilder<E> withFill(ChartJsFill fill)
-	{
-		this.fill = fill;
-		return this;
-	}
-
 	public SimpleChartJsDatasetBuilder<E> withDataPoints(List<E> dataPoints)
 	{
 		this.data = dataPoints;
@@ -131,6 +125,12 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 			Function<X, E> converter)
 	{
 		this.data = dataPoints.stream().map(converter).collect(Collectors.toList());
+		return this;
+	}
+
+	public SimpleChartJsDatasetBuilder<E> withFill(ChartJsFill fill)
+	{
+		this.fill = fill;
 		return this;
 	}
 

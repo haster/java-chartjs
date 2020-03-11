@@ -4,6 +4,7 @@ import java.util.List;
 
 import nl.crashdata.chartjs.data.ChartJsLegendConfig;
 import nl.crashdata.chartjs.data.ChartJsPosition;
+import nl.crashdata.chartjs.data.colors.ChartJsEventHandler;
 
 public class SimpleChartJsLegendConfig implements ChartJsLegendConfig
 {
@@ -18,6 +19,8 @@ public class SimpleChartJsLegendConfig implements ChartJsLegendConfig
 	private Boolean reverse;
 
 	private List<String> labels;
+
+	private ChartJsEventHandler onClick;
 
 	@Override
 	public Boolean getDisplay()
@@ -72,5 +75,16 @@ public class SimpleChartJsLegendConfig implements ChartJsLegendConfig
 	public void setLabels(List<String> labels)
 	{
 		this.labels = labels;
+	}
+
+	@Override
+	public ChartJsEventHandler getOnClick()
+	{
+		return onClick;
+	}
+
+	public void setOnClick(ChartJsEventHandler onClick)
+	{
+		this.onClick = onClick;
 	}
 }

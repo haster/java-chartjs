@@ -50,7 +50,8 @@ public class SimpleChartJsConfigBuilder<E extends Serializable>
 
 	private ChartJsChartType type;
 
-	private SimpleChartJsOptionsBuilder optionsBuilder = new SimpleChartJsOptionsBuilder();
+	private SimpleChartJsOptionsBuilder optionsBuilder =
+		new SimpleChartJsOptionsBuilder(this::getType);
 
 	private SimpleChartJsDataBuilder<E> dataBuilder = new SimpleChartJsDataBuilder<>();
 
@@ -62,6 +63,11 @@ public class SimpleChartJsConfigBuilder<E extends Serializable>
 	{
 		this.type = type;
 		return this;
+	}
+
+	public ChartJsChartType getType()
+	{
+		return type;
 	}
 
 	public SimpleChartJsDataBuilder<E> data()
