@@ -28,6 +28,11 @@ public class SimpleGraphPanel<T extends ChartJsConfig< ? >> extends GenericPanel
 		super(id, model);
 	}
 
+	public WebMarkupContainer getCanvas()
+	{
+		return canvas;
+	}
+
 	@Override
 	protected void onInitialize()
 	{
@@ -39,6 +44,7 @@ public class SimpleGraphPanel<T extends ChartJsConfig< ? >> extends GenericPanel
 	public void renderHead(IHeaderResponse response)
 	{
 		super.renderHead(response);
+
 		response
 			.render(JavaScriptHeaderItem.forReference(ChartJSJavaScriptResourceReference.get()));
 		response
