@@ -41,8 +41,9 @@ public class SimpleGraphPanel<T extends ChartJsConfig< ? >> extends GenericPanel
 		super.renderHead(response);
 		response
 			.render(JavaScriptHeaderItem.forReference(ChartJSJavaScriptResourceReference.get()));
-		response.render(OnDomReadyHeaderItem
-			.forScript("moment.locale('" + Session.get().getLocale().toLanguageTag() + "');\n"
+		response
+			.render(OnDomReadyHeaderItem.forScript("Chart.platform.disableCSSInjection = true;\n"
+				+ "moment.locale('" + Session.get().getLocale().toLanguageTag() + "');\n"
 				+ "document.getElementById(\"" + canvas.getMarkupId() + "\").chartjs = "
 				+ "new Chart(document.getElementById(\"" + canvas.getMarkupId()
 				+ "\").getContext(\"2d\"), " + marshal(getModelObject()) + ");"));
