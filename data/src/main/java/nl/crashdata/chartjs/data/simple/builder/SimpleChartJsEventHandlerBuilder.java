@@ -51,6 +51,11 @@ public class SimpleChartJsEventHandlerBuilder implements SimpleChartJsBuilder<Ch
 	@Override
 	public ChartJsEventHandler build() throws IllegalStateException
 	{
+		if (!isValid())
+		{
+			throw new IllegalStateException(getClass().getSimpleName() + " is not ready to build!");
+		}
+
 		StringBuilder bodyBuilder = new StringBuilder();
 
 		if (defaultExecute)
