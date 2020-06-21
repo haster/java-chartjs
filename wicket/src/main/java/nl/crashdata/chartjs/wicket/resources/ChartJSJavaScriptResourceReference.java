@@ -1,8 +1,8 @@
 package nl.crashdata.chartjs.wicket.resources;
 
-import java.util.Collections;
 import java.util.List;
 
+import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
@@ -11,14 +11,16 @@ public final class ChartJSJavaScriptResourceReference extends JavaScriptResource
 {
 	private static final long serialVersionUID = 1L;
 
-	private static final String CHARTJS_NAME = "chart.v2.8.0.js";
+	static final String CHARTJS_VERSIONED_NAME = "chart.v2.9.3";
+
+	private static final String CHARTJS_JS_NAME = CHARTJS_VERSIONED_NAME + ".js";
 
 	private static final ChartJSJavaScriptResourceReference INSTANCE =
 		new ChartJSJavaScriptResourceReference();
 
 	private ChartJSJavaScriptResourceReference()
 	{
-		super(ChartJSJavaScriptResourceReference.class, CHARTJS_NAME);
+		super(ChartJSJavaScriptResourceReference.class, CHARTJS_JS_NAME);
 	}
 
 	public static ChartJSJavaScriptResourceReference get()
@@ -29,7 +31,7 @@ public final class ChartJSJavaScriptResourceReference extends JavaScriptResource
 	@Override
 	public List<HeaderItem> getDependencies()
 	{
-		return Collections.singletonList(
-			JavaScriptHeaderItem.forReference(MomentJavaScriptResourceReference.get()));
+		return List.of(JavaScriptHeaderItem.forReference(MomentJavaScriptResourceReference.get()),
+			CssHeaderItem.forReference(ChartJsCssResourceReference.get()));
 	}
 }
