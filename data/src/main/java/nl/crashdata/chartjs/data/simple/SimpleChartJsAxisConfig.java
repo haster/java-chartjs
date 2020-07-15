@@ -25,6 +25,8 @@ public class SimpleChartJsAxisConfig<T extends Serializable> implements ChartJsA
 
 	private ChartJsTimeConfig timeConfig;
 
+	private Boolean stacked;
+
 	@Override
 	public Boolean isDisplay()
 	{
@@ -86,8 +88,17 @@ public class SimpleChartJsAxisConfig<T extends Serializable> implements ChartJsA
 		return timeConfig;
 	}
 
-	public void setTimeConfig(ChartJsTimeConfig timeConfig)
+    public void setTimeConfig(ChartJsTimeConfig timeConfig)
 	{
 		this.timeConfig = timeConfig;
+	}
+
+	@Override
+	public Boolean isStacked() {
+		return stacked;
+	}
+
+	public void setStacked(Boolean stacked) {
+		this.stacked = stacked;
 	}
 }

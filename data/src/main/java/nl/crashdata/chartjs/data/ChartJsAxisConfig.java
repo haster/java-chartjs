@@ -31,4 +31,7 @@ public interface ChartJsAxisConfig<T extends Serializable> extends Serializable
 
 	@JsonProperty("time")
 	ChartJsTimeConfig getTimeConfig();
+
+	@JsonProperty("stacked")
+	Boolean isStacked();
 }
