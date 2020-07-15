@@ -45,4 +45,7 @@ public interface ChartJsDataset<E extends Serializable> extends Serializable
 
 	@JsonProperty("fill")
 	ChartJsFill getFill();
+
+	@JsonProperty("stack")
+	String getStack();
 }

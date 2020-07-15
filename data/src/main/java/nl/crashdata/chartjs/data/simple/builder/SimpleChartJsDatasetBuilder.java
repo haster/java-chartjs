@@ -31,6 +31,8 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 
 	private ChartJsFill fill = ChartJsFill.DISABLED;
 
+	private String stack;
+
 	private List<E> data = new ArrayList<>();
 
 	public SimpleChartJsDatasetBuilder<E>
@@ -121,6 +123,12 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 		return this;
 	}
 
+	public SimpleChartJsDatasetBuilder<E> withStack(String stack)
+	{
+		this.stack = stack;
+		return this;
+	}
+
 	public SimpleChartJsDatasetBuilder<E> withDataPoints(List<E> dataPoints)
 	{
 		this.data = dataPoints;
@@ -157,6 +165,7 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 		ret.setHoverBorderWidth(hoverBorderWidth);
 		ret.setData(data);
 		ret.setFill(fill);
+		ret.setStack(stack);
 		return ret;
 	}
 }
