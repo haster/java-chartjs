@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import nl.crashdata.chartjs.data.ChartJsChartType;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsOptions;
 
-public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleChartJsOptions>
+public class SimpleChartJsOptionsBuilder implements ChartJsBuildContextBuilder<SimpleChartJsOptions>
 {
 	private Supplier<ChartJsChartType> chartTypeSupplier;
 
@@ -119,7 +119,7 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 	}
 
 	@Override
-	public SimpleChartJsOptions build()
+	public SimpleChartJsOptions build(BuildContext context)
 	{
 		if (!isValid())
 		{
@@ -131,11 +131,12 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 		ret.setCutoutPercentage(cutoutPercentage);
 		ret.setRotation(rotation);
 		ret.setCircumference(circumference);
-		ret.setHoverConfig(hoverConfigBuilder.build());
-		ret.setScalesConfig(scalesConfigBuilder.build());
-		ret.setTooltipConfig(tooltipConfigBuilder.build());
-		ret.setTitleConfig(titleConfigBuilder == null ? null : titleConfigBuilder.build());
-		ret.setLegendConfig(legendConfigBuilder == null ? null : legendConfigBuilder.build());
+		ret.setHoverConfig(hoverConfigBuilder.build(context));
+		ret.setScalesConfig(scalesConfigBuilder.build(context));
+		ret.setTooltipConfig(tooltipConfigBuilder.build(context));
+		ret.setTitleConfig(titleConfigBuilder == null ? null : titleConfigBuilder.build(context));
+		ret.setLegendConfig(
+			legendConfigBuilder == null ? null : legendConfigBuilder.build(context));
 		ret.setPlugins(plugins);
 		return ret;
 	}

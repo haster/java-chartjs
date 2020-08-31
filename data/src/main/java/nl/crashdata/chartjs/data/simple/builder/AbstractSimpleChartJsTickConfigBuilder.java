@@ -5,7 +5,7 @@ import java.io.Serializable;
 import nl.crashdata.chartjs.data.simple.AbstractSimpleChartJsTickConfig;
 
 public abstract class AbstractSimpleChartJsTickConfigBuilder<E extends Serializable,
-		T extends AbstractSimpleChartJsTickConfig<E>> implements SimpleChartJsBuilder<T>
+		T extends AbstractSimpleChartJsTickConfig<E>> implements ChartJsBuildContextBuilder<T>
 {
 	private E suggestedMinimum;
 
@@ -56,7 +56,7 @@ public abstract class AbstractSimpleChartJsTickConfigBuilder<E extends Serializa
 	protected abstract T createNewTickConfig();
 
 	@Override
-	public T build() throws IllegalStateException
+	public T build(BuildContext context) throws IllegalStateException
 	{
 		if (!isValid())
 		{

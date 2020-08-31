@@ -6,7 +6,7 @@ import nl.crashdata.chartjs.data.ChartJsChartType;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsConfig;
 
 public class SimpleChartJsConfigBuilder<E extends Serializable>
-		implements SimpleChartJsBuilder<SimpleChartJsConfig<E>>
+		implements ChartJsBuildContextBuilder<SimpleChartJsConfig<E>>
 {
 	public static <E extends Serializable> SimpleChartJsConfigBuilder<E> lineChart()
 	{
@@ -83,11 +83,17 @@ public class SimpleChartJsConfigBuilder<E extends Serializable>
 	@Override
 	public boolean isValid()
 	{
-		return type != null && data().isValid() && optionsBuilder.isValid();
+		return type != null && data().isValid() && options().isValid();
 	}
 
 	@Override
 	public SimpleChartJsConfig<E> build()
+	{
+		return build(new BuildContext());
+	}
+
+	@Override
+	public SimpleChartJsConfig<E> build(BuildContext context)
 	{
 		if (!isValid())
 		{
@@ -95,8 +101,9 @@ public class SimpleChartJsConfigBuilder<E extends Serializable>
 		}
 		SimpleChartJsConfig<E> ret = new SimpleChartJsConfig<>();
 		ret.setChartType(type);
-		ret.setData(data().build());
-		ret.setOptions(optionsBuilder.build());
+		ret.setData(data().build(context));
+		ret.setOptions(options().build(context));
+		ret.addLocalEventHandlers(context.getLocalEventHandlers());
 		return ret;
 	}
 }

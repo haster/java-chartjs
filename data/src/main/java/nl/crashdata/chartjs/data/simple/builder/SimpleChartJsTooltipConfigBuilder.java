@@ -6,7 +6,7 @@ import nl.crashdata.chartjs.data.colors.ChartJsRGBAColor;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsTooltipConfig;
 
 public class SimpleChartJsTooltipConfigBuilder
-		implements SimpleChartJsBuilder<SimpleChartJsTooltipConfig>
+		implements ChartJsBuildContextBuilder<SimpleChartJsTooltipConfig>
 {
 	private Boolean enabled;
 
@@ -264,7 +264,7 @@ public class SimpleChartJsTooltipConfigBuilder
 	}
 
 	@Override
-	public SimpleChartJsTooltipConfig build() throws IllegalStateException
+	public SimpleChartJsTooltipConfig build(BuildContext context) throws IllegalStateException
 	{
 		if (!isValid())
 		{

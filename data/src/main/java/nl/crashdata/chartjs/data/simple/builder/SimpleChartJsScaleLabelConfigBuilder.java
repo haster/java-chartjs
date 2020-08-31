@@ -3,7 +3,7 @@ package nl.crashdata.chartjs.data.simple.builder;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsScaleLabelConfig;
 
 public class SimpleChartJsScaleLabelConfigBuilder
-		implements SimpleChartJsBuilder<SimpleChartJsScaleLabelConfig>
+		implements ChartJsBuildContextBuilder<SimpleChartJsScaleLabelConfig>
 {
 	private Boolean display;
 
@@ -28,7 +28,7 @@ public class SimpleChartJsScaleLabelConfigBuilder
 	}
 
 	@Override
-	public SimpleChartJsScaleLabelConfig build() throws IllegalStateException
+	public SimpleChartJsScaleLabelConfig build(BuildContext context) throws IllegalStateException
 	{
 		if (!isValid())
 		{

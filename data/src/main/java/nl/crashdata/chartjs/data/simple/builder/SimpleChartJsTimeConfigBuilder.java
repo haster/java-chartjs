@@ -4,7 +4,7 @@ import nl.crashdata.chartjs.data.ChartJsTimeConfig;
 import nl.crashdata.chartjs.data.ChartJsTimeUnit;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsTimeConfig;
 
-public class SimpleChartJsTimeConfigBuilder implements SimpleChartJsBuilder<ChartJsTimeConfig>
+public class SimpleChartJsTimeConfigBuilder implements ChartJsBuildContextBuilder<ChartJsTimeConfig>
 {
 	private Boolean isoWeekday;
 
@@ -51,7 +51,7 @@ public class SimpleChartJsTimeConfigBuilder implements SimpleChartJsBuilder<Char
 	}
 
 	@Override
-	public ChartJsTimeConfig build() throws IllegalStateException
+	public ChartJsTimeConfig build(BuildContext context) throws IllegalStateException
 	{
 		if (!isValid())
 		{

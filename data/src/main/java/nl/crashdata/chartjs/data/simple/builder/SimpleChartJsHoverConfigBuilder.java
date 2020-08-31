@@ -4,7 +4,7 @@ import nl.crashdata.chartjs.data.ChartJsInteractionMode;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsHoverConfig;
 
 public class SimpleChartJsHoverConfigBuilder
-		implements SimpleChartJsBuilder<SimpleChartJsHoverConfig>
+		implements ChartJsBuildContextBuilder<SimpleChartJsHoverConfig>
 {
 	private ChartJsInteractionMode mode;
 
@@ -29,7 +29,7 @@ public class SimpleChartJsHoverConfigBuilder
 	}
 
 	@Override
-	public SimpleChartJsHoverConfig build() throws IllegalStateException
+	public SimpleChartJsHoverConfig build(BuildContext context) throws IllegalStateException
 	{
 		if (!isValid())
 		{

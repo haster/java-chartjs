@@ -6,7 +6,7 @@ import nl.crashdata.chartjs.data.ChartJsPosition;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsScalesConfig;
 
 public class SimpleChartJsScalesConfigBuilder<X extends Serializable, Y extends Serializable>
-		implements SimpleChartJsBuilder<SimpleChartJsScalesConfig<X, Y>>
+		implements ChartJsBuildContextBuilder<SimpleChartJsScalesConfig<X, Y>>
 {
 	private AbstractSimpleChartJsAxisConfigBuilder<X> xAxisConfigBuilder;
 
@@ -150,7 +150,7 @@ public class SimpleChartJsScalesConfigBuilder<X extends Serializable, Y extends 
 	}
 
 	@Override
-	public SimpleChartJsScalesConfig<X, Y> build() throws IllegalStateException
+	public SimpleChartJsScalesConfig<X, Y> build(BuildContext context) throws IllegalStateException
 	{
 		if (!isValid())
 		{
@@ -160,9 +160,9 @@ public class SimpleChartJsScalesConfigBuilder<X extends Serializable, Y extends 
 		if (xAxisConfigBuilder == null && yAxisConfigBuilder == null)
 			return null;
 		if (xAxisConfigBuilder != null)
-			ret.setxAxis(xAxisConfigBuilder.build());
+			ret.setxAxis(xAxisConfigBuilder.build(context));
 		if (yAxisConfigBuilder != null)
-			ret.setyAxis(yAxisConfigBuilder.build());
+			ret.setyAxis(yAxisConfigBuilder.build(context));
 		return ret;
 	}
 }

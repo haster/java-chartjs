@@ -8,7 +8,8 @@ import nl.crashdata.chartjs.data.ChartJsTitleConfig;
 import nl.crashdata.chartjs.data.colors.ChartJsRGBAColor;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsTitleConfig;
 
-public class SimpleChartJsTitleConfigBuilder implements SimpleChartJsBuilder<ChartJsTitleConfig>
+public class SimpleChartJsTitleConfigBuilder
+		implements ChartJsBuildContextBuilder<ChartJsTitleConfig>
 {
 	private boolean display = true;
 
@@ -95,7 +96,7 @@ public class SimpleChartJsTitleConfigBuilder implements SimpleChartJsBuilder<Cha
 	}
 
 	@Override
-	public ChartJsTitleConfig build() throws IllegalStateException
+	public ChartJsTitleConfig build(BuildContext context) throws IllegalStateException
 	{
 		if (!isValid())
 		{

@@ -13,7 +13,7 @@ import nl.crashdata.chartjs.data.colors.ChartJsRGBAColor;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsDataset;
 
 public class SimpleChartJsDatasetBuilder<E extends Serializable>
-		implements SimpleChartJsBuilder<SimpleChartJsDataset<E>>
+		implements ChartJsBuildContextBuilder<SimpleChartJsDataset<E>>
 {
 	private List<ChartJsRGBAColor> backgroundColor;
 
@@ -141,7 +141,7 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 	}
 
 	@Override
-	public SimpleChartJsDataset<E> build() throws IllegalStateException
+	public SimpleChartJsDataset<E> build(BuildContext context) throws IllegalStateException
 	{
 		if (!isValid())
 		{

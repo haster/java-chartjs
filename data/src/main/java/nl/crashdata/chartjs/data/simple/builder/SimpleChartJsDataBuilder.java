@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsData;
 
 public class SimpleChartJsDataBuilder<V extends Serializable>
-		implements SimpleChartJsBuilder<SimpleChartJsData<V>>
+		implements ChartJsBuildContextBuilder<SimpleChartJsData<V>>
 {
 	private List<SimpleChartJsDatasetBuilder<V>> datasets = new ArrayList<>();
 
@@ -40,15 +40,14 @@ public class SimpleChartJsDataBuilder<V extends Serializable>
 	}
 
 	@Override
-	public SimpleChartJsData<V> build() throws IllegalStateException
+	public SimpleChartJsData<V> build(BuildContext context) throws IllegalStateException
 	{
 		if (!isValid())
 		{
 			throw new IllegalStateException(getClass().getSimpleName() + " is not ready to build!");
 		}
 		SimpleChartJsData<V> ret = new SimpleChartJsData<>();
-		ret.setDatasets(
-			datasets.stream().map(SimpleChartJsBuilder::build).collect(Collectors.toList()));
+		ret.setDatasets(datasets.stream().map(b -> b.build(context)).collect(Collectors.toList()));
 		ret.setLabels(labels);
 		return ret;
 	}

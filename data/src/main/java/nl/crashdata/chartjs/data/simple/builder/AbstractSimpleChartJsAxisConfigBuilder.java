@@ -2,13 +2,13 @@ package nl.crashdata.chartjs.data.simple.builder;
 
 import java.io.Serializable;
 
-import nl.crashdata.chartjs.data.ChartJsPosition;
 import nl.crashdata.chartjs.data.ChartJsCartesianAxisType;
+import nl.crashdata.chartjs.data.ChartJsPosition;
 import nl.crashdata.chartjs.data.simple.AbstractSimpleChartJsTickConfig;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsAxisConfig;
 
 public abstract class AbstractSimpleChartJsAxisConfigBuilder<T extends Serializable>
-		implements SimpleChartJsBuilder<SimpleChartJsAxisConfig<T>>
+		implements ChartJsBuildContextBuilder<SimpleChartJsAxisConfig<T>>
 {
 	private ChartJsCartesianAxisType type;
 
@@ -65,7 +65,7 @@ public abstract class AbstractSimpleChartJsAxisConfigBuilder<T extends Serializa
 	}
 
 	@Override
-	public SimpleChartJsAxisConfig<T> build() throws IllegalStateException
+	public SimpleChartJsAxisConfig<T> build(BuildContext context) throws IllegalStateException
 	{
 		if (!isValid())
 		{
@@ -75,10 +75,10 @@ public abstract class AbstractSimpleChartJsAxisConfigBuilder<T extends Serializa
 		ret.setDisplay(display);
 		ret.setPosition(position);
 		ret.setType(type);
-		ret.setLabelConfig(labelConfigBuilder.build());
-		ret.setTickConfig(tickConfig().build());
+		ret.setLabelConfig(labelConfigBuilder.build(context));
+		ret.setTickConfig(tickConfig().build(context));
 		if (timeConfigBuilder != null)
-			ret.setTimeConfig(timeConfigBuilder.build());
+			ret.setTimeConfig(timeConfigBuilder.build(context));
 		return ret;
 	}
 }

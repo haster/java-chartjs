@@ -98,7 +98,11 @@
 			        position : "left",
 			        type : "linear"
 			      } ]
-			    }
+			    },
+			    legend : {
+			        display : true,
+			        onClick : myOnClickFunction
+			      }
 			  },
 			  type : "line"
 			}

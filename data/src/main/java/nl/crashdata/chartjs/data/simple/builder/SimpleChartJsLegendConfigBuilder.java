@@ -9,7 +9,8 @@ import nl.crashdata.chartjs.data.ChartJsLegendConfig;
 import nl.crashdata.chartjs.data.ChartJsPosition;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsLegendConfig;
 
-public class SimpleChartJsLegendConfigBuilder implements SimpleChartJsBuilder<ChartJsLegendConfig>
+public class SimpleChartJsLegendConfigBuilder
+		implements ChartJsBuildContextBuilder<ChartJsLegendConfig>
 {
 	private Supplier<ChartJsChartType> chartTypeSupplier;
 
@@ -64,13 +65,12 @@ public class SimpleChartJsLegendConfigBuilder implements SimpleChartJsBuilder<Ch
 	{
 		if (onClickBuilder == null)
 		{
-			onClickBuilder = new SimpleChartJsEventHandlerBuilder();
-			onClickBuilder.withParameters("event", "item");
-			onClickBuilder.withDefaultHandlerBodySupplier(() -> {
-				return createDefaultLegendHandlerBody(chartTypeSupplier.get(), "onClick");
-			});
+			onClickBuilder = new SimpleChartJsEventHandlerBuilder().local();
+			onClickBuilder.withDefaultHandlerReference(
+				() -> createDefaultLegendHandlerReference(chartTypeSupplier.get(), "onClick"));
 		}
 		return onClickBuilder;
+
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class SimpleChartJsLegendConfigBuilder implements SimpleChartJsBuilder<Ch
 	}
 
 	@Override
-	public ChartJsLegendConfig build() throws IllegalStateException
+	public ChartJsLegendConfig build(BuildContext context) throws IllegalStateException
 	{
 		if (!isValid())
 		{
@@ -92,18 +92,17 @@ public class SimpleChartJsLegendConfigBuilder implements SimpleChartJsBuilder<Ch
 		ret.setFullWidth(fullWidth);
 		ret.setReverse(reverse);
 		ret.setLabels(labels);
-		ret.setOnClick(onClickBuilder == null ? null : onClickBuilder.build());
+		ret.setOnClick(onClickBuilder == null ? null : onClickBuilder.build(context));
 		return ret;
 	}
 
-	private String createDefaultLegendHandlerBody(ChartJsChartType type, String eventType)
+	private String createDefaultLegendHandlerReference(ChartJsChartType type, String eventType)
 	{
 		try
 		{
 			JsonProperty jsonProperty =
 				type.getClass().getField(type.name()).getAnnotation(JsonProperty.class);
-			return "Chart.defaults." + jsonProperty.value() + ".legend." + eventType
-				+ ".call(this, event, item);";
+			return "Chart.defaults." + jsonProperty.value() + ".legend." + eventType;
 		}
 		catch (Exception e)
 		{

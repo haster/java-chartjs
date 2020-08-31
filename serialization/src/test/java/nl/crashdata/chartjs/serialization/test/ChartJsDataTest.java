@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
@@ -20,8 +22,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import nl.crashdata.chartjs.data.ChartJsBoundaryType;
 import nl.crashdata.chartjs.data.ChartJsFill;
 import nl.crashdata.chartjs.data.ChartJsInteractionMode;
+import nl.crashdata.chartjs.data.ChartJsLocalEventHandler;
 import nl.crashdata.chartjs.data.ChartJsTimeUnit;
 import nl.crashdata.chartjs.data.colors.ChartJsRGBAColor;
+import nl.crashdata.chartjs.data.simple.SimpleChartJsConfig;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsXYDataPoint;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLinearAxisConfigBuilder;
@@ -54,6 +58,10 @@ public class ChartJsDataTest
 		optionsBuilder.withResponsive(true);
 		optionsBuilder.hoverConfig().withIntersect(true).withMode(ChartJsInteractionMode.NEAREST);
 		optionsBuilder.tooltipConfig().withIntersect(false).withMode(ChartJsInteractionMode.INDEX);
+		optionsBuilder.legendConfig()
+			.onClick()
+			.withFunctionReference("myOnClickFunction")
+			.withBody("console.log(\"onclick called!\");");
 		SimpleChartJsLocalDateAxisConfigBuilder xAxisBuilder =
 			optionsBuilder.scalesConfig().withLocalDateXAxisConfig();
 		xAxisBuilder.withDisplay(true).labelConfig().withDisplay(true).withLabelString("days");
@@ -66,7 +74,17 @@ public class ChartJsDataTest
 			.withDisplay(true)
 			.withLabelString("active users");
 
-		assertOutputMatches(config.build(), getExpectedUserCountOutputFromFile());
+		SimpleChartJsConfig<SimpleChartJsXYDataPoint<LocalDate, Integer>> builtConfig =
+			config.build();
+		List<ChartJsLocalEventHandler> eventHandlers =
+			new ArrayList<>(builtConfig.getLocalEventHandlers());
+
+		String expectedFunctionDeclaration =
+			"myOnClickFunction = function (event, item) { Chart.defaults.line.legend.onClick.call(this, event, item); console.log(\"onclick called!\");};";
+		assertEquals(1, eventHandlers.size());
+		assertEquals("myOnClickFunction", eventHandlers.get(0).getFunctionReference());
+		assertEquals(expectedFunctionDeclaration, eventHandlers.get(0).renderFunctionDeclaration());
+		assertOutputMatches(builtConfig, getExpectedUserCountOutputFromFile());
 	}
 
 	private void assertOutputMatches(Serializable objectToMap, String expectedOutput)
@@ -78,7 +96,10 @@ public class ChartJsDataTest
 		defaultMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
 		defaultMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
-		JsonNode actual = defaultMapper.readTree(chartjsMapper.writeValueAsString(objectToMap));
+		String jsonOutput = chartjsMapper.writeValueAsString(objectToMap);
+		System.out.println(jsonOutput);
+
+		JsonNode actual = defaultMapper.readTree(jsonOutput);
 		JsonNode expected = defaultMapper.readTree(expectedOutput);
 
 		assertEquals(expected, actual);

@@ -2,9 +2,9 @@ package nl.crashdata.chartjs.data.simple;
 
 import java.util.List;
 
+import nl.crashdata.chartjs.data.ChartJsEventHandler;
 import nl.crashdata.chartjs.data.ChartJsLegendConfig;
 import nl.crashdata.chartjs.data.ChartJsPosition;
-import nl.crashdata.chartjs.data.colors.ChartJsEventHandler;
 
 public class SimpleChartJsLegendConfig implements ChartJsLegendConfig
 {
@@ -20,7 +20,7 @@ public class SimpleChartJsLegendConfig implements ChartJsLegendConfig
 
 	private List<String> labels;
 
-	private ChartJsEventHandler onClick;
+	private ChartJsEventHandler onClickHandler;
 
 	@Override
 	public Boolean getDisplay()
@@ -78,13 +78,13 @@ public class SimpleChartJsLegendConfig implements ChartJsLegendConfig
 	}
 
 	@Override
-	public ChartJsEventHandler getOnClick()
+	public ChartJsEventHandler getOnClickHandler()
 	{
-		return onClick;
+		return onClickHandler;
 	}
 
 	public void setOnClick(ChartJsEventHandler onClick)
 	{
-		this.onClick = onClick;
+		this.onClickHandler = onClick;
 	}
 }

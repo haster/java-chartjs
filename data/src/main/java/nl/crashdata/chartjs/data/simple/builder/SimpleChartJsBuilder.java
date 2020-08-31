@@ -24,6 +24,20 @@ public interface SimpleChartJsBuilder<C>
 	 * @return a valid {@code C} if and only if {@link #isValid()} returns true.
 	 * @throws IllegalStateException
 	 *             if called when {@link #isValid()} returns false
+	 * @deprecated use {@link #build(BuildContext)}
 	 */
+	@Deprecated
 	C build() throws IllegalStateException;
+
+	/**
+	 * Builds a valid {@code C} such that {@code builder.build() != builder.build()}.
+	 *
+	 * @return a valid {@code C} if and only if {@link #isValid()} returns true.
+	 * @throws IllegalStateException
+	 *             if called when {@link #isValid()} returns false
+	 */
+	default C build(BuildContext context) throws IllegalStateException
+	{
+		return build();
+	}
 }

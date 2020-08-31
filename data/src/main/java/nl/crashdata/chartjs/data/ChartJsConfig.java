@@ -1,7 +1,9 @@
 package nl.crashdata.chartjs.data;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -17,6 +19,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public interface ChartJsConfig<E extends Serializable> extends Serializable
 {
+	@JsonIgnore
+	Set<ChartJsLocalEventHandler> getLocalEventHandlers();
+
 	@JsonProperty("type")
 	ChartJsChartType getChartType();
 
