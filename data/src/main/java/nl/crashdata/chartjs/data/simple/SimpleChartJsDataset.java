@@ -27,6 +27,8 @@ public class SimpleChartJsDataset<V extends Serializable> implements ChartJsData
 
 	private ChartJsFill fill;
 
+	private String stack;
+
 	private List<V> data;
 
 	@Override
@@ -112,9 +114,18 @@ public class SimpleChartJsDataset<V extends Serializable> implements ChartJsData
 		return fill;
 	}
 
-	public void setFill(ChartJsFill fill)
+    public void setFill(ChartJsFill fill)
 	{
 		this.fill = fill;
+	}
+
+	@Override
+	public String getStack() {
+		return stack;
+	}
+
+	public void setStack(String stack) {
+		this.stack = stack;
 	}
 
 	@Override
