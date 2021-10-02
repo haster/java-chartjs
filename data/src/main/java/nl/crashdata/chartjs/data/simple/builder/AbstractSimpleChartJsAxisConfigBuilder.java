@@ -21,6 +21,8 @@ public abstract class AbstractSimpleChartJsAxisConfigBuilder<T extends Serializa
 
 	private SimpleChartJsTimeConfigBuilder timeConfigBuilder;
 
+	private Boolean stacked;
+
 	protected AbstractSimpleChartJsAxisConfigBuilder(ChartJsCartesianAxisType type)
 	{
 		this.type = type;
@@ -57,6 +59,12 @@ public abstract class AbstractSimpleChartJsAxisConfigBuilder<T extends Serializa
 		this.timeConfigBuilder = timeConfigBuilder;
 	}
 
+	public AbstractSimpleChartJsAxisConfigBuilder<T> withStacked(Boolean stacked)
+	{
+		this.stacked = stacked;
+		return this;
+	}
+
 	@Override
 	public boolean isValid()
 	{
@@ -79,6 +87,7 @@ public abstract class AbstractSimpleChartJsAxisConfigBuilder<T extends Serializa
 		ret.setTickConfig(tickConfig().build());
 		if (timeConfigBuilder != null)
 			ret.setTimeConfig(timeConfigBuilder.build());
+		ret.setStacked(stacked);
 		return ret;
 	}
 }
