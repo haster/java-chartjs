@@ -3,7 +3,6 @@ package nl.crashdata.chartjs.wicket.resources;
 import java.util.Collections;
 import java.util.List;
 
-import nl.crashdata.chartjs.wicket.resources.ChartJSJavaScriptResourceReference;
 import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.request.resource.CssResourceReference;
