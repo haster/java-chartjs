@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>nl.crashdata.crashdata-parent</groupId>
 		<artifactId>crashdata-parent</artifactId>
-		<version>1.33</version>
+		<version>1.34</version>
 	</parent>
 
 	<groupId>nl.crashdata.java-chartjs</groupId>
@@ -55,14 +55,6 @@
 				<groupId>nl.crashdata.java-chartjs</groupId>
 				<artifactId>java-chartjs-serialization</artifactId>
 				<version>${project.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-bom</artifactId>
-				<version>9.4.19.v20190610</version>
-				<type>pom</type>
-				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
