@@ -1,5 +1,7 @@
 package nl.crashdata.chartjs.serialization.test;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.BufferedReader;
@@ -67,6 +69,45 @@ public class ChartJsDataTest
 			.withLabelString("active users");
 
 		assertOutputMatches(config.build(), getExpectedUserCountOutputFromFile());
+	}
+
+	@Test
+	public void basicMappingWithCallbackFunctions() throws IOException
+	{
+		SimpleChartJsConfigBuilder<SimpleChartJsXYDataPoint<LocalDate, Integer>> config =
+			SimpleChartJsConfigBuilder.lineChart();
+
+		SortedMap<LocalDate, Integer> dataPoints = createUserCountMap();
+
+		config.data()
+			.addDataset()
+			.withDataPoints(dataPoints.entrySet(), SimpleChartJsXYDataPoint::new)
+			.withLabel("activeUsers");
+		config.options().legendConfig().onClick().withBody("var apple = 'monkey'; return;");
+		config.options()
+			.legendConfig()
+			.onHover()
+			.withBody("var banana = 'bear'; return;")
+			.withDefaultExecute(false);
+		config.options()
+			.legendConfig()
+			.onLeave()
+			.withBody("var cherry = 'cat'; return;")
+			.withDefaultHandlerBodySupplier(() -> "var myLeave = 'true';");
+
+		ObjectMapper chartjsMapper = ChartJsObjectMapperFactory.getObjectMapper(true);
+		String configAsString = chartjsMapper.writeValueAsString(config.build());
+
+		assertThat(configAsString, containsString("var apple = 'monkey'; return;"));
+		assertThat(configAsString, containsString("var banana = 'bear'; return;"));
+		assertThat(configAsString, containsString("var cherry = 'cat'; return;"));
+		assertThat(configAsString,
+			containsString("Chart.defaults.line.legend.onClick.call(this, event, item);"));
+		assertThat(configAsString,
+			not(containsString("Chart.defaults.line.legend.onHover.call(this, event, item);")));
+		assertThat(configAsString,
+			not(containsString("Chart.defaults.line.legend.onLeave.call(this, event, item);")));
+		assertThat(configAsString, containsString("var myLeave = 'true';"));
 	}
 
 	private void assertOutputMatches(Serializable objectToMap, String expectedOutput)

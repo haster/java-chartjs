@@ -8,7 +8,7 @@
 
 	<artifactId>java-chartjs-serialization</artifactId>
 	<name>ChartJs data serialization</name>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -21,6 +21,11 @@
 		<dependency>
 			<groupId>nl.crashdata.java-chartjs</groupId>
 			<artifactId>java-chartjs-data</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

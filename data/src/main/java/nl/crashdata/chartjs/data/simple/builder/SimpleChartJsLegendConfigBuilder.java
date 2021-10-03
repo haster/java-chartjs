@@ -1,7 +1,9 @@
 package nl.crashdata.chartjs.data.simple.builder;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import nl.crashdata.chartjs.data.ChartJsChartType;
@@ -24,6 +26,10 @@ public class SimpleChartJsLegendConfigBuilder implements SimpleChartJsBuilder<Ch
 	private List<String> labels;
 
 	private SimpleChartJsEventHandlerBuilder onClickBuilder;
+
+	private SimpleChartJsEventHandlerBuilder onHoverBuilder;
+
+	private SimpleChartJsEventHandlerBuilder onLeaveBuilder;
 
 	public SimpleChartJsLegendConfigBuilder(Supplier<ChartJsChartType> chartTypeSupplier)
 	{
@@ -73,10 +79,38 @@ public class SimpleChartJsLegendConfigBuilder implements SimpleChartJsBuilder<Ch
 		return onClickBuilder;
 	}
 
+	public SimpleChartJsEventHandlerBuilder onHover()
+	{
+		if (onHoverBuilder == null)
+		{
+			onHoverBuilder = new SimpleChartJsEventHandlerBuilder();
+			onHoverBuilder.withParameters("event", "item");
+			onHoverBuilder.withDefaultHandlerBodySupplier(() -> {
+				return createDefaultLegendHandlerBody(chartTypeSupplier.get(), "onHover");
+			});
+		}
+		return onHoverBuilder;
+	}
+
+	public SimpleChartJsEventHandlerBuilder onLeave()
+	{
+		if (onLeaveBuilder == null)
+		{
+			onLeaveBuilder = new SimpleChartJsEventHandlerBuilder();
+			onLeaveBuilder.withParameters("event", "item");
+			onLeaveBuilder.withDefaultHandlerBodySupplier(() -> {
+				return createDefaultLegendHandlerBody(chartTypeSupplier.get(), "onLeave");
+			});
+		}
+		return onLeaveBuilder;
+	}
+
 	@Override
 	public boolean isValid()
 	{
-		return true;
+		return Stream.of(onClickBuilder, onHoverBuilder, onLeaveBuilder)
+			.filter(Objects::nonNull)
+			.allMatch(SimpleChartJsEventHandlerBuilder::isValid);
 	}
 
 	@Override
@@ -93,6 +127,8 @@ public class SimpleChartJsLegendConfigBuilder implements SimpleChartJsBuilder<Ch
 		ret.setReverse(reverse);
 		ret.setLabels(labels);
 		ret.setOnClick(onClickBuilder == null ? null : onClickBuilder.build());
+		ret.setOnHover(onHoverBuilder == null ? null : onHoverBuilder.build());
+		ret.setOnLeave(onLeaveBuilder == null ? null : onLeaveBuilder.build());
 		return ret;
 	}
 

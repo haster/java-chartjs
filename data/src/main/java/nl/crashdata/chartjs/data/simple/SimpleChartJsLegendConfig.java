@@ -22,6 +22,10 @@ public class SimpleChartJsLegendConfig implements ChartJsLegendConfig
 
 	private ChartJsEventHandler onClick;
 
+	private ChartJsEventHandler onHover;
+
+	private ChartJsEventHandler onLeave;
+
 	@Override
 	public Boolean getDisplay()
 	{
@@ -86,5 +90,27 @@ public class SimpleChartJsLegendConfig implements ChartJsLegendConfig
 	public void setOnClick(ChartJsEventHandler onClick)
 	{
 		this.onClick = onClick;
+	}
+
+	@Override
+	public ChartJsEventHandler getOnHover()
+	{
+		return onHover;
+	}
+
+	public void setOnHover(ChartJsEventHandler onHover)
+	{
+		this.onHover = onHover;
+	}
+
+	@Override
+	public ChartJsEventHandler getOnLeave()
+	{
+		return onLeave;
+	}
+
+	public void setOnLeave(ChartJsEventHandler onLeave)
+	{
+		this.onLeave = onLeave;
 	}
 }

@@ -35,4 +35,12 @@ public interface ChartJsLegendConfig extends Serializable
 	@JsonProperty("onClick")
 	@JsonRawValue
 	ChartJsEventHandler getOnClick();
+
+	@JsonProperty("onHover")
+	@JsonRawValue
+	ChartJsEventHandler getOnHover();
+
+	@JsonProperty("onLeave")
+	@JsonRawValue
+	ChartJsEventHandler getOnLeave();
 }
