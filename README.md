@@ -1,5 +1,5 @@
 # java-chartjs
-[![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/nl/crashdata/java-chartjs/java-chartjs/maven-metadata.xml.svg)](https://repo1.maven.org/maven2/nl/crashdata/java-chartjs/java-chartjs/)
+[![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fnl%2Fcrashdata%2Fjava-chartjs%2Fjava-chartjs%2Fmaven-metadata.xml)](https://repo1.maven.org/maven2/nl/crashdata/java-chartjs/java-chartjs/)
 ![license](https://img.shields.io/github/license/haster/java-chartjs.svg)
 
 Java-chartjs provides you with a way to configure and use [ChartJs](https://github.com/chartjs/Chart.js) from Java and Java-based web frameworks such as Apache Wicket.
