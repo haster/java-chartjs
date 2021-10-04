@@ -80,6 +80,7 @@ It also contains a set of builders to help in creating a full ChartJsConfig.
 
 java-chartjs  |  Chart.js  |  moment.js
 --------------|------------|------------
+ 2.3.x        | 2.9.3      | 2.27.0
  2.2.x        | 2.9.3      | 2.27.0
  2.1.x        | 2.9.3      | 2.27.0
  2.0.x        | 2.8.0      | 2.24.0
