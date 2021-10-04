@@ -2,23 +2,14 @@ package nl.crashdata.chartjs.serialization.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import nl.crashdata.chartjs.data.ChartJsBoundaryType;
 import nl.crashdata.chartjs.data.ChartJsFill;
 import nl.crashdata.chartjs.data.ChartJsInteractionMode;
@@ -30,10 +21,9 @@ import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLinearAxisConfigBui
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsLocalDateAxisConfigBuilder;
 import nl.crashdata.chartjs.data.simple.builder.SimpleChartJsOptionsBuilder;
 import nl.crashdata.chartjs.serialization.ChartJsObjectMapperFactory;
-import nl.crashdata.chartjs.serialization.test.resources.TestResourcesMarker;
 import org.junit.jupiter.api.Test;
 
-public class ChartJsDataTest
+public class ChartJsDataTest extends AbstractChartJsDataTest
 {
 	@Test
 	public void basicObjectMapping() throws IOException
@@ -68,7 +58,7 @@ public class ChartJsDataTest
 			.withDisplay(true)
 			.withLabelString("active users");
 
-		assertOutputMatches(config.build(), getExpectedUserCountOutputFromFile());
+		assertOutputMatches(config.build(), getExpectedUserCountOutputFromFile("output.js"));
 	}
 
 	@Test
@@ -110,21 +100,6 @@ public class ChartJsDataTest
 		assertThat(configAsString, containsString("var myLeave = 'true';"));
 	}
 
-	private void assertOutputMatches(Serializable objectToMap, String expectedOutput)
-			throws IOException
-	{
-		ObjectMapper chartjsMapper = ChartJsObjectMapperFactory.getObjectMapper(true);
-
-		ObjectMapper defaultMapper = new ObjectMapper();
-		defaultMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-		defaultMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-
-		JsonNode actual = defaultMapper.readTree(chartjsMapper.writeValueAsString(objectToMap));
-		JsonNode expected = defaultMapper.readTree(expectedOutput);
-
-		assertEquals(expected, actual);
-	}
-
 	private static SortedMap<LocalDate, Integer> createUserCountMap()
 	{
 		SortedMap<LocalDate, Integer> dataPoints = new TreeMap<>();
@@ -147,14 +122,5 @@ public class ChartJsDataTest
 		dataPoints.put(LocalDate.of(2018, Month.JANUARY, 17), 25);
 		dataPoints.put(LocalDate.of(2018, Month.JANUARY, 18), 4);
 		return dataPoints;
-	}
-
-	private static String getExpectedUserCountOutputFromFile() throws IOException
-	{
-		try (InputStream in = TestResourcesMarker.class.getResourceAsStream("output.js"))
-		{
-			return new BufferedReader(new InputStreamReader(in)).lines()
-				.collect(Collectors.joining("\n"));
-		}
 	}
 }
