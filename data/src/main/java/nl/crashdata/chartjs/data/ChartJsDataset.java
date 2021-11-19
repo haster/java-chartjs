@@ -8,7 +8,7 @@ import nl.crashdata.chartjs.data.colors.ChartJsRGBAColor;
 
 /**
  * Represents the configuration of one dataset for a chart. In other words, this represents the data
- * for one line in a line chart. If there are moultiple lines, there will be multiple datasets.
+ * for one line in a line chart. If there are multiple lines, there will be multiple datasets.
  *
  * Corresponds to the elements of the {@code config.data.datasets} property.
  *
