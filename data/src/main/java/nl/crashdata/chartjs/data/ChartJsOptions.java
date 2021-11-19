@@ -30,6 +30,9 @@ public interface ChartJsOptions extends Serializable
 	@JsonProperty("circumference")
 	Integer getCircumference();
 
+	@JsonProperty("indexAxis")
+	String getIndexAxis();
+
 	@JsonProperty("hover")
 	ChartJsHoverConfig getHoverConfig();
 
@@ -38,4 +41,7 @@ public interface ChartJsOptions extends Serializable
 
 	@JsonProperty("plugins")
 	ChartJsPluginsConfig getPluginsConfig();
+
+	@JsonProperty("elements")
+	ChartJsElementsConfig getElementsConfig();
 }

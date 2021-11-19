@@ -19,11 +19,15 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 
 	private Integer circumference;
 
+	private String indexAxis;
+
 	private SimpleChartJsHoverConfigBuilder hoverConfigBuilder;
 
 	private SimpleChartJsScalesConfigBuilder< ? , ? > scalesConfigBuilder;
 
 	private SimpleChartJsPluginsConfigBuilder pluginsConfigBuilder;
+
+	private SimpleChartJsElementsConfigBuilder elementsConfigBuilder;
 
 	public SimpleChartJsOptionsBuilder(Supplier<ChartJsChartType> chartTypeSupplier)
 	{
@@ -61,6 +65,12 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 		return this;
 	}
 
+	public SimpleChartJsBuilder<SimpleChartJsOptions> withIndexAxis(String indexAxis)
+	{
+		this.indexAxis = indexAxis;
+		return this;
+	}
+
 	public SimpleChartJsHoverConfigBuilder hoverConfig()
 	{
 		if (hoverConfigBuilder == null)
@@ -82,6 +92,13 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 		return pluginsConfigBuilder;
 	}
 
+	public SimpleChartJsElementsConfigBuilder elementsConfig()
+	{
+		if (elementsConfigBuilder == null)
+			elementsConfigBuilder = new SimpleChartJsElementsConfigBuilder();
+		return elementsConfigBuilder;
+	}
+
 	@Override
 	public boolean isValid()
 	{
@@ -101,9 +118,11 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 		ret.setCutoutPercentage(cutoutPercentage);
 		ret.setRotation(rotation);
 		ret.setCircumference(circumference);
+		ret.setIndexAxis(indexAxis);
 		ret.setHoverConfig(buildIfNotNull(hoverConfigBuilder));
 		ret.setScalesConfig(buildIfNotNull(scalesConfigBuilder));
 		ret.setPluginsConfig(buildIfNotNull(pluginsConfigBuilder));
+		ret.setElementsConfig(buildIfNotNull(elementsConfigBuilder));
 		return ret;
 	}
 }

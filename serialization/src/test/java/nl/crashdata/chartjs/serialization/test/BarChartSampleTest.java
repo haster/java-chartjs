@@ -43,7 +43,45 @@ public class BarChartSampleTest extends AbstractChartJsDataTest
 			.addText("Chart.js Bar Chart")
 			.withDisplay(true);
 
+		assertOutputMatches(config.build(), getExpectedOutputFromFile("barchart-sample.js"));
+	}
+
+	@Test
+	public void horizBarChartSample() throws IOException
+	{
+		List<String> labels =
+			List.of("January", "February", "March", "April", "May", "June", "July");
+		List<Integer> datapoints1 = List.of(-89, -88, -86, -82, -76, -55, -41);
+		List<Integer> datapoints2 = List.of(-59, -56, -15, 23, 24, 93, 95);
+
+		ChartJsRGBAColor red = new ChartJsRGBAColor(255, 99, 132);
+		ChartJsRGBAColor blue = new ChartJsRGBAColor(54, 162, 235);
+
+		SimpleChartJsConfigBuilder<Integer> config = SimpleChartJsConfigBuilder.barChart();
+		config.data().withLabels(labels);
+		config.data()
+			.addDataset()
+			.withBorderColor(red)
+			.withBackgroundColor(red.withAlpha(50))
+			.withDataPoints(datapoints1)
+			.withLabel("Dataset 1");
+		config.data()
+			.addDataset()
+			.withBorderColor(blue)
+			.withBackgroundColor(blue.withAlpha(50))
+			.withDataPoints(datapoints2)
+			.withLabel("Dataset 2");
+		config.options().withResponsive(true);
+		config.options().withIndexAxis("y");
+		config.options().elementsConfig().barConfig().withBorderWidth(2);
+		config.options().pluginsConfig().legendConfig().withPosition(ChartJsPosition.RIGHT);
+		config.options()
+			.pluginsConfig()
+			.titleConfig()
+			.addText("Chart.js Horizontal Bar Chart")
+			.withDisplay(true);
+
 		assertOutputMatches(config.build(),
-			getExpectedOutputFromFile("barchart-sample.js"));
+			getExpectedOutputFromFile("barchart-sample-horizontal.js"));
 	}
 }

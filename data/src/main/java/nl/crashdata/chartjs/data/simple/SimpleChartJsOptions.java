@@ -1,5 +1,6 @@
 package nl.crashdata.chartjs.data.simple;
 
+import nl.crashdata.chartjs.data.ChartJsElementsConfig;
 import nl.crashdata.chartjs.data.ChartJsHoverConfig;
 import nl.crashdata.chartjs.data.ChartJsOptions;
 import nl.crashdata.chartjs.data.ChartJsPluginsConfig;
@@ -19,11 +20,15 @@ public class SimpleChartJsOptions implements ChartJsOptions
 
 	private Integer circumference;
 
+	private String indexAxis;
+
 	private ChartJsHoverConfig hoverConfig;
 
 	private ChartJsScalesConfig scalesConfig;
 
 	private ChartJsPluginsConfig pluginsConfig;
+
+	private ChartJsElementsConfig elementsConfig;
 
 	@Override
 	public Boolean getResponsive()
@@ -111,5 +116,27 @@ public class SimpleChartJsOptions implements ChartJsOptions
 	public void setPluginsConfig(ChartJsPluginsConfig pluginsConfig)
 	{
 		this.pluginsConfig = pluginsConfig;
+	}
+
+	@Override
+	public String getIndexAxis()
+	{
+		return indexAxis;
+	}
+
+	public void setIndexAxis(String indexAxis)
+	{
+		this.indexAxis = indexAxis;
+	}
+
+	@Override
+	public ChartJsElementsConfig getElementsConfig()
+	{
+		return elementsConfig;
+	}
+
+	public void setElementsConfig(ChartJsElementsConfig elementsConfig)
+	{
+		this.elementsConfig = elementsConfig;
 	}
 }
