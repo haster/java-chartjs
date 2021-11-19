@@ -1,14 +1,9 @@
 package nl.crashdata.chartjs.data.simple;
 
-import java.io.Serializable;
-import java.util.Map;
-
 import nl.crashdata.chartjs.data.ChartJsHoverConfig;
-import nl.crashdata.chartjs.data.ChartJsLegendConfig;
 import nl.crashdata.chartjs.data.ChartJsOptions;
+import nl.crashdata.chartjs.data.ChartJsPluginsConfig;
 import nl.crashdata.chartjs.data.ChartJsScalesConfig;
-import nl.crashdata.chartjs.data.ChartJsTitleConfig;
-import nl.crashdata.chartjs.data.ChartJsTooltipConfig;
 
 public class SimpleChartJsOptions implements ChartJsOptions
 {
@@ -24,17 +19,11 @@ public class SimpleChartJsOptions implements ChartJsOptions
 
 	private Integer circumference;
 
-	private ChartJsTooltipConfig tooltipConfig;
-
 	private ChartJsHoverConfig hoverConfig;
 
 	private ChartJsScalesConfig scalesConfig;
 
-	private ChartJsTitleConfig titleConfig;
-
-	private ChartJsLegendConfig legendConfig;
-
-	private Map<String, Serializable> plugins;
+	private ChartJsPluginsConfig pluginsConfig;
 
 	@Override
 	public Boolean getResponsive()
@@ -92,17 +81,6 @@ public class SimpleChartJsOptions implements ChartJsOptions
 	}
 
 	@Override
-	public ChartJsTooltipConfig getTooltipConfig()
-	{
-		return tooltipConfig;
-	}
-
-	public void setTooltipConfig(ChartJsTooltipConfig tooltipConfig)
-	{
-		this.tooltipConfig = tooltipConfig;
-	}
-
-	@Override
 	public ChartJsHoverConfig getHoverConfig()
 	{
 		return hoverConfig;
@@ -125,35 +103,13 @@ public class SimpleChartJsOptions implements ChartJsOptions
 	}
 
 	@Override
-	public ChartJsTitleConfig getTitleConfig()
+	public ChartJsPluginsConfig getPluginsConfig()
 	{
-		return titleConfig;
+		return pluginsConfig;
 	}
 
-	public void setTitleConfig(ChartJsTitleConfig titleConfig)
+	public void setPluginsConfig(ChartJsPluginsConfig pluginsConfig)
 	{
-		this.titleConfig = titleConfig;
-	}
-
-	@Override
-	public ChartJsLegendConfig getLegendConfig()
-	{
-		return legendConfig;
-	}
-
-	public void setLegendConfig(ChartJsLegendConfig legendConfig)
-	{
-		this.legendConfig = legendConfig;
-	}
-
-	@Override
-	public Map<String, Serializable> getPlugins()
-	{
-		return plugins;
-	}
-
-	public void setPlugins(Map<String, Serializable> plugins)
-	{
-		this.plugins = plugins;
+		this.pluginsConfig = pluginsConfig;
 	}
 }

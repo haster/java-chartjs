@@ -1,5 +1,8 @@
 package nl.crashdata.chartjs.data.simple.builder;
 
+import java.util.Objects;
+import java.util.stream.Stream;
+
 /**
  * Simple super interface for all SimpleChartJs*Builders to ensure to all have an {@link #isValid()}
  * and {@link #build()} method.
@@ -26,4 +29,14 @@ public interface SimpleChartJsBuilder<C>
 	 *             if called when {@link #isValid()} returns false
 	 */
 	C build() throws IllegalStateException;
+
+	default <C2> C2 buildIfNotNull(SimpleChartJsBuilder<C2> builder)
+	{
+		return builder == null ? null : builder.build();
+	}
+
+	default boolean allNullOrValid(SimpleChartJsBuilder< ? >... builders)
+	{
+		return Stream.of(builders).filter(Objects::nonNull).allMatch(SimpleChartJsBuilder::isValid);
+	}
 }

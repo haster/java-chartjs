@@ -1,8 +1,5 @@
 package nl.crashdata.chartjs.data.simple.builder;
 
-import java.io.Serializable;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.function.Supplier;
 
 import nl.crashdata.chartjs.data.ChartJsChartType;
@@ -22,100 +19,73 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 
 	private Integer circumference;
 
-	private SimpleChartJsTooltipConfigBuilder tooltipConfigBuilder =
-		new SimpleChartJsTooltipConfigBuilder();
+	private SimpleChartJsHoverConfigBuilder hoverConfigBuilder;
 
-	private SimpleChartJsHoverConfigBuilder hoverConfigBuilder =
-		new SimpleChartJsHoverConfigBuilder();
+	private SimpleChartJsScalesConfigBuilder< ? , ? > scalesConfigBuilder;
 
-	private SimpleChartJsScalesConfigBuilder< ? , ? > scalesConfigBuilder =
-		new SimpleChartJsScalesConfigBuilder<>();
-
-	private SimpleChartJsTitleConfigBuilder titleConfigBuilder;
-
-	private SimpleChartJsLegendConfigBuilder legendConfigBuilder;
-
-	private Map<String, Serializable> plugins;
+	private SimpleChartJsPluginsConfigBuilder pluginsConfigBuilder;
 
 	public SimpleChartJsOptionsBuilder(Supplier<ChartJsChartType> chartTypeSupplier)
 	{
 		this.chartTypeSupplier = chartTypeSupplier;
 	}
 
-	public SimpleChartJsOptionsBuilder withResponsive(Boolean responsive)
+	public SimpleChartJsBuilder<SimpleChartJsOptions> withResponsive(Boolean responsive)
 	{
 		this.responsive = responsive;
 		return this;
 	}
 
-	public SimpleChartJsOptionsBuilder withMaintainAspectRatio(Boolean maintainAspectRatio)
+	public SimpleChartJsBuilder<SimpleChartJsOptions>
+			withMaintainAspectRatio(Boolean maintainAspectRatio)
 	{
 		this.maintainAspectRatio = maintainAspectRatio;
 		return this;
 	}
 
-	public SimpleChartJsOptionsBuilder withCutoutPercentage(Integer cutoutPercentage)
+	public SimpleChartJsBuilder<SimpleChartJsOptions> withCutoutPercentage(Integer cutoutPercentage)
 	{
 		this.cutoutPercentage = cutoutPercentage;
 		return this;
 	}
 
-	public SimpleChartJsOptionsBuilder withRotation(Integer rotation)
+	public SimpleChartJsBuilder<SimpleChartJsOptions> withRotation(Integer rotation)
 	{
 		this.rotation = rotation;
 		return this;
 	}
 
-	public SimpleChartJsOptionsBuilder withCircumference(Integer circumference)
+	public SimpleChartJsBuilder<SimpleChartJsOptions> withCircumference(Integer circumference)
 	{
 		this.circumference = circumference;
 		return this;
 	}
 
-	public SimpleChartJsTooltipConfigBuilder tooltipConfig()
-	{
-		return tooltipConfigBuilder;
-	}
-
 	public SimpleChartJsHoverConfigBuilder hoverConfig()
 	{
+		if (hoverConfigBuilder == null)
+			hoverConfigBuilder = new SimpleChartJsHoverConfigBuilder();
 		return hoverConfigBuilder;
 	}
 
 	public SimpleChartJsScalesConfigBuilder< ? , ? > scalesConfig()
 	{
+		if (scalesConfigBuilder == null)
+			scalesConfigBuilder = new SimpleChartJsScalesConfigBuilder<>();
 		return scalesConfigBuilder;
 	}
 
-	public SimpleChartJsTitleConfigBuilder titleConfig()
+	public SimpleChartJsPluginsConfigBuilder pluginsConfig()
 	{
-		if (titleConfigBuilder == null)
-			titleConfigBuilder = new SimpleChartJsTitleConfigBuilder();
-		return titleConfigBuilder;
-	}
-
-	public SimpleChartJsLegendConfigBuilder legendConfig()
-	{
-		if (legendConfigBuilder == null)
-			legendConfigBuilder = new SimpleChartJsLegendConfigBuilder(chartTypeSupplier);
-		return legendConfigBuilder;
-	}
-
-	public SimpleChartJsOptionsBuilder withPlugin(String name, Serializable configuration)
-	{
-		if (plugins == null)
-			plugins = new LinkedHashMap<>();
-		plugins.put(name, configuration);
-		return this;
+		if (pluginsConfigBuilder == null)
+			pluginsConfigBuilder = new SimpleChartJsPluginsConfigBuilder(chartTypeSupplier);
+		return pluginsConfigBuilder;
 	}
 
 	@Override
 	public boolean isValid()
 	{
-		return tooltipConfigBuilder.isValid() && hoverConfigBuilder.isValid()
-			&& scalesConfigBuilder.isValid()
-			&& (titleConfigBuilder == null || titleConfigBuilder.isValid())
-			&& (legendConfigBuilder == null || legendConfigBuilder.isValid());
+		return allNullOrValid(hoverConfigBuilder, scalesConfigBuilder);
 	}
 
 	@Override
@@ -131,13 +101,9 @@ public class SimpleChartJsOptionsBuilder implements SimpleChartJsBuilder<SimpleC
 		ret.setCutoutPercentage(cutoutPercentage);
 		ret.setRotation(rotation);
 		ret.setCircumference(circumference);
-		ret.setHoverConfig(hoverConfigBuilder.build());
-		ret.setScalesConfig(scalesConfigBuilder.build());
-		ret.setTooltipConfig(tooltipConfigBuilder.build());
-		ret.setTitleConfig(titleConfigBuilder == null ? null : titleConfigBuilder.build());
-		ret.setLegendConfig(legendConfigBuilder == null ? null : legendConfigBuilder.build());
-		ret.setPlugins(plugins);
+		ret.setHoverConfig(buildIfNotNull(hoverConfigBuilder));
+		ret.setScalesConfig(buildIfNotNull(scalesConfigBuilder));
+		ret.setPluginsConfig(buildIfNotNull(pluginsConfigBuilder));
 		return ret;
 	}
-
 }

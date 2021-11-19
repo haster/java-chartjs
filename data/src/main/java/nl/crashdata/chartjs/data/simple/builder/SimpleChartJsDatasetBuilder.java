@@ -29,7 +29,7 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 
 	private String label;
 
-	private ChartJsFill fill = ChartJsFill.DISABLED;
+	private ChartJsFill fill;
 
 	private String stack;
 

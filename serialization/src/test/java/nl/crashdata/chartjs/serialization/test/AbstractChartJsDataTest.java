@@ -18,7 +18,7 @@ import nl.crashdata.chartjs.serialization.test.resources.TestResourcesMarker;
 
 public class AbstractChartJsDataTest
 {
-	protected static String getExpectedUserCountOutputFromFile(String fileName) throws IOException
+	protected static String getExpectedOutputFromFile(String fileName) throws IOException
 	{
 		try (InputStream in = TestResourcesMarker.class.getResourceAsStream(fileName))
 		{

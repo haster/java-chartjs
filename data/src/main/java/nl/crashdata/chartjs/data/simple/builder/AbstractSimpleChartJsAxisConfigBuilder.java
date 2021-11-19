@@ -2,8 +2,8 @@ package nl.crashdata.chartjs.data.simple.builder;
 
 import java.io.Serializable;
 
-import nl.crashdata.chartjs.data.ChartJsPosition;
 import nl.crashdata.chartjs.data.ChartJsCartesianAxisType;
+import nl.crashdata.chartjs.data.ChartJsPosition;
 import nl.crashdata.chartjs.data.simple.AbstractSimpleChartJsTickConfig;
 import nl.crashdata.chartjs.data.simple.SimpleChartJsAxisConfig;
 

@@ -1,7 +1,6 @@
 package nl.crashdata.chartjs.data;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -31,21 +30,12 @@ public interface ChartJsOptions extends Serializable
 	@JsonProperty("circumference")
 	Integer getCircumference();
 
-	@JsonProperty("tooltips")
-	ChartJsTooltipConfig getTooltipConfig();
-
 	@JsonProperty("hover")
 	ChartJsHoverConfig getHoverConfig();
 
 	@JsonProperty("scales")
 	ChartJsScalesConfig getScalesConfig();
 
-	@JsonProperty("title")
-	ChartJsTitleConfig getTitleConfig();
-
-	@JsonProperty("legend")
-	ChartJsLegendConfig getLegendConfig();
-
 	@JsonProperty("plugins")
-	Map<String, Serializable> getPlugins();
+	ChartJsPluginsConfig getPluginsConfig();
 }
