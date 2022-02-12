@@ -7,7 +7,7 @@ import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 
-public final class ChartJSJavaScriptResourceReference extends JavaScriptResourceReference
+public final class ChartJsJavaScriptResourceReference extends JavaScriptResourceReference
 {
 	private static final long serialVersionUID = 1L;
 
@@ -15,15 +15,15 @@ public final class ChartJSJavaScriptResourceReference extends JavaScriptResource
 
 	private static final String CHARTJS_JS_NAME = CHARTJS_VERSIONED_NAME + ".js";
 
-	private static final ChartJSJavaScriptResourceReference INSTANCE =
-		new ChartJSJavaScriptResourceReference();
+	private static final ChartJsJavaScriptResourceReference INSTANCE =
+		new ChartJsJavaScriptResourceReference();
 
-	private ChartJSJavaScriptResourceReference()
+	private ChartJsJavaScriptResourceReference()
 	{
-		super(ChartJSJavaScriptResourceReference.class, CHARTJS_JS_NAME);
+		super(ChartJsJavaScriptResourceReference.class, CHARTJS_JS_NAME);
 	}
 
-	public static ChartJSJavaScriptResourceReference get()
+	public static ChartJsJavaScriptResourceReference get()
 	{
 		return INSTANCE;
 	}

@@ -43,9 +43,24 @@ public interface ChartJsDataset<E extends Serializable> extends Serializable
 	@JsonProperty("hoverBorderWidth")
 	List<Integer> getHoverBorderWidth();
 
+	@JsonProperty("pointBackgroundColor")
+	List<ChartJsRGBAColor> getPointBackgroundColor();
+
+	@JsonProperty("pointBorderColor")
+	List<ChartJsRGBAColor> getPointBorderColor();
+
+	@JsonProperty("pointBorderWidth")
+	List<Integer> getPointBorderWidth();
+
+	@JsonProperty("pointRadius")
+	List<Integer> getPointRadius();
+
 	@JsonProperty("fill")
 	ChartJsFill getFill();
 
 	@JsonProperty("stack")
 	String getStack();
+
+	@JsonProperty("order")
+	Integer getOrder();
 }

@@ -25,9 +25,19 @@ public class SimpleChartJsDataset<V extends Serializable> implements ChartJsData
 
 	private List<Integer> hoverBorderWidth;
 
+	private List<ChartJsRGBAColor> pointBackgroundColor;
+
+	private List<ChartJsRGBAColor> pointBorderColor;
+
+	private List<Integer> pointBorderWidth;
+
+	private List<Integer> pointRadius;
+
 	private ChartJsFill fill;
 
 	private String stack;
+
+	private Integer order;
 
 	private List<V> data;
 
@@ -109,12 +119,56 @@ public class SimpleChartJsDataset<V extends Serializable> implements ChartJsData
 	}
 
 	@Override
+	public List<ChartJsRGBAColor> getPointBackgroundColor()
+	{
+		return pointBackgroundColor;
+	}
+
+	public void setPointBackgroundColor(List<ChartJsRGBAColor> pointBackgroundColor)
+	{
+		this.pointBackgroundColor = pointBackgroundColor;
+	}
+
+	@Override
+	public List<ChartJsRGBAColor> getPointBorderColor()
+	{
+		return pointBorderColor;
+	}
+
+	public void setPointBorderColor(List<ChartJsRGBAColor> pointBorderColor)
+	{
+		this.pointBorderColor = pointBorderColor;
+	}
+
+	@Override
+	public List<Integer> getPointBorderWidth()
+	{
+		return pointBorderWidth;
+	}
+
+	public void setPointBorderWidth(List<Integer> pointBorderWidth)
+	{
+		this.pointBorderWidth = pointBorderWidth;
+	}
+
+	@Override
+	public List<Integer> getPointRadius()
+	{
+		return pointRadius;
+	}
+
+	public void setPointRadius(List<Integer> pointRadius)
+	{
+		this.pointRadius = pointRadius;
+	}
+
+	@Override
 	public ChartJsFill getFill()
 	{
 		return fill;
 	}
 
-    public void setFill(ChartJsFill fill)
+	public void setFill(ChartJsFill fill)
 	{
 		this.fill = fill;
 	}
@@ -126,6 +180,15 @@ public class SimpleChartJsDataset<V extends Serializable> implements ChartJsData
 
 	public void setStack(String stack) {
 		this.stack = stack;
+	}
+
+	@Override
+	public Integer getOrder() {
+		return order;
+	}
+
+	public void setOrder(Integer order) {
+		this.order = order;
 	}
 
 	@Override
