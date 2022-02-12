@@ -27,11 +27,21 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 
 	private List<Integer> hoverBorderWidth;
 
+	private List<ChartJsRGBAColor> pointBackgroundColor;
+
+	private List<ChartJsRGBAColor> pointBorderColor;
+
+	private List<Integer> pointBorderWidth;
+
+	private List<Integer> pointRadius;
+
 	private String label;
 
 	private ChartJsFill fill = ChartJsFill.DISABLED;
 
 	private String stack;
+
+	private Integer order;
 
 	private List<E> data = new ArrayList<>();
 
@@ -74,6 +84,31 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 		return this;
 	}
 
+	public SimpleChartJsDatasetBuilder<E>
+			withPointBackgroundColors(List<ChartJsRGBAColor> pointBackgroundColors)
+	{
+		this.pointBackgroundColor = pointBackgroundColors;
+		return this;
+	}
+
+	public SimpleChartJsDatasetBuilder<E> withPointBorderColors(List<ChartJsRGBAColor> pointBorderColors)
+	{
+		this.pointBorderColor = pointBorderColors;
+		return this;
+	}
+
+	public SimpleChartJsDatasetBuilder<E> withPointBorderWidths(List<Integer> pointBorderWidths)
+	{
+		this.pointBorderWidth = pointBorderWidths;
+		return this;
+	}
+
+	public SimpleChartJsDatasetBuilder<E> withPointRadiuses(List<Integer> pointRadiuses)
+	{
+		this.pointRadius = pointRadiuses;
+		return this;
+	}
+
 	public SimpleChartJsDatasetBuilder<E> withBackgroundColor(ChartJsRGBAColor backgroundColor)
 	{
 		this.backgroundColor = Collections.singletonList(backgroundColor);
@@ -111,6 +146,30 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 		return this;
 	}
 
+	public SimpleChartJsDatasetBuilder<E> withPointBackgroundColor(ChartJsRGBAColor pointBackgroundColor)
+	{
+		this.pointBackgroundColor = Collections.singletonList(pointBackgroundColor);
+		return this;
+	}
+
+	public SimpleChartJsDatasetBuilder<E> withPointBorderColor(ChartJsRGBAColor pointBorderColor)
+	{
+		this.pointBorderColor = Collections.singletonList(pointBorderColor);
+		return this;
+	}
+
+	public SimpleChartJsDatasetBuilder<E> withPointBorderWidth(Integer pointBorderWidth)
+	{
+		this.pointBorderWidth = Collections.singletonList(pointBorderWidth);
+		return this;
+	}
+
+	public SimpleChartJsDatasetBuilder<E> withPointRadius(Integer pointRadius)
+	{
+		this.pointRadius = Collections.singletonList(pointRadius);
+		return this;
+	}
+
 	public SimpleChartJsDatasetBuilder<E> withLabel(String label)
 	{
 		this.label = label;
@@ -120,6 +179,12 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 	public SimpleChartJsDatasetBuilder<E> withStack(String stack)
 	{
 		this.stack = stack;
+		return this;
+	}
+
+	public SimpleChartJsDatasetBuilder<E> withOrder(Integer order)
+	{
+		this.order = order;
 		return this;
 	}
 
@@ -163,9 +228,14 @@ public class SimpleChartJsDatasetBuilder<E extends Serializable>
 		ret.setHoverBackgroundColor(hoverBackgroundColor);
 		ret.setHoverBorderColor(hoverBorderColor);
 		ret.setHoverBorderWidth(hoverBorderWidth);
+		ret.setPointBackgroundColor(pointBackgroundColor);
+		ret.setPointBorderColor(pointBorderColor);
+		ret.setPointBorderWidth(pointBorderWidth);
+		ret.setPointRadius(pointRadius);
 		ret.setData(data);
 		ret.setFill(fill);
 		ret.setStack(stack);
+		ret.setOrder(order);
 		return ret;
 	}
 }

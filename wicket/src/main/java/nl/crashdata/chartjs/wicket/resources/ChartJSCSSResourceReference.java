@@ -1,5 +1,7 @@
 package nl.crashdata.chartjs.wicket.resources;
 
+import static nl.crashdata.chartjs.wicket.resources.ChartJsJavaScriptResourceReference.*;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -7,19 +9,20 @@ import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.request.resource.CssResourceReference;
 
-public class ChartJSCSSResourceReference extends CssResourceReference
+public class ChartJsCssResourceReference extends CssResourceReference
 {
 	private static final long serialVersionUID = 1L;
 
-	private static ChartJSCSSResourceReference INSTANCE =
-		new ChartJSCSSResourceReference(ChartJSCSSResourceReference.class, "Chart.css");
+	private static final String CHARTJS_CSS_NAME = CHARTJS_VERSIONED_NAME + ".css";
 
-	private ChartJSCSSResourceReference(Class< ? > scope, String name)
+	private static final ChartJsCssResourceReference INSTANCE = new ChartJsCssResourceReference();
+
+	private ChartJsCssResourceReference()
 	{
-		super(scope, name);
+		super(ChartJsCssResourceReference.class, CHARTJS_CSS_NAME);
 	}
 
-	public static ChartJSCSSResourceReference get()
+	public static ChartJsCssResourceReference get()
 	{
 		return INSTANCE;
 	}
@@ -28,6 +31,6 @@ public class ChartJSCSSResourceReference extends CssResourceReference
 	public List<HeaderItem> getDependencies()
 	{
 		return Collections.singletonList(
-			JavaScriptHeaderItem.forReference(ChartJSJavaScriptResourceReference.get()));
+			JavaScriptHeaderItem.forReference(MomentJavaScriptResourceReference.get()));
 	}
 }

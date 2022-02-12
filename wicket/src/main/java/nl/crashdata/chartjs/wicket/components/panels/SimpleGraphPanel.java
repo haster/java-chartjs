@@ -18,8 +18,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.crashdata.chartjs.data.ChartJsConfig;
 import nl.crashdata.chartjs.data.ChartJsDataset;
 import nl.crashdata.chartjs.serialization.ChartJsObjectMapperFactory;
-import nl.crashdata.chartjs.wicket.resources.ChartJSCSSResourceReference;
-import nl.crashdata.chartjs.wicket.resources.ChartJSJavaScriptResourceReference;
+import nl.crashdata.chartjs.wicket.resources.ChartJsCssResourceReference;
+import nl.crashdata.chartjs.wicket.resources.ChartJsJavaScriptResourceReference;
 
 public class SimpleGraphPanel<T extends ChartJsConfig< ? >> extends GenericPanel<T>
 {
@@ -50,8 +50,8 @@ public class SimpleGraphPanel<T extends ChartJsConfig< ? >> extends GenericPanel
 		super.renderHead(response);
 
 		response
-			.render(JavaScriptHeaderItem.forReference(ChartJSJavaScriptResourceReference.get()));
-		response.render(CssHeaderItem.forReference(ChartJSCSSResourceReference.get()));
+			.render(JavaScriptHeaderItem.forReference(ChartJsJavaScriptResourceReference.get()));
+		response.render(CssHeaderItem.forReference(ChartJsCssResourceReference.get()));
 		response.render(OnDomReadyHeaderItem
 			.forScript("moment.locale('" + Session.get().getLocale().toLanguageTag() + "');\n"
 				+ "Chart.platform.disableCSSInjection = true;\n" + "document.getElementById(\""

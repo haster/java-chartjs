@@ -1,6 +1,6 @@
 package nl.crashdata.chartjs.wicket.resources;
 
-import static nl.crashdata.chartjs.wicket.resources.ChartJSJavaScriptResourceReference.*;
+import static nl.crashdata.chartjs.wicket.resources.ChartJsJavaScriptResourceReference.*;
 
 import java.util.Collections;
 import java.util.List;
